@@ -1,0 +1,410 @@
+---
+import Base from "../layouts/Base.astro";
+import SlideCard from "../components/SlideCard.astro";
+import data from "../data/slides.json";
+
+const { slides, author } = data;
+
+const tagLabels: Record<string, string> = {
+  web: '網頁開發',
+  software: '軟體開發',
+  design: '設計',
+  oss: '開源社群',
+};
+
+// Collect unique tags in the order they first appear
+const uniqueTags = [...new Set(slides.flatMap(s => s.tags))];
+const categories = [
+  { id: 'all', label: '所有分類' },
+  ...uniqueTags.map(t => ({ id: t, label: tagLabels[t] ?? t })),
+];
+---
+
+<Base title="毛哥EM公開簡報" description="毛哥EM的公開簡報集，涵蓋網頁開發、軟體開發、設計與開源社群。">
+	<div class="page-wrap">
+		<!-- Decorative elements -->
+		<div class="decor-crosshair" style="top:6rem;left:3rem;" aria-hidden="true"></div>
+		<div class="decor-crosshair" style="top:6rem;right:3rem;" aria-hidden="true"></div>
+		<div class="decor-circle" style="bottom:12rem;right:5rem;" aria-hidden="true"></div>
+
+		<header class="site-header">
+			<div class="header-meta mono">
+				<span class="meta-label">REV</span>
+				<span>{new Date().getFullYear()}.{(new Date().getMonth() + 1).toString().padStart(2, "0")}</span>
+				<span class="sep">·</span>
+				<span class="meta-label">AUTHOR</span>
+				<span>{author.name}</span>
+				<span class="sep">·</span>
+				<span class="meta-label">CC BY 4.0</span>
+			</div>
+
+			<div class="title-block">
+				<div class="title-rule"></div>
+				<h1>
+					<span class="title-en mono">PUBLIC SLIDES</span>
+					<span class="title-zh">毛哥EM公開簡報</span>
+				</h1>
+				<div class="title-rule"></div>
+			</div>
+
+			<p class="header-desc">
+				簡報均採用創用 CC「<a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hant" target="_blank" rel="noopener">姓名標示 4.0 國際</a>」授權。 部分會重複使用於不同課程，持續更新。
+			</p>
+
+			<div class="stats-row">
+				<div class="stat">
+					<span class="stat-num mono" id="stat-total">{slides.length}</span>
+					<span class="stat-label">簡報數</span>
+				</div>
+				<div class="stat-divider" aria-hidden="true">·</div>
+				<div class="stat">
+					<span class="stat-num mono" id="stat-cats">{categories.length - 1}</span>
+					<span class="stat-label">分類</span>
+				</div>
+				<div class="stat-divider" aria-hidden="true">·</div>
+				<div class="stat">
+					<span class="stat-num mono">
+						{[...new Set(slides.map(s => s.year))].length}
+					</span>
+					<span class="stat-label">年份跨度</span>
+				</div>
+			</div>
+		</header>
+
+		<main class="main-content">
+			<!-- Filter bar -->
+			<nav class="filter-bar" aria-label="分類篩選">
+				<span class="filter-label mono">FILTER /</span>
+				<div class="filter-btns" role="tablist">
+					{
+						categories.map((cat, i) => (
+							<button class={`filter-btn${i === 0 ? " active" : ""}`} data-category={cat.id} role="tab" aria-selected={i === 0 ? "true" : "false"}>
+								{cat.label}
+							</button>
+						))
+					}
+				</div>
+			</nav>
+
+			<!-- Grid -->
+			<div class="slides-grid" id="slides-grid">
+				{slides.map((slide, i) => <SlideCard slide={slide} index={i} />)}
+			</div>
+
+			<p class="no-results hidden" id="no-results">此分類目前沒有簡報。</p>
+		</main>
+
+		<footer class="site-footer">
+			<div class="footer-line"></div>
+			<div class="footer-content">
+				<span class="mono footer-copy">© {new Date().getFullYear()} <a href={author.url}>{author.fullName}</a></span>
+				<span class="footer-links">
+					<a href={author.blog} target="_blank" rel="noopener">部落格</a>
+					<span aria-hidden="true">·</span>
+					<a href="https://github.com/Edit-Mr/slides" target="_blank" rel="noopener">GitHub</a>
+				</span>
+			</div>
+		</footer>
+	</div>
+</Base>
+
+<script>
+	const filterBtns = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+	const cards = document.querySelectorAll<HTMLElement>(".slide-card");
+	const noResults = document.getElementById("no-results")!;
+	const statTotal = document.getElementById("stat-total")!;
+
+	filterBtns.forEach(btn => {
+		btn.addEventListener("click", () => {
+			filterBtns.forEach(b => {
+				b.classList.remove("active");
+				b.setAttribute("aria-selected", "false");
+			});
+			btn.classList.add("active");
+			btn.setAttribute("aria-selected", "true");
+
+			const cat = btn.dataset.category!;
+			let visible = 0;
+
+			cards.forEach(card => {
+				const tags = card.dataset.tags?.split(',') ?? [];
+				const show = cat === "all" || tags.includes(cat);
+				(card as HTMLElement).style.display = show ? "" : "none";
+				if (show) visible++;
+			});
+
+			statTotal.textContent = String(visible);
+			noResults.classList.toggle("hidden", visible > 0);
+		});
+	});
+</script>
+
+<style>
+	.page-wrap {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 2rem 1.5rem 4rem;
+		position: relative;
+	}
+
+	/* ─── Decorative sketch elements ─── */
+	.decor-crosshair,
+	.decor-circle {
+		position: fixed;
+		pointer-events: none;
+		opacity: 0.15;
+	}
+
+	.decor-crosshair {
+		width: 20px;
+		height: 20px;
+	}
+	.decor-crosshair::before,
+	.decor-crosshair::after {
+		content: "";
+		position: absolute;
+		background: var(--border-dark);
+	}
+	.decor-crosshair::before {
+		width: 1px;
+		height: 100%;
+		left: 50%;
+	}
+	.decor-crosshair::after {
+		height: 1px;
+		width: 100%;
+		top: 50%;
+	}
+
+	.decor-circle {
+		width: 80px;
+		height: 80px;
+		border: 1px solid var(--border-dark);
+		border-radius: 50%;
+	}
+
+	/* ─── Header ─── */
+	.site-header {
+		padding: 3rem 0 2.5rem;
+		margin-bottom: 2.5rem;
+		border-bottom: 2px solid var(--accent);
+	}
+
+	.header-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.72rem;
+		color: var(--text-faint);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		margin-bottom: 2rem;
+	}
+	.header-meta .sep {
+		color: var(--border-dark);
+	}
+	.meta-label {
+		color: var(--text-muted);
+		font-weight: 600;
+	}
+
+	.title-block {
+		margin-bottom: 1.5rem;
+	}
+
+	/* Dashed rule — engineering drawing style */
+	.title-rule {
+		height: 2px;
+		background: repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 6px, transparent 6px, transparent 12px);
+		margin-bottom: 0.5rem;
+	}
+
+	h1 {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		padding: 0.5rem 0;
+	}
+
+	.title-en {
+		font-size: 0.78rem;
+		letter-spacing: 0.22em;
+		color: var(--text-faint);
+		text-transform: uppercase;
+	}
+
+	.title-zh {
+		font-size: clamp(2rem, 5vw, 3.5rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		line-height: 1.1;
+		color: var(--text);
+	}
+
+	.header-desc {
+		font-size: 0.9rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+		margin-bottom: 1.5rem;
+		max-width: 55ch;
+	}
+
+	.header-desc a {
+		border-bottom: 1px solid var(--border-dark);
+	}
+	.header-desc a:hover {
+		border-color: var(--accent);
+	}
+
+	.stats-row {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+	}
+
+	.stat {
+		display: flex;
+		align-items: baseline;
+		gap: 0.4rem;
+	}
+
+	.stat-num {
+		font-size: 1.75rem;
+		font-weight: 700;
+		color: var(--text);
+		line-height: 1;
+	}
+
+	.stat-label {
+		font-size: 0.72rem;
+		color: var(--text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.stat-divider {
+		color: var(--border-dark);
+		font-size: 1.2rem;
+	}
+
+	/* ─── Filter bar ─── */
+	.filter-bar {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.75rem;
+		flex-wrap: wrap;
+	}
+
+	.filter-label {
+		font-size: 0.7rem;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--text-faint);
+	}
+
+	.filter-btns {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.filter-btn {
+		font-size: 0.78rem;
+		font-weight: 500;
+		padding: 0.3rem 0.9rem;
+		border: 1.5px solid var(--border);
+		color: var(--text-muted);
+		background: var(--surface);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		transition:
+			border-color 0.12s,
+			color 0.12s,
+			background 0.12s;
+		cursor: pointer;
+	}
+
+	.filter-btn:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+
+	.filter-btn.active {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: var(--surface);
+	}
+
+	/* ─── Cards grid ─── */
+	.slides-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.no-results {
+		text-align: center;
+		color: var(--text-muted);
+		padding: 3rem 0;
+		font-size: 0.9rem;
+	}
+	.hidden {
+		display: none !important;
+	}
+
+	/* ─── Footer ─── */
+	.site-footer {
+		margin-top: 4rem;
+	}
+
+	.footer-line {
+		height: 1px;
+		background: var(--border);
+		margin-bottom: 1rem;
+	}
+
+	.footer-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		font-size: 0.8rem;
+		color: var(--text-faint);
+	}
+
+	.footer-copy a,
+	.footer-links a {
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.12s;
+	}
+	.footer-copy a:hover,
+	.footer-links a:hover {
+		border-color: var(--border-dark);
+		color: var(--text-muted);
+	}
+
+	.footer-links {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	/* ─── Responsive ─── */
+	@media (max-width: 640px) {
+		.slides-grid {
+			grid-template-columns: 1fr;
+		}
+		.title-zh {
+			font-size: 2rem;
+		}
+		.header-meta {
+			flex-wrap: wrap;
+		}
+		.decor-crosshair,
+		.decor-circle {
+			display: none;
+		}
+	}
+</style>

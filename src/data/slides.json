@@ -1,0 +1,91 @@
+{
+	"slides": [
+		{
+			"title": "GitHub Actions",
+			"subtitle": null,
+			"description": "GitHub Actions 是 GitHub 內建的自動化平台，用來實作 CI/CD 及各種自動化流程。",
+			"tags": ["software"],
+			"year": 2024,
+			"hosted": true,
+			"url": "/talks/actions/"
+		},
+		{
+			"title": "HTML",
+			"subtitle": null,
+			"description": "超文本標記語言基礎，學習如何建構網頁骨架與內容結構。",
+			"tags": ["web"],
+			"year": 2024,
+			"hosted": true,
+			"url": "/talks/html/"
+		},
+		{
+			"title": "CSS 基礎",
+			"subtitle": null,
+			"description": "網頁樣式與排版，學習選擇器、色彩、間距、漸層等核心概念。",
+			"tags": ["web"],
+			"year": 2024,
+			"hosted": true,
+			"url": "/talks/css/"
+		},
+		{
+			"title": "Git & GitHub 基礎",
+			"subtitle": null,
+			"description": "版本控制與協作平台，學習如何管理程式碼歷史與團隊協作。",
+			"tags": ["software"],
+			"year": 2024,
+			"hosted": true,
+			"url": "/talks/git/"
+		},
+		{
+			"title": "不止於 CSS",
+			"subtitle": "SITCON Camp 2025 廣度課程",
+			"description": "如何做出 prompt 不出來的驚豔網頁，AI 現階段可以做什麼、不能做什麼，以及如何與他合作。",
+			"tags": ["web"],
+			"year": 2025,
+			"hosted": false,
+			"url": "https://drive.google.com/file/d/1qfrVtTxxaU6qXNbH8OJbj2pblkwEY5zI/view?usp=sharing"
+		},
+		{
+			"title": "前端特效：不都國中數學",
+			"subtitle": "SITCON 2025",
+			"description": "捨棄繁雜工具，使用純 CSS 和 JavaScript 結合國中數學基礎，深入剖析令人驚豔的視覺效果。",
+			"tags": ["web"],
+			"year": 2025,
+			"hosted": false,
+			"url": "https://sitcon.org/2025/agenda/aa71e5/"
+		},
+		{
+			"title": "從捷徑到終端機，iPhone 的程式之旅",
+			"subtitle": "SITCON 2024",
+			"description": "從捷徑、Scriptable 到 a-shell，從 JavaScript 到 Python，探索 iPhone 程式設計的無限可能。",
+			"tags": ["software"],
+			"year": 2024,
+			"hosted": false,
+			"url": "https://sitcon.org/2024/agenda/e40b24/"
+		},
+		{
+			"title": "前往自由的路上 - 中電喵的開源之旅",
+			"subtitle": "COSCUP 2024",
+			"description": "中電會這一年都在幹嘛，這些專案如何支持獨立開發者及學生，解救中電會差點破產的窘境。",
+			"tags": ["oss"],
+			"year": 2024,
+			"hosted": false,
+			"url": "https://github.com/Edit-Mr/talks/releases/tag/COSCUP2025"
+		},
+		{
+			"title": "基礎平面設計",
+			"subtitle": "中電會 2024 幹部訓練 / 2025 暑訓",
+			"description": "一些簡單通用的設計法則，幫助你快速掌握平面設計的基礎。",
+			"tags": ["design"],
+			"year": 2025,
+			"hosted": false,
+			"url": "https://github.com/Edit-Mr/talks/releases/tag/SCAICT2025"
+		}
+	],
+	"author": {
+		"name": "毛哥EM",
+		"fullName": "Elvis Mao",
+		"url": "https://elvismao.com",
+		"blog": "https://emtech.cc"
+	}
+}

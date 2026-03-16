@@ -1,0 +1,242 @@
+---
+export interface SlideData {
+  title: string;
+  subtitle: string | null;
+  description: string;
+  tags: string[];
+  year: number;
+  hosted: boolean;
+  url: string;
+}
+
+interface Props {
+  slide: SlideData;
+  index: number;
+}
+
+const { slide, index } = Astro.props;
+const { url } = slide;
+
+// Detect link type from URL pattern
+function getLinkType(url: string): 'hosted' | 'drive' | 'sitcon' | 'github' | 'external' {
+  if (slide.hosted) return 'hosted';
+  if (url.includes('drive.google.com')) return 'drive';
+  if (url.includes('sitcon.org')) return 'sitcon';
+  if (url.includes('github.com')) return 'github';
+  return 'external';
+}
+
+const linkType = getLinkType(url);
+const isExternal = linkType !== 'hosted';
+
+const linkLabels: Record<string, string> = {
+  hosted: '開啟簡報',
+  drive: 'Google Drive',
+  sitcon: 'SITCON 議程',
+  github: 'GitHub',
+  external: '前往查看',
+};
+const linkLabel = linkLabels[linkType];
+
+const tagLabels: Record<string, string> = {
+  web: '網頁開發',
+  software: '軟體開發',
+  design: '設計',
+  oss: '開源社群',
+};
+
+const tagColors: Record<string, string> = {
+  web: 'cat-web',
+  software: 'cat-software',
+  design: 'cat-design',
+  oss: 'cat-oss',
+};
+
+// Use first tag for card accent colour
+const primaryTag = slide.tags[0] ?? '';
+const catClass = tagColors[primaryTag] ?? '';
+---
+
+<article
+  class={`slide-card ${catClass}`}
+  data-tags={slide.tags.join(',')}
+  style={`animation-delay: ${index * 60}ms`}
+>
+  <div class="card-corner tl"></div>
+  <div class="card-corner tr"></div>
+  <div class="card-corner bl"></div>
+  <div class="card-corner br"></div>
+
+  <header class="card-header">
+    <span class="card-index mono">#{String(index + 1).padStart(2, '0')}</span>
+    <div class="card-tags">
+      {slide.tags.map(tag => (
+        <span class={`card-tag tag-${tag}`}>{tagLabels[tag] ?? tag}</span>
+      ))}
+    </div>
+  </header>
+
+  <div class="card-body">
+    <h3 class="card-title">{slide.title}</h3>
+    {slide.subtitle && <p class="card-subtitle">{slide.subtitle}</p>}
+    <p class="card-description">{slide.description}</p>
+  </div>
+
+  <footer class="card-footer">
+    <span class="card-year mono">{slide.year}</span>
+    <a
+      href={url}
+      class="card-link"
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+    >
+      {linkLabel}
+      <span class="link-arrow" aria-hidden="true">→</span>
+    </a>
+  </footer>
+</article>
+
+<style>
+  .slide-card {
+    position: relative;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    padding: 1.5rem;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    animation: card-in 0.3s ease forwards;
+  }
+
+  @keyframes card-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .slide-card:hover {
+    border-color: var(--accent);
+    box-shadow: 4px 4px 0 var(--accent);
+    transform: translate(-2px, -2px);
+  }
+
+  /* Corner decorations — sketch/blueprint style */
+  .card-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: var(--border-dark);
+    border-style: solid;
+  }
+  .card-corner.tl { top: -1px; left: -1px;  border-width: 2px 0 0 2px; }
+  .card-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+  .card-corner.bl { bottom: -1px; left: -1px;  border-width: 0 0 2px 2px; }
+  .card-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .card-index {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    justify-content: flex-end;
+  }
+
+  .card-tag {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    background: var(--bg-alt);
+  }
+
+  .tag-web      { border-color: #7b9e87; color: #3a6146; background: #edf5f0; }
+  .tag-software { border-color: #6b82b5; color: #2d4a82; background: #edf1f9; }
+  .tag-design   { border-color: #b58a6b; color: #7a4520; background: #f9f1ed; }
+  .tag-oss      { border-color: #9b7eb5; color: #4e2a80; background: #f4f0f9; }
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .card-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-top: 0.25rem;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+    margin-top: auto;
+  }
+
+  .card-year {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    padding: 0.35rem 0.75rem;
+    border: 1.5px solid var(--accent);
+    transition: background 0.12s, color 0.12s;
+  }
+
+  .card-link:hover {
+    background: var(--accent);
+    color: var(--surface);
+  }
+
+  .link-arrow {
+    transition: transform 0.15s;
+  }
+
+  .card-link:hover .link-arrow {
+    transform: translateX(3px);
+  }
+</style>

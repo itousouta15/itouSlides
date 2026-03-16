@@ -1,0 +1,101 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = "毛哥EM公開簡報", description = "毛哥EM的公開簡報集，涵蓋網頁開發、軟體開發、設計與開源社群。" } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="zh-Hant-TW">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-9R5PZG2VQG"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", "G-9R5PZG2VQG");
+		</script>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	@import url("https://font.emtech.cc/css/GenSekiGothicTW");
+	@import url("https://font.emtech.cc/css/JetBrainsMono");
+
+	:root {
+		--bg: #f0ede8;
+		--bg-alt: #e8e5e0;
+		--surface: #ffffff;
+		--surface-hover: #f5f2ed;
+		--border: #c8c4bc;
+		--border-dark: #9c9890;
+		--text: #1a1916;
+		--text-muted: #6b6860;
+		--text-faint: #9c9890;
+		--accent: #1a1916;
+		--accent-alt: #4a4640;
+		--grid-color: rgba(0, 0, 0, 0.07);
+		--grid-size: 24px;
+		--font-mono: "JetBrainsMono", monospace;
+	}
+
+	*,
+	*::before,
+	*::after {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	html {
+		font-size: 16px;
+		scroll-behavior: smooth;
+	}
+
+	body {
+		font-family: "GenSekiGothicTW", sans-serif;
+		background-color: var(--bg);
+		color: var(--text);
+		min-height: 100vh;
+		/* Blueprint/sketch grid background */
+		background-image:
+			linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+		background-size:
+			var(--grid-size) var(--grid-size),
+			var(--grid-size) var(--grid-size),
+			calc(var(--grid-size) * 4) calc(var(--grid-size) * 4),
+			calc(var(--grid-size) * 4) calc(var(--grid-size) * 4);
+		background-attachment: fixed;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	button {
+		font-family: inherit;
+		cursor: pointer;
+		border: none;
+		background: none;
+	}
+
+	/* Utility */
+	.mono {
+		font-family: var(--font-mono);
+	}
+</style>
