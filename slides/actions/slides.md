@@ -1,5 +1,5 @@
 ---
-theme: ../_shared/theme
+theme: ../_shared/theme-em
 title: GitHub Actions
 titleTemplate: "%s — 毛哥EM"
 author: 毛哥EM

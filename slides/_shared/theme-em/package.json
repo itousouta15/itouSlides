@@ -1,12 +1,11 @@
 {
-	"name": "slidev-theme-em-shared",
+	"name": "slidev-theme-em",
 	"private": true,
+	"description": "EM shared Slidev theme, based on Dracula",
 	"slidev": {
-		"addons": [
-			"slidev-theme-dracula"
-		],
+		"colorSchema": "dark",
+		"highlighter": "shiki",
 		"defaults": {
-			"download": false,
 			"transition": "fade",
 			"mdc": true,
 			"fonts": {

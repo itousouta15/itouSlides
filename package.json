@@ -14,7 +14,10 @@
 		"@slidev/cli": "^52.14.1",
 		"@slidev/theme-default": "^0.25.0",
 		"astro": "^6.0.2",
-		"slidev-theme-dracula": "^0.2.0"
+		"codemirror-theme-vars": "^0.1.2",
+		"prism-theme-vars": "^0.2.5",
+		"slidev-theme-dracula": "^0.2.0",
+		"theme-vitesse": "^1.0.0"
 	},
 	"devDependencies": {
 		"prettier": "^3.8.1",
