@@ -17,8 +17,6 @@ css: ./style.css
 selectable: true
 ---
 
----
-
 # AI 協作前端開發入門
 
 毛哥EM
@@ -136,6 +134,16 @@ layout: statement
 不是比較會背語法的人
 
 而是更會 **拆需求、查資料、驗證結果、整合工具** 的人
+
+---
+layout: statement
+---
+
+莊育棋：未來的面試可能會分為兩 Part
+
+* 十分核心底層原理
+* AI 應用能力
+
 ---
 layout: statement
 ---

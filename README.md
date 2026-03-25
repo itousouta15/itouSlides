@@ -2,4 +2,4 @@
 
 [slides.elvismao.com](https://slides.elvismao.com/)
 
-使用 Slidev 製作簡報，Astro 製作網站。
+使用 [Slidev](https://sli.dev/) 製作簡報，[Astro](https://astro.build/) 製作網站。

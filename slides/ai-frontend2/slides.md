@@ -17,8 +17,6 @@ css: ./style.css
 selectable: true
 ---
 
----
-
 # AI 協作前端開發入門
 
 毛哥EM
