@@ -1,10 +1,18 @@
 ---
-theme: default
+theme: dracula
 title: HTML
-titleTemplate: '%s — 毛哥EM'
+titleTemplate: "%s — 毛哥EM"
 author: 毛哥EM
 transition: fade
 mdc: true
+fonts:
+  sans: LXGW WenKai TC
+  serif: LXGW WenKai TC
+  mono: Fira Code
+htmlAttrs:
+  lang: zh-Hant-TW
+defaults:
+  layout: intro
 ---
 
 # HTML
@@ -91,12 +99,15 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 
 ```html
 <p>
-  段落
-  <b>粗體</b>
-  <i>斜體</i>
-  <s>刪除線</s>
-  <u>底線</u>
-  H<sup>+</sup> CO<sub>2</sub>
+	段落
+	<b>粗體</b>
+	<i>斜體</i>
+	<s>刪除線</s>
+	<u>底線</u>
+	H
+	<sup>+</sup>
+	CO
+	<sub>2</sub>
 </p>
 ```
 
@@ -113,9 +124,9 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 
 ```html
 <ul>
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
+	<li>a</li>
+	<li>b</li>
+	<li>c</li>
 </ul>
 ```
 
@@ -125,9 +136,9 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 
 ```html
 <ol>
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
+	<li>a</li>
+	<li>b</li>
+	<li>c</li>
 </ol>
 ```
 
@@ -137,13 +148,13 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 
 ```html
 <ul>
-  <li>清單裡可以有清單</li>
-  <li>
-    <ul>
-      <li>沒錯</li>
-      <li>就是這樣</li>
-    </ul>
-  </li>
+	<li>清單裡可以有清單</li>
+	<li>
+		<ul>
+			<li>沒錯</li>
+			<li>就是這樣</li>
+		</ul>
+	</li>
 </ul>
 ```
 
@@ -176,10 +187,7 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 ```
 
 ```html
-<img
-  src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-  alt="Google"
-/>
+<img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" />
 ```
 
 ---
@@ -188,33 +196,33 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 
 ```html
 <table>
-  <tr>
-    <th>國家</th>
-    <th>首都</th>
-    <th>人口</th>
-    <th>語言</th>
-  </tr>
-  <tr>
-    <td>USA</td>
-    <td>Washington D.C.</td>
-    <td>309</td>
-    <td>English</td>
-  </tr>
-  <tr>
-    <td>Sweden</td>
-    <td>Stockholm</td>
-    <td>9</td>
-    <td>Swedish</td>
-  </tr>
+	<tr>
+		<th>國家</th>
+		<th>首都</th>
+		<th>人口</th>
+		<th>語言</th>
+	</tr>
+	<tr>
+		<td>USA</td>
+		<td>Washington D.C.</td>
+		<td>309</td>
+		<td>English</td>
+	</tr>
+	<tr>
+		<td>Sweden</td>
+		<td>Stockholm</td>
+		<td>9</td>
+		<td>Swedish</td>
+	</tr>
 </table>
 ```
 
 ---
 
-| 國家 | 首都 | 人口 | 語言 |
-|------|------|------|------|
-| USA | Washington D.C. | 309 | English |
-| Sweden | Stockholm | 9 | Swedish |
+| 國家   | 首都            | 人口 | 語言    |
+| ------ | --------------- | ---- | ------- |
+| USA    | Washington D.C. | 309  | English |
+| Sweden | Stockholm       | 9    | Swedish |
 
 ---
 
@@ -237,7 +245,8 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 ### 勾選框
 
 ```html
-<input type="checkbox" /> 我已詳細閱讀使用者服務條款
+<input type="checkbox" />
+我已詳細閱讀使用者服務條款
 ```
 
 ---
@@ -245,7 +254,8 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 ### 勾選框（已勾選）
 
 ```html
-<input type="checkbox" checked /> 我已詳細閱讀使用者服務條款
+<input type="checkbox" checked />
+我已詳細閱讀使用者服務條款
 ```
 
 ---
@@ -253,7 +263,8 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 ### disabled
 
 ```html
-<input type="checkbox" disabled /> 我已詳細閱讀使用者服務條款
+<input type="checkbox" disabled />
+我已詳細閱讀使用者服務條款
 ```
 
 ---
@@ -270,9 +281,12 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 ## 單選框
 
 ```html
-<input type="radio" name="color" value="red" /> red
-<input type="radio" name="color" value="green" /> green
-<input type="radio" name="color" value="blue" /> blue
+<input type="radio" name="color" value="red" />
+red
+<input type="radio" name="color" value="green" />
+green
+<input type="radio" name="color" value="blue" />
+blue
 ```
 
 ---
@@ -281,8 +295,8 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 
 ```html
 <form action="資料傳給哪個網址" method="傳輸方式">
-  <input type="text" name="name" placeholder="輸入你的名字" />
-  <input type="submit" value="送出" />
+	<input type="text" name="name" placeholder="輸入你的名字" />
+	<input type="submit" value="送出" />
 </form>
 ```
 
@@ -292,8 +306,8 @@ _網站講白就是要用瀏覽器打開的 Word 檔_
 
 ```html
 <form action="https://www.google.com/search" method="get">
-  <input type="text" name="q" placeholder="搜尋 Google" />
-  <input type="submit" value="搜尋" />
+	<input type="text" name="q" placeholder="搜尋 Google" />
+	<input type="submit" value="搜尋" />
 </form>
 ```
 
@@ -336,14 +350,14 @@ emmet：`!` + `tab`
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <!-- 內容直接顯示在網頁中 -->
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<!-- 內容直接顯示在網頁中 -->
+	</body>
 </html>
 ```
 
@@ -361,10 +375,12 @@ emmet：`!` + `tab`
 ```
 
 ---
+layout: statement
+---
 
 本投影片由 [毛哥EM](https://elvismao.com/) 製作  
 採用創用 CC「[姓名標示 4.0 國際](https://creativecommons.org/licenses/by/4.0/deed.zh-hant)」授權
 
-![CC](./img/cc.svg)
+<img src="./img/cc.svg" alt="CC" class="mx-auto" />
 
 [毛哥EM資訊密技](https://emtech.cc/) · [毛哥EM公開簡報](https://g.elvismao.com/slides)

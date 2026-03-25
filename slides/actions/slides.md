@@ -1,10 +1,18 @@
 ---
-theme: default
+theme: dracula
 title: GitHub Actions
-titleTemplate: '%s — 毛哥EM'
+titleTemplate: "%s — 毛哥EM"
 author: 毛哥EM
 transition: fade
 mdc: true
+fonts:
+  sans: LXGW WenKai TC
+  serif: LXGW WenKai TC
+  mono: Fira Code
+htmlAttrs:
+  lang: zh-Hant-TW
+defaults:
+  layout: intro
 ---
 
 # GitHub Actions
@@ -61,13 +69,14 @@ mdc: true
 例如：`ci.yml`
 
 ---
+---
 
 ```yaml
 name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
@@ -108,12 +117,12 @@ jobs:
 ```yaml
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch: {}
   schedule:
-    - cron: "0 3 * * *"  # 每天 UTC 03:00 執行
+    - cron: "0 3 * * *" # 每天 UTC 03:00 執行
 ```
 
 ---
@@ -127,6 +136,7 @@ on:
   - `needs`: 指定依賴的其他 Job
   - `strategy`: matrix 等進階設定
 
+---
 ---
 
 ```yaml
@@ -148,6 +158,7 @@ Step 有兩種常見寫法：
 1. **使用現成 Action** → `uses`
 2. **直接跑指令** → `run`
 
+---
 ---
 
 ```yaml
@@ -204,6 +215,8 @@ runs-on: self-hosted
 
 ---
 
+#### 下載與設定 Node.js
+
 ```yaml
 - uses: actions/checkout@v4
 - uses: actions/setup-node@v4
@@ -243,15 +256,16 @@ jobs:
 - 在 push / PR 時自動：安裝依賴、跑 lint + test
 
 ---
+---
 
 ```yaml
 name: Node CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
@@ -275,13 +289,14 @@ jobs:
 每次 push 到 `main` 就自動 build，部署到 GitHub Pages
 
 ---
+---
 
 ```yaml
 name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: read
@@ -303,7 +318,12 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+```
 
+---
+---
+
+```yaml
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -322,13 +342,14 @@ jobs:
 push tag 時自動 build Docker image 並推到 GHCR
 
 ---
+---
 
 ```yaml
 name: Docker Release
 
 on:
   push:
-    tags: [ "v*.*.*" ]
+    tags: ["v*.*.*"]
 
 jobs:
   build-and-push:
@@ -474,7 +495,7 @@ jobs:
 ```yaml
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
       - "apps/web/**"
       - ".github/workflows/**"
@@ -520,9 +541,13 @@ on:
 
 ---
 
+---
+layout: statement
+---
+
 本投影片由 [毛哥EM](https://elvismao.com/) 製作  
 採用創用 CC「[姓名標示 4.0 國際](https://creativecommons.org/licenses/by/4.0/deed.zh-hant)」授權
 
-![CC](./img/cc.svg)
+<img src="./img/cc.svg" alt="CC" class="mx-auto" />
 
 [毛哥EM資訊密技](https://emtech.cc/) · [毛哥EM公開簡報](https://g.elvismao.com/slides)

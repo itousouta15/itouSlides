@@ -26,7 +26,7 @@ for (const dir of dirs) {
 	console.log(`entry: ${entry}`);
 	console.log(`out:   ${outDir}`);
 
-	const result = spawnSync("pnpm", ["exec", "slidev", "build", entry, "--out", outDir, "--base", base,], {
+	const result = spawnSync("pnpm", ["exec", "slidev", "build", entry, "--out", outDir, "--base", base], {
 		stdio: "inherit",
 		cwd: repoRoot
 	});

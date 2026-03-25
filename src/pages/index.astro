@@ -6,18 +6,15 @@ import data from "../data/slides.json";
 const { slides, author } = data;
 
 const tagLabels: Record<string, string> = {
-  web: '網頁開發',
-  software: '軟體開發',
-  design: '設計',
-  oss: '開源社群',
+	web: "網頁開發",
+	software: "軟體開發",
+	design: "設計",
+	oss: "開源社群"
 };
 
 // Collect unique tags in the order they first appear
 const uniqueTags = [...new Set(slides.flatMap(s => s.tags))];
-const categories = [
-  { id: 'all', label: '所有分類' },
-  ...uniqueTags.map(t => ({ id: t, label: tagLabels[t] ?? t })),
-];
+const categories = [{ id: "all", label: "所有分類" }, ...uniqueTags.map(t => ({ id: t, label: tagLabels[t] ?? t }))];
 ---
 
 <Base title="毛哥EM公開簡報" description="毛哥EM的公開簡報集，涵蓋網頁開發、軟體開發、設計與開源社群。">
@@ -127,7 +124,7 @@ const categories = [
 			let visible = 0;
 
 			cards.forEach(card => {
-				const tags = card.dataset.tags?.split(',') ?? [];
+				const tags = card.dataset.tags?.split(",") ?? [];
 				const show = cat === "all" || tags.includes(cat);
 				(card as HTMLElement).style.display = show ? "" : "none";
 				if (show) visible++;

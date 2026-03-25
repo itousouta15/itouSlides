@@ -1,208 +1,200 @@
----
-theme: default
-title: CSS 簡介
-titleTemplate: '%s · 毛哥 EM'
-info: |
-  將原本 Marp 教學投影片重構成較適合 Slidev 的版本。
-class: text-center
-transition: fade-out
-mdc: true
-highlighter: shiki
-lineNumbers: true
-drawings:
-  persist: false
-fonts:
-  sans: Inter, Noto Sans TC, PingFang TC, Microsoft JhengHei, sans-serif
-  mono: JetBrains Mono, SFMono-Regular, Menlo, monospace
-css: ./styles.css
----
+# CSS
 
-<div class="hero-wrap">
-  <div class="eyebrow">毛哥 EM · Frontend Basics</div>
-  <h1 class="hero-title">CSS 簡介</h1>
-  <p class="hero-subtitle">把內容、節奏、視覺都從 Marp 重做成更適合教學的 Slidev 版本</p>
-
-  <div class="hero-pills">
-    <span>Selector</span>
-    <span>Typography</span>
-    <span>Color</span>
-    <span>Spacing</span>
-    <span>Gradient</span>
-  </div>
-</div>
-
-<div class="hero-orb orb-a"></div>
-<div class="hero-orb orb-b"></div>
-<div class="hero-gridline"></div>
-
----
-layout: section
----
-
-# CSS 在做什麼？
+毛哥EM
 
 ---
 
-# CSS 簡介
+## CSS 簡介
 
-<div class="layer-stack mt-8">
-  <div class="layer-card html">
-    <div class="layer-kicker">HTML</div>
-    <div class="layer-title">骨架</div>
-    <div class="layer-body">決定頁面有哪些內容、結構怎麼排。</div>
-  </div>
-  <div class="layer-card css">
-    <div class="layer-kicker">CSS</div>
-    <div class="layer-title">外觀</div>
-    <div class="layer-body">顏色、字型、留白、版面與視覺風格。</div>
-  </div>
-  <div class="layer-card js">
-    <div class="layer-kicker">JavaScript</div>
-    <div class="layer-title">行為</div>
-    <div class="layer-body">互動、狀態、動畫與資料邏輯。</div>
-  </div>
-</div>
+- HTML：骨架
+- CSS：外觀
+- JavaScript：行為
 
-<div class="caption mt-6">一句話：<b>HTML 決定是什麼，CSS 決定長怎樣，JS 決定會做什麼。</b></div>
+![](<img/CSS/骨架、外觀、行為.png>) <!-- .element: height="400px" -->
 
 ---
-layout: two-cols
+
+## 環境建設
+
+1. 用 VS Code 開啟上週的資料夾，或建立新的資料夾
+2. 建立一個新的 HTML 檔案
+3. 輸入 `!` 再按 `Tab`
+4. 建立 `<h1>` 與 `<style>`
+5. 用 Live Server / Go Live 開瀏覽器開始寫 CSS
+
+![](<img/CSS/Frame_11.jpg>) <!-- .element: height="320px" -->
+
+--
+
+## 環境建設
+
+```html
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>我是標題</h1>
+		<style>
+		</style>
+	</body>
+</html>
+```
+
 ---
+<!-- .slide: data-auto-animate -->
+## 範例 <!-- .element: style="color:red;" -->
 
-# 範例
-
-```css {all|2}
+```css
 h1 {
-  color: red;
+    color: red;
 }
 ```
 
-::right::
-
-<div class="demo-surface mt-14">
-  <div class="browser-top">
-    <span></span><span></span><span></span>
-  </div>
-  <div class="demo-page">
-    <div class="demo-heading red">標題變紅了</div>
-    <div class="demo-note">同一段 HTML，套上 CSS 之後視覺就不一樣。</div>
-  </div>
-</div>
-
 ---
-layout: two-cols
----
+<!-- .slide: data-auto-animate -->
+## 一個 CSS 宣告包含
 
-# 一個 CSS 宣告包含什麼？
-
-<div class="token-list mt-8">
-  <div v-click class="token-card"><b>selector</b><span>選擇器：要套用給誰</span></div>
-  <div v-click class="token-card"><b>declaration</b><span>宣告：一組大括號內的規則</span></div>
-  <div v-click class="token-card"><b>property</b><span>屬性：要改哪一個欄位</span></div>
-  <div v-click class="token-card"><b>value</b><span>屬性值：改成什麼樣子</span></div>
-</div>
-
-::right::
-
-<div class="code-annotated mt-10">
-  <pre><code><span class="selector">h1</span> {
-  <span class="property">color</span>: <span class="value">red</span>;
-}</code></pre>
-  <div class="callout s1">selector</div>
-  <div class="callout s2">declaration</div>
-  <div class="callout s3">property</div>
-  <div class="callout s4">value</div>
-</div>
-
----
-layout: two-cols
----
-
-# 寫在哪裡？
-
-<div class="info-card mt-8">
-  <h3>方式 1：寫在 HTML 的 &lt;style&gt;</h3>
-  <p>適合小實驗、教學展示，通常放在 <code>&lt;head&gt;</code> 裡。</p>
-</div>
-
-<div class="info-card mt-4">
-  <h3>方式 2：獨立成 CSS 檔案</h3>
-  <p>真實專案最常見，方便重用、維護、分工。</p>
-</div>
-
-```html
-<link rel="stylesheet" href="style.css" />
+```css
+h1 {
+    color: red;
+}
 ```
 
-::right::
+- selector：選擇器（對象）
+- declaration：宣告
+- property：屬性（要改的東西）
+- value：屬性值
 
-```html {3,7-11,14}
+--
+
+## CSS 基本語法
+
+```css
+選擇器 {
+	屬性: 屬性值;
+}
+```
+
+---
+
+## 寫在哪裡？
+
+- 在 HTML 建立 `<style>` 裡面（通常放在 `<head>` 裡面）
+- 創一個 CSS 檔案，並連結到 HTML（`link`）
+
+```html
+<link rel="stylesheet" type="text/css" href="style.css" />
+```
+
+--
+
+```html" data-line-numbers="3,12|7-11|14
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    h1 {
-      color: red;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            color: red;
+        }
+    </style>
 </head>
 <body>
-  <h1>標題</h1>
+    <h1>標題</h1>
 </body>
 </html>
 ```
 
 ---
-layout: two-cols
+
+## 選擇器
+
+1. `.` - class 選擇器
+2. `#` - id 選擇器
+3. `*` - 全部選擇器
+4. `h1` - 元素選擇器
+
+--
+
+## 常見選擇器
+
+- `nav a`：後代選擇器
+- `ol > li`：親代選擇器
+- `nav, a`：群組選擇器
+- `h1 + p`：相鄰兄弟
+- `h1 ~ p`：一般兄弟
+- `a[href="https://x.com"]`：屬性選擇器
+- `a[href*="tuts"]`：包含某字
+- `a[href^="http"]`：開頭是
+- `[href$=".jpg"]`：結尾是
+
 ---
 
-# 常見選取器
+## 權重 specificity
 
-<div class="selector-grid mt-8">
-  <div class="selector-chip"><code>.</code><span>class</span></div>
-  <div class="selector-chip"><code>#</code><span>id</span></div>
-  <div class="selector-chip"><code>*</code><span>全部</span></div>
-</div>
+- 權重越高，越有優先權
+- 權重相等時，後寫的會蓋過前面
 
-<div class="caption mt-8">通常會優先用 <b>class</b>，因為可重複使用、也比較好維護。</div>
+權重由高到低：
 
-::right::
+1. ID 選擇器
+2. 類別 / 屬性 / 偽類
+3. 元素 / 偽元素
+4. `*` 等沒有權級的選擇符
 
-```html
-<h1 class="title">Hello</h1>
-<section id="app"></section>
-<p>任何元素都可能被 * 選到</p>
-```
+--
+
+## 權重 specificity
 
 ```css
-.title { color: #60a5fa; }
-#app { padding: 24px; }
-* { box-sizing: border-box; }
+#title {
+	color: red;
+}
+
+.title {
+	color: blue;
+}
+
+h1 {
+	color: green;
+}
 ```
 
----
-layout: two-cols
+- 同一個元素若同時被選到，`#title` 會贏
+- 如果權重相同，後寫的會贏
+- `!important` 可以硬蓋，但不要到處亂用
+
 ---
 
-# 文字相關屬性
+![](<img/CSS/image 1.png>)
 
-<div class="property-list mt-6">
-  <div><code>color</code><span>顏色</span></div>
-  <div><code>font-size</code><span>字體大小</span></div>
-  <div><code>letter-spacing</code><span>字距</span></div>
-  <div><code>line-height</code><span>行高</span></div>
-  <div><code>font-weight</code><span>粗細</span></div>
-  <div><code>text-decoration</code><span>裝飾</span></div>
-  <div><code>font-style</code><span>斜體等樣式</span></div>
-  <div><code>opacity</code><span>透明度</span></div>
-  <div><code>text-align</code><span>對齊方式</span></div>
-  <div><code>font-family</code><span>字型</span></div>
+
+---
+
+## 文字
+
+<div style="display:flex; gap:1rem;">
+<div style="font-size:1.35rem;flex:1;">
+
+- `color`：顏色
+- `font-size`：字體大小
+- `letter-spacing`：字距
+- `line-height`：行高
+- `font-weight`：字體粗細
+- `text-decoration`：文字裝飾
+- `font-style`：字型
+- `opacity`：透明度
+- `text-align`：文字位置
+- `font-family`：字體
+
 </div>
-
-::right::
+<div style="flex:1;">
 
 ```css
 color: #fff;
@@ -214,357 +206,1167 @@ text-decoration: none;
 font-style: italic;
 opacity: 0.5;
 text-align: left;
-font-family: "Microsoft JhengHei";
+font-family: Arial, sans-serif;
 ```
 
-<div class="mini-preview mt-6">
-  <div class="preview-line one">This is typography.</div>
-  <div class="preview-line two">字距、粗細、透明度都會影響感覺。</div>
+</div>
 </div>
 
----
-layout: two-cols
----
+--
 
-# font-weight 與 text-decoration
+## 文字粗細 font-weight
 
-<div class="info-card mt-8">
-  <h3>font-weight</h3>
-  <p>可以用關鍵字，也可以用 100～900 的數值。</p>
-</div>
+### 關鍵字
 
-```css
-font-weight: normal;
-font-weight: bold;
-font-weight: 400;
-font-weight: 700;
+```css" data-line-numbers="|1,2
+font-weight: normal; /* 正常 */
+font-weight: bold; /* 粗 */
+font-weight: lighter; /* 細一點 */
+font-weight: bolder; /* 粗一點 */
 ```
 
-::right::
-
-<div class="info-card mt-8">
-  <h3>text-decoration</h3>
-  <p>最常見用途：移除超連結預設底線。</p>
-</div>
+### 絕對的數值
 
 ```css
-text-decoration: underline;
-text-decoration: overline red;
-text-decoration: none;
-text-decoration-color: #ff00ff;
+font-weight: 100;
+font-weight: 400; /* 正常 */
+font-weight: 700; /* 粗體 */
+font-weight: 900;
 ```
 
-<div class="deco-samples mt-6">
-  <div class="sample underline">underline</div>
-  <div class="sample overline">overline</div>
-  <div class="sample none">none</div>
-</div>
+--
+
+## text-decoration
+
+常用於消除 [超連結]() 的藍色底線
+
+```css" data-line-numbers="|3
+text-decoration: underline; /* 底線 */
+text-decoration: overline red; /* 上線並且是紅色 */
+text-decoration: none; /* 沒有裝飾 */
+text-decoration-color: #ff00ff; /* 線顏色 */
+```
 
 ---
-layout: two-cols
----
 
-# 背景圖片
+## 色色
+
+- 顏色名稱：`red`
+- RGB / RGBA：`rgb(255,0,0)`、`rgba(255,0,0,0.5)`
+- HEX：`#ff0000`
+- HSL / HSLA：`hsl(0,100%,50%)`
+- Display P3：`color(display-p3 1 0 0 / 1)`
+
+--
+
+### RGB / RGBA
+
+<span style=color:red>R</span>,<span style=color:green>G</span>,<span style=color:blue>B</span> 參數範圍為 0 ~ 255  
+alpha 不透明介於 0 ~ 1 之間
 
 ```css
-background-image: url(./image/cloud.png);
-background-repeat: no-repeat;
-background-size: cover;
-background-size: contain;
+color: rgba(160, 32, 240, 0.5);
+```
+
+--
+
+### HEX
+
+十六進位（hexadecimal）
+
+# #<span style=color:red>XX</span><span style=color:green>XX</span><span style=color:blue>XX</span>
+
+- 黑色：`#000000`
+- 白色：`#ffffff`
+
+--
+<!-- .slide: data-auto-animate -->
+### HSL
+
+- H：hue 色相（0 是紅色、120 是綠色、240 是藍色）
+- S：saturation 飽和度
+- L：lightness 明度
+
+```css
+color: hsl(0, 100%, 50%);
+```
+
+--
+<!-- .slide: data-auto-animate -->
+### HSL
+
+hue 色相（0 是紅色 120 是綠色 240 是藍色） <!-- .element: style="color:hsl(var(--hhh), 100%, 50%)!important;" -->
+
+<div data-id="hsl" style="background:linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet);height:100px"></div>
+<input type="range" min="1" max="360" value="0" oninput="document.documentElement.style.setProperty('--hhh', this.value)" />
+
+--
+<!-- .slide: data-auto-animate -->
+### HSL
+
+S：saturation 飽和度
+
+<div data-id="hsl" style="background:linear-gradient(90deg,hsl(0,100%,50%),hsl(0,50%,50%),hsl(0,0%,50%));height:100px"></div>
+
+--
+<!-- .slide: data-transition="zoom" data-auto-animate -->
+### HSL
+
+L：lightness 明度
+
+<div data-id="hsl" style="background:linear-gradient(90deg,hsl(0,100%,100%),hsl(0,100%,50%),hsl(0,100%,0%));height:100px"></div>
+
+--
+
+#### 套用到文字
+
+```css
+color: hsl(0, 100%, 50%);
+```
+
+#### 套用到背景
+
+```css
+background-color: hsl(0, 100%, 50%);
+```
+
+---
+
+## 單位
+
+- `px`
+- `em`
+- `rem`
+- `vw/vh`
+- `vmin/vmax`
+- `%`
+
+--
+<!-- .slide: data-transition="convex" -->
+### px
+
+相對顯示器的解析度，為絕對單位（pixel）
+
+--
+<!-- .slide: data-transition="convex" -->
+### em
+
+相對父元素的字體大小（預設通常 16px）
+
+--
+<!-- .slide: data-transition="convex" -->
+### rem
+
+相對根元素的字體大小（預設通常 16px）
+
+--
+<!-- .slide: data-transition="convex" -->
+### vw / vh
+
+viewport（視口）寬 / 高
+
+--
+<!-- .slide: data-transition="convex" -->
+### vmin / vmax
+
+- `vmin`：視窗寬高較小者的百分比
+- `vmax`：視窗寬高較大者的百分比
+
+--
+<!-- .slide: data-transition="convex" -->
+### %
+
+1. `width` 跟 `height` 的 % 基準是父層
+2. `line-height` 以本身文字行高為基準
+
+---
+
+## 背景
+
+### background-color
+
+```css
+background-color: #ff0000;
+```
+
+### Width / Height
+
+```html
+<div></div>
+```
+
+```css
+div {
+	background-color: burlywood;
+	width: 200px;
+	height: 200px;
+}
+```
+
+![](<img/CSS/image 2.png>) <!-- .element: height="240px" -->
+
+--
+
+## 背景圖片
+
+```css
+background-image: url(./image/cloud.png); /* 背景圖片 */
+background-repeat: no-repeat; /* 背景重複 */
+background-size: cover; /* 不管有沒有全部進去，反正就是塞滿 */
+background-size: contain; /* 全部塞進去 */
 background-position: top left;
-background-position: 20% 40%;
+background-position: 20% 40%; /* 從左上開始算 */
+background-attachment: scroll;
+background-attachment: fixed;
+background-attachment: local;
+background: no-repeat url('image.png');
 ```
 
-<div class="caption mt-6">重點就三件事：<b>放哪裡、要不要重複、怎麼縮放。</b></div>
+--
 
-::right::
+<div style="display: flex; gap:1rem;">
+<div style="flex:1;font-size:1rem">
 
-<div class="bg-demo-grid mt-10">
-  <div>
-    <div class="bg-box contain"></div>
-    <div class="bg-label">contain：完整塞進去</div>
-  </div>
-  <div>
-    <div class="bg-box cover"></div>
-    <div class="bg-label">cover：先塞滿再裁切</div>
-  </div>
+`background-size: contain;`
+
+<video style="width:100%;height:300px;border:2px solid #FFF" data-autoplay loop src="img/CSS/long.webp"></video>
+</div>
+
+<div style="flex:1;font-size:1rem">
+
+`background-size: cover;`
+
+<video style="width:100%;height:300px;border:2px solid #FFF;object-fit: cover;object-position: top;" data-autoplay loop src="img/CSS/long.webp"></video>
+</div>
+
 </div>
 
 ---
-layout: section
----
 
-# 顏色
+## 漸層
 
----
-layout: two-cols
----
+1. 漸層需要顏色跟角度
+2. 最常見的漸層為 **線性漸層** 跟 **放射漸層**
+3. 可以指定每個顏色的比例
+4. 可以決定漸層位置跟大小
 
-# 顏色怎麼寫？
+--
 
-<div class="color-modes mt-8">
-  <div class="mode-card"><b>名稱</b><span><code>red</code></span></div>
-  <div class="mode-card"><b>RGB / RGBA</b><span><code>rgb(255,0,0)</code></span></div>
-  <div class="mode-card"><b>HEX</b><span><code>#ff0000</code></span></div>
-  <div class="mode-card"><b>HSL</b><span><code>hsl(0,100%,50%)</code></span></div>
-</div>
-
-::right::
-
-<div class="swatch-grid mt-10">
-  <div class="swatch"><span>red</span></div>
-  <div class="swatch rgb"><span>rgba()</span></div>
-  <div class="swatch hex"><span>#ff0000</span></div>
-  <div class="swatch hsl"><span>hsl()</span></div>
-</div>
-
----
-layout: two-cols
----
-
-# RGB / HEX / HSL
-
-<div class="stacked-cards mt-8">
-  <div class="stack-card">
-    <h3>RGB / RGBA</h3>
-    <p>R、G、B 範圍是 0～255；A 是透明度 0～1。</p>
-    <code>rgba(160, 32, 240, 0.5)</code>
-  </div>
-  <div class="stack-card">
-    <h3>HEX</h3>
-    <p>十六進位寫法，常見像 <code>#000000</code>、<code>#ffffff</code>。</p>
-  </div>
-</div>
-
-::right::
-
-<div class="stack-card mt-8">
-  <h3>HSL</h3>
-  <p>Hue 色相、Saturation 飽和度、Lightness 明度。</p>
-  <code>color: hsl(0, 100%, 50%);</code>
-</div>
-
-<div class="hsl-bars mt-6">
-  <div class="bar hue"></div>
-  <div class="bar sat"></div>
-  <div class="bar light"></div>
-</div>
-
----
-layout: two-cols
----
-
-# 理解 HSL
-
-<div class="hsl-card mt-10">
-  <div class="hsl-line"><b>H</b><span>色相：0 紅、120 綠、240 藍</span></div>
-  <div class="hsl-line"><b>S</b><span>飽和度：越高越鮮豔</span></div>
-  <div class="hsl-line"><b>L</b><span>明度：越高越接近白色</span></div>
-</div>
-
-::right::
-
-<div class="interactive-look mt-8">
-  <div class="bar hue"></div>
-  <div class="bar sat"></div>
-  <div class="bar light"></div>
-  <div class="hsl-use">
-    <code>color: hsl(0, 100%, 50%);</code>
-    <code>background: hsl(0, 100%, 50%);</code>
-  </div>
-</div>
-
----
-layout: two-cols
----
-
-# 單位
-
-<div class="unit-list mt-8">
-  <div class="unit-card"><b>px</b><span>絕對單位，pixel</span></div>
-  <div class="unit-card"><b>em</b><span>相對父元素字級</span></div>
-  <div class="unit-card"><b>rem</b><span>相對根元素字級</span></div>
-  <div class="unit-card"><b>vw / vh</b><span>相對視口大小</span></div>
-  <div class="unit-card"><b>%</b><span>相對父層或屬性基準</span></div>
-</div>
-
-::right::
-
-<div class="unit-visual mt-10">
-  <div class="unit-row"><span>px</span><div style="width: 35%"></div></div>
-  <div class="unit-row"><span>em</span><div style="width: 52%"></div></div>
-  <div class="unit-row"><span>rem</span><div style="width: 60%"></div></div>
-  <div class="unit-row"><span>vw</span><div style="width: 80%"></div></div>
-  <div class="unit-row"><span>%</span><div style="width: 45%"></div></div>
-</div>
-
-<div class="caption mt-5">如果你想要更能跟著畫面縮放，通常會優先考慮 <b>rem</b>、<b>vw/vh</b>、<b>%</b>。</div>
-
----
-layout: section
----
-
-# 間距與盒模型
-
----
-layout: two-cols
----
-
-# margin 與 padding
-
-<div class="info-card mt-10">
-  <h3>margin</h3>
-  <p>元素和元素之間的距離。</p>
-</div>
+### 線性漸層 linear-gradient
 
 ```css
-margin: 10px;
-margin: 10px 20px;
-margin: 10px 20px 30px 40px;
+background: linear-gradient(方向, 顏色1 位置, 顏色2 位置);
 ```
 
-::right::
+--
 
-<div class="spacing-stage mt-10">
-  <div class="spacing-demo margin-demo">
-    <div class="space-tag outer">margin</div>
-    <div class="spacing-box">內容</div>
-  </div>
-  <div class="spacing-demo padding-demo mt-6">
-    <div class="space-tag inner">padding</div>
-    <div class="spacing-box padded">內容</div>
-  </div>
-</div>
-
----
-layout: two-cols
----
-
-# box-sizing
-
-<div class="stack-card mt-10">
-  <h3>每個 HTML 元素都可以看成一個盒子</h3>
-  <p>寬度、內距、邊框會一起影響最後看起來的大小。</p>
-</div>
-
-```css
-width: 300px;
-padding: 30px;
-box-sizing: content-box;
-box-sizing: border-box;
-```
-
-::right::
-
-<div class="box-sizing-grid mt-10">
-  <div class="box-model-card">
-    <div class="label">content-box</div>
-    <div class="outer">
-      <div class="inner small"></div>
-    </div>
-  </div>
-  <div class="box-model-card">
-    <div class="label">border-box</div>
-    <div class="outer fixed">
-      <div class="inner full"></div>
-    </div>
-  </div>
-</div>
-
-<div class="caption mt-6"><b>border-box</b> 通常比較直覺，因為你設定的寬高比較接近最後看到的尺寸。</div>
-
----
-layout: section
----
-
-# 漸層
-
----
-layout: two-cols
----
-
-# 線性漸層 linear-gradient
-
-<div class="gradient-notes mt-8">
-  <div>1. 漸層至少要有 <b>方向</b> 與 <b>顏色</b></div>
-  <div>2. 可以加上每個顏色停靠的位置</div>
-  <div>3. 最常見是 <b>linear-gradient</b> 與 <b>radial-gradient</b></div>
-</div>
+### 線性漸層 linear-gradient
 
 ```css
 background: linear-gradient(90deg, red, blue);
+```
+
+<div data-id="box1" style="background:linear-gradient(90deg,red,blue);height:100px"></div>
+
+--
+
+#### 顏色位置重疊
+
+```css
 background: linear-gradient(45deg, red 50%, blue 50%);
 ```
 
-::right::
+<div data-id="box1" style="background:linear-gradient(45deg, red 50%, blue 50%);height:100px"></div>
 
-<div class="gradient-showcase mt-10">
-  <div class="grad-card g1"></div>
-  <div class="grad-card g2"></div>
-</div>
+--
 
----
-layout: two-cols
----
+### 更多線性漸層寫法
 
-# 放射漸層 radial-gradient
+```css
+background: linear-gradient(#e66465, #9198e5);
+background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+background: linear-gradient(217deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.71%);
+```
+
+--
+
+### 放射漸層 radial-gradient
+
+```css
+background: radial-gradient(顏色1 位置, 顏色2 位置);
+```
+
+--
+
+### 放射漸層 radial-gradient
 
 ```css
 background: radial-gradient(red, blue);
-background: radial-gradient(circle at center, #fff, #3b82f6);
-background: radial-gradient(ellipse at center, #f472b6, #0f172a);
 ```
 
-<div class="caption mt-6">可以指定形狀、範圍和中心位置。</div>
+<div data-id="box1" style="background:radial-gradient(red,blue);height:200px;width:200px;margin:auto"></div>
 
-::right::
+--
 
-<div class="radial-grid mt-8">
-  <div class="radial-ball one"></div>
-  <div class="radial-ball two"></div>
-  <div class="radial-ball three"></div>
+#### 指定形狀、範圍、中心位置
+
+```css
+background: radial-gradient(
+    形狀 範圍 at 中心位置,
+    顏色 色彩位置,
+    顏色 色彩位置,
+    ...
+);
+```
+
+圓形
+
+```css
+background: radial-gradient(circle at center, 顏色1, 顏色2);
+```
+
+橢圓形
+
+```css
+background: radial-gradient(ellipse at center, 顏色1, 顏色2);
+```
+
+--
+
+### 其他漸層
+
+- `radial-gradient()`：由中心往外
+- `conic-gradient()`：繞著中心旋轉放射
+
+![](<img/CSS/XUupJaf.png>) <!-- .element: height="280px" -->
+
+---
+
+## border 邊框
+
+```css
+border-top: solid 10px red;
+border-bottom: solid 10px red;
+border-left: solid 10px red;
+border-right: solid 10px red;
+
+border-style: solid; /* 花邊，solid 是預設直線 */
+border-width: 10px;
+border-color: #00ff00;
+border: solid 10px red; /* 縮寫 */
+```
+
+---
+
+## border-radius 圓角
+
+```css
+border-radius: 50%;
+border-radius: 16px;
+
+border-radius: 四個角;
+border-radius: 左上右下 右上左下;
+border-radius: 左上 右上 右下 左下;
+border-top-left-radius: 10%;
+```
+
+--
+
+```html
+<div></div>
+```
+
+```css
+div {
+	background-color: burlywood;
+	width: 200px;
+	height: 200px;
+	border-radius: 16px;
+	margin: 5rem;
+}
+```
+
+![](<img/CSS/image 3.png>) <!-- .element: height="230px" -->
+
+--
+
+## border-radius 圓角
+
+- 正方形寬高一樣時
+- 給 `100px` 或 `50%` 圓角
+- 就會變成圓形
+
+![](<img/CSS/image 4.png>) <!-- .element: height="260px" -->
+
+---
+
+## 間距
+
+<!-- .slide: data-background-image="img/CSS/toilet.webp" data-background-opacity="0.4" -->
+
+--
+<!-- .slide: data-auto-animate -->
+<div style="display:flex; gap:1rem;">
+<div style="flex:1;">
+
+### margin
+
+margin 是指物件與物件之間的距離，通常用來調整物件之間的間距。
+
+</div>
+<div style="flex:1;">
+
+<div data-id="box1" style="background-color:#40a3e7;width:300px;height:100px;margin:0px auto;"></div>
+<div data-id="box2" style="background-color:#40a3e7;width:300px;height:100px;margin:0px auto;"></div>
+
+```html
+<div></div>
+<div></div>
+```
+
+</div>
 </div>
 
----
-layout: center
-class: text-center
----
+--
+<!-- .slide: data-auto-animate -->
+<div style="display:flex; gap:1rem;">
+<div style="flex:1;">
 
-# 小總結
+### margin
 
-<div class="summary-grid mt-8">
-  <div class="summary-card"><b>選取器</b><span>先決定要改誰</span></div>
-  <div class="summary-card"><b>文字</b><span>字體、粗細、對齊與裝飾</span></div>
-  <div class="summary-card"><b>顏色</b><span>RGB / HEX / HSL</span></div>
-  <div class="summary-card"><b>盒模型</b><span>margin / padding / box-sizing</span></div>
-  <div class="summary-card"><b>背景</b><span>圖片、位置、cover / contain</span></div>
-  <div class="summary-card"><b>漸層</b><span>linear / radial</span></div>
+margin 是指物件與物件之間的距離，通常用來調整物件之間的間距。
+
+</div>
+<div style="flex:1;">
+
+<div data-id="box1" style="background-color:#40a3e7;width:300px;height:100px;margin:10px auto;font-size:1rem;box-sizing:border-box;"></div>
+<div data-id="box2" style="background-color:#40a3e7;width:300px;height:100px;margin:10px auto;font-size:1rem;box-sizing:border-box;"></div>
+
+```css
+margin: 10px; /* 四邊 */
+margin: 10px 20px; /* 上下 左右 */
+margin: 10px 20px 30px 40px; /* 上右下左 */
+```
+
+</div>
 </div>
 
-<div class="caption mt-8">只要搞懂這些，已經可以開始把一個很素的 HTML 做得像樣了。</div>
+--
 
----
-layout: center
-class: text-center
----
+## margin 單邊設定
 
-# 玩得開心 :)
+```css
+margin-top: 16px;
+margin-bottom: 16px;
+margin-left: 16px;
+margin-right: 16px;
+```
 
-<div class="resource-panel mt-8">
-  <a href="https://emtech.cc/p/webpallet-3" target="_blank">學習更多：WebPallet 3</a>
-  <a href="https://emtech.cc/p/2023ironman-3" target="_blank">延伸閱讀：Flex 教學</a>
-  <a href="https://g.elvismao.com/slides" target="_blank">毛哥 EM 公開簡報</a>
+![](<img/CSS/image 5.png>) <!-- .element: height="240px" -->
+
+--
+<!-- .slide: data-auto-animate -->
+<div style="display:flex; gap:1rem;">
+<div style="flex:1;">
+
+### padding
+
+padding 是指物件內容與邊框之間的距離，通常用來調整物件內容與邊框之間的間距。
+
 </div>
 
+<div style="flex:1;">
+
+<div data-id="box1" style="background-color:#40a3e7;width:300px;height:100px;margin:10px auto;font-size:1rem;box-sizing:border-box;">
+開淺色主題的都是邪教
+</div>
+<div data-id="box2" style="background-color:#40a3e7;width:300px;height:100px;margin:10px auto;font-size:1rem;padding:1rem;box-sizing:border-box;">
+開淺色主題的都是邪教
+</div>
+
+```css
+padding: 10px; /* 四邊 */
+padding: 10px 20px; /* 上下 左右 */
+padding: 10px 20px 30px 40px; /* 上右下左 */
+```
+
+</div>
+</div>
+
+--
+
+## padding 範例
+
+```html
+<div>DARLING🫂HOLD MY HAND💅🏻👋🏻🥵‼️</div>
+<div id="box">📢NOTHING🚫BEATS A JET2✈️ HOLIDAY 🔥🔛🔝🔝</div>
+```
+
+```css
+div {
+	background-color: lightblue;
+	margin: 32px 16px;
+}
+
+#box {
+	padding: 16px;
+}
+```
+
+![](<img/CSS/image 6.png>) <!-- .element: height="230px" -->
+
 ---
-layout: end
+
+## box-sizing
+
+<!-- .slide: data-background-image="img/CSS/box-sizing.webp" data-background-opacity="0.4" data-auto-animate -->
+
+--
+<!-- .slide: data-background-image="img/CSS/box-sizing.webp" data-background-opacity="1" data-auto-animate -->
+
+--
+<!-- .slide: data-background-image="img/CSS/box-sizing.webp" data-background-opacity="0.4" data-auto-animate -->
+
+### box 是什麼？
+
+html 的每個元素都可被視作為一個盒子，然後可以針對這個盒子去做調整。
+
+--
+
+### box-sizing
+
+```css" data-line-numbers="1-3
+width: 300px;
+padding: 30px;
+box-sizing: content-box; /* 預設值 */
+box-sizing: border-box; /* padding 跟 border 會包含在內 */
+```
+
+<div data-id="box1" style="background-color:#40a3e7;width:360px;height:100px;margin:2rem auto;font-size:1rem;"></div>
+
+--
+
+### box-sizing
+
+```css" data-line-numbers="1-2,4
+width: 300px;
+padding: 30px;
+box-sizing: content-box; /* 預設值 */
+box-sizing: border-box; /* padding 跟 border 會包含在內 */
+```
+
+<div data-id="box1" style="background-color:#40a3e7;width:300px;height:100px;margin:2rem auto;font-size:1rem;"></div>
+
+--
+
+## box-sizing 地獄門有多大呢？
+
+這是一個幾乘幾的地獄門呢？
+
+![](<img/CSS/image 7.png>) <!-- .element: height="280px" -->
+
+--
+
+```html
+<div></div>
+<br />
+<div id="box"></div>
+```
+
+```css
+div {
+	width: 100px;
+	height: 100px;
+	background-color: purple;
+}
+
+#box {
+	border: 20px solid black;
+}
+```
+
+![](<img/CSS/image 8.png>) <!-- .element: height="220px" -->
+
+--
+
+```css
+box-sizing: content-box; /* 只算內容 */
+box-sizing: border-box; /* 包含邊框 */
+```
+
+![](<img/CSS/image 9.png>) <!-- .element: height="240px" -->
+
+--
+
+## outline
+
+outline 位置在 border 的外面一圈，不佔用元素的任何空間。
+
+```css
+#box {
+  width: 100px;
+  height: 100px;
+  background-color: lightblue;
+  border: 20px solid lightgreen;
+  outline: 20px solid lightcoral;
+}
+```
+
+![](<img/CSS/image 10.png>) <!-- .element: height="220px" -->
+
 ---
 
-# Credits
+## display 你要怎麼佈局
 
-本投影片內容整理自原始 Marp 版本，重新編排成 Slidev 結構。  
-原作者與資源：
+Display 可以控制元素怎麼排。
 
-- [毛哥 EM](https://elvismao.com/)
-- [毛哥 EM 資訊密技](https://emtech.cc/)
-- 採用創用 CC「[姓名標示 4.0 國際](https://creativecommons.org/licenses/by/4.0/deed.zh-hant)」授權
+--
+
+## 區塊元素與行內元素
+
+- 區塊元素：`<h1>`、`<p>`，前後會自動換行
+- 行內元素：`<b>`、`<i>`，放在文字之間不會換行
+- `<img>` 預設也是行內元素
+
+![](<img/CSS/image 11.png>) <!-- .element: height="240px" -->
+
+--
+
+## display 常見值
+
+- `inline`：像文字一樣排，不能決定寬高
+- `block`：佔滿整排，下一個會換行
+- `contents`：只保留內容，不保留自己的盒子
+- `inline-block`：可以設寬高，但仍然由左到右排
+- `none`：完全隱藏，也不佔空間
+
+--
+
+## display 常見值
+
+```css
+img {
+	display: block;
+}
+```
+
+![](<img/CSS/image 12.png>) <!-- .element: height="240px" -->
+
+--
+
+## 佈局環境
+
+- `display: flex`：裡面東西依序左到右或上到下排列
+- `display: grid`：像表格一樣排列
+
+---
+
+## Flexbox 超好用的容器
+
+```html
+<section>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</section>
+```
+
+```css
+section {
+	background: #191d88;
+	padding: 5px;
+}
+
+div {
+	width: 100px;
+	height: 100px;
+	background: #ffc436;
+	margin: 20px;
+}
+```
+
+![](<img/CSS/image 13.png>) <!-- .element: height="210px" -->
+
+--
+
+## display: flex
+
+```css
+section {
+	background: #191d88;
+	padding: 5px;
+	display: flex;
+}
+```
+
+![](<img/CSS/image 14.png>) <!-- .element: height="210px" -->
+
+--
+
+### 排序方向 flex-direction
+
+```css
+flex-direction: row; /* 預設左到右 */
+flex-direction: row-reverse; /* 右到左 */
+flex-direction: column; /* 上到下 */
+flex-direction: column-reverse; /* 下到上 */
+```
+
+![](<img/CSS/image 15.png>) <!-- .element: height="220px" -->
+
+--
+
+### 超過換行 flex-wrap
+
+```css
+flex-wrap: nowrap; /* 不換行 */
+flex-wrap: wrap; /* 太寬換行 */
+flex-wrap: wrap-reverse; /* 換行但從下到上排 */
+```
+
+![](<img/CSS/image 16.png>) <!-- .element: height="160px" -->
+![](<img/CSS/image 17.png>) <!-- .element: height="160px" -->
+
+--
+
+### flex-flow
+
+是 `flex-direction` 和 `flex-wrap` 的縮寫。
+
+```css
+.flex-container {
+	flex-flow: <"flex-direction"> || <"flex-wrap">;
+}
+```
+
+--
+
+### 水平對齊 justify-content
+
+```css
+justify-content: flex-start; /* 靠左 */
+justify-content: flex-end; /* 靠右 */
+justify-content: center; /* 置中 */
+justify-content: space-between; /* 水平均分 */
+justify-content: space-around; /* 水平環繞均分 */
+```
+
+![](<img/CSS/justify-content.svg>) <!-- .element: height="220px" -->
+
+--
+
+### 垂直對齊 align-items
+
+- `flex-start`
+- `flex-end`
+- `center`
+- `stretch`
+- `baseline`
+
+![](<img/CSS/align-items.svg>) <!-- .element: height="220px" -->
+
+--
+
+### 多行對齊 align-content
+
+```css
+align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+```
+
+- 是 `align-items` 的多行版本
+- 注意 `stretch` 在元素高度被限制時不一定會正常伸展
+
+--
+
+### 單獨叛逆 align-self
+
+```css
+align-self: flex-start;
+align-self: center;
+align-self: flex-end;
+```
+
+- 用來讓單獨一個元素不要乖乖排隊
+
+--
+
+### 剩下的空間給誰？flex-grow
+
+- 預設值為 `0`
+- 1 以上會依照比例分配剩餘空間
+
+![](<img/CSS/flex-grow.svg>) <!-- .element: height="220px" -->
+
+--
+
+### 沒空間壓榨誰？flex-shrink
+
+- 預設值為 `1`
+- 設定為 `0` 就不會縮
+
+```css
+flex-shrink: 1;
+flex-shrink: 0;
+```
+
+--
+
+### flex-basis 你怎麼看我
+
+```css
+flex-basis: 30cm;
+```
+
+- 排版分配空間時，可以把元素當成某個基準尺寸來算
+
+--
+
+### order
+
+```css
+order: -1; /* 放到最前面 */
+order: 1; /* 放到最後面 */
+order: 5;
+```
+
+--
+
+## 中場練習
+
+試著用今天學到的語法做出 Google 首頁
+
+- 重點是排版
+- 陰影、顏色可以直接用開發者工具看
+- 如果 flex 還不熟，可以去玩 **Flexbox Froggy**
+
+> 範例網站：<https://sysh-tech-volunteer.github.io/Web-Design-Camp/practice/google.html>
+>
+> Flexbox Froggy：<https://flexboxfroggy.com/#zh-tw>
+
+---
+
+## Position 東西放哪
+
+目前我們東西排放得都很整齊，但有時候我們不希望它好好排（in flow）。
+
+- 右下角客服按鈕
+- 固定在上方的選單
+- 蓋在畫面上的彈窗
+
+![](<img/CSS/image 18.png>) <!-- .element: height="260px" -->
+
+--
+
+## 語法
+
+```css
+position: 屬性;
+```
+
+---
+
+## Static
+
+預設值，該在哪裡就在哪裡。
+
+- 區塊元素佔整排
+- 行內元素繼續往右排
+- 通常不需要特別設定
+
+---
+
+## Relative - 解鎖偏移
+
+設定成 `relative` 的元素可以使用 `top`、`bottom`、`left`、`right`。
+
+- 看起來會移動
+- 但還是佔據原本的位置
+
+```css
+#purple {
+	position: relative;
+	left: 30px;
+	top: -50px;
+}
+```
+
+![](<img/CSS/image 19.png>) <!-- .element: height="250px" -->
+
+---
+
+## Absolute - 在哪都行
+
+設定成 `absolute` 的元素：
+
+- 可以用 `top`、`bottom`、`left`、`right`
+- 不再佔據原本位置
+- 會以「最近的已定位祖先元素」作為參考點
+
+--
+
+```html
+<div class="container">
+	<div class="purple"></div>
+	<div class="green"></div>
+</div>
+```
+
+```css
+.container {
+	background-color: #e0def4;
+	margin-top: 130px;
+}
+
+.purple {
+	background: #ebbcba;
+	position: absolute;
+	left: 30px;
+	top: 0;
+}
+```
+
+![](<img/CSS/image 20.png>) <!-- .element: height="220px" -->
+
+--
+
+## Absolute + Relative
+
+```css
+.container {
+	background-color: #e0def4;
+	margin-top: 130px;
+	position: relative;
+}
+```
+
+![](<img/CSS/image 21.png>) <!-- .element: height="220px" -->
+
+---
+
+## Fixed - 卡在畫面上
+
+- 以螢幕左上角為定位點
+- 無論怎麼滾都待在那裡
+- 常用在導覽列、回到頂端按鈕、分享按鈕
+
+```css
+nav {
+	width: 100%;
+	height: 100px;
+	background: #E0DEF4;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+```
+
+<video style="width:100%;max-height:300px;" controls src="img/CSS/Screen_Recording_2026-03-23_at_11.30.08_AM.mov"></video>
+
+---
+
+## Sticky
+
+我們有時候希望某些東西固定在一個地方，但是只在那個 section 內固定。
+
+```css
+section {
+	display: flex;
+	position: relative;
+}
+
+h2 {
+	flex-shrink: 0;
+	position: sticky;
+	top: 0;
+}
+```
+
+<video style="width:100%;max-height:300px;" controls src="img/CSS/Screen_Recording_2026-03-23_at_2.42.56_PM.mov"></video>
+
+---
+
+## Position 範例
+
+<https://codepen.io/elvismao/pen/rNoYOKZ>
+
+![](<img/CSS/sunny.webp) <!-- .element: height="250px" -->
+
+--
+
+```html
+<div class="sun">Fixed</div>
+<div class="cloud">Static</div>
+<div class="cloud relative">Relative</div>
+<div class="building">
+	Relative
+	<div class="roof">Absolute</div>
+</div>
+```
+
+```css
+body {
+	background: lightblue;
+	text-align: center;
+	font-weight: 800;
+}
+.sun {
+	width: 100px;
+	height: 100px;
+	background: yellow;
+	border-radius: 50%;
+	position: fixed;
+	right: 30px;
+	top: 30px;
+}
+```
+
+--
+
+## Position 範例重點
+
+- 太陽是 `fixed`
+- 第一朵雲沒設 `position`，所以是 `static`
+- 第二朵雲是 `relative`
+- 建築物是 `relative`
+- 屋頂是 `absolute`
+
+![](<img/CSS/image_1.jpg>) <!-- .element: height="240px" -->
+
+---
+
+## Transform
+
+原本位置還在，但可以做出旋轉、縮放、位移等效果。
+
+```css
+transform: rotate(90deg);
+```
+
+--
+
+### Transform: translate
+
+```css
+transform: translate(往右偏移多少, 往下偏移多少);
+transform: translateX(往右偏移多少);
+transform: translateY(往下偏移多少);
+```
+
+- 支援負值
+- `%` 的基準是元素自己的 width / height
+- 最常見用法之一：把定位點改成元素正中間
+
+--
+
+### Translate 範例
+
+```css
+.translate {
+	background-color: pink;
+	transform: translate(100px, -50px);
+}
+```
+
+![](<img/CSS/IFdDGiC.png>) <!-- .element: height="220px" -->
+
+--
+
+### 定位置中
+
+```css
+.outer {
+	position: relative;
+}
+
+img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+```
+
+![](<img/CSS/jM1Hazt.png>) <!-- .element: height="220px" -->
+
+---
+
+## transition 轉場
+
+當元素的屬性改變時，可以在指定時間平滑切換過去。
+
+```css
+transition: 屬性 轉換時間 延遲時間 速度;
+
+transition: all .3s 0s ease;
+transition: padding .3s 0s, background-color 1s 1s;
+```
+
+- hover
+- JavaScript 改 class
+- 點擊狀態變化
+
+---
+
+## overflow
+
+假設元素超過容器大小，可以用 `overflow` 決定怎麼處理。
+
+```css
+overflow: visible;
+overflow: hidden;
+overflow: clip;
+overflow: scroll;
+overflow: auto;
+overflow: overlay;
+overflow: hidden visible;
+```
+
+---
+
+## Media Query
+
+Media 可以告訴瀏覽器在不同螢幕大小下該如何呈現。
+
+```css
+@media screen and (條件) and (條件) {
+	/* CSS */
+}
+```
+
+--
+
+## Media Query
+
+```css
+@media (max-width: 600px) {
+	h1 {
+		font-size: 2rem;
+	}
+}
+```
+
+- 當螢幕寬度小於 600px
+- `h1` 就改成較小螢幕適合的大小
+
+---
+<!-- .slide: data-transition="zoom" -->
+
+玩得開心 (:
+
+學習更多：<https://emtech.cc/p/webpallet-3>
+
+Flex：<https://emtech.cc/p/2023ironman-3>
+
+<!-- .slide: data-transition="fade-out" -->
+
+---
+layout: statement
+---
+
+本投影片由 [毛哥EM](https://elvismao.com/) 製作  
+採用創用 CC「[姓名標示 4.0 國際](https://creativecommons.org/licenses/by/4.0/deed.zh-hant)」授權
+
+<img src="./img/cc.svg" alt="CC" class="mx-auto" />
+
+[毛哥EM資訊密技](https://emtech.cc/) · [毛哥EM公開簡報](https://g.elvismao.com/slides)

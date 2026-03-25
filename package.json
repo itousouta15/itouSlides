@@ -7,12 +7,14 @@
 		"build:slides": "node build-slides.mjs",
 		"dev": "astro dev",
 		"export:slides": "node export-slides.mjs",
+		"format": "prettier --write .",
 		"preview": "astro preview"
 	},
 	"dependencies": {
 		"@slidev/cli": "^52.14.1",
 		"@slidev/theme-default": "^0.25.0",
-		"astro": "^6.0.2"
+		"astro": "^6.0.2",
+		"slidev-theme-dracula": "^0.2.0"
 	},
 	"devDependencies": {
 		"prettier": "^3.8.1",

@@ -17,6 +17,9 @@ importers:
       astro:
         specifier: ^6.0.2
         version: 6.0.3(@types/node@22.19.15)(jiti@2.6.1)(rollup@4.59.0)(typescript@5.9.3)(yaml@2.8.2)
+      slidev-theme-dracula:
+        specifier: ^0.2.0
+        version: 0.2.0
     devDependencies:
       prettier:
         specifier: ^3.8.1
@@ -1002,6 +1005,10 @@ packages:
   '@slidev/theme-default@0.25.0':
     resolution: {integrity: sha512-iWvthH1Ny+i6gTwRnEeeU+EiqsHC56UdEO45bqLSNmymRAOWkKUJ/M0o7iahLzHSXsiPu71B7C715WxqjXk2hw==}
     engines: {node: '>=14.0.0', slidev: '>=v0.47.0'}
+
+  '@slidev/types@0.42.11':
+    resolution: {integrity: sha512-K7+UWzEQpUe3eEFs7ktm3tw17Ke9ZOJPTy7yGSlZfWl4jCTf9Z0HNKECPLQ3JGL6EkJ4Wyy1y0HE92/20cTn0Q==}
+    engines: {node: '>=14.0.0'}
 
   '@slidev/types@0.47.5':
     resolution: {integrity: sha512-X67V4cCgM0Sz50bP8GbVzmiL8DHC2IXvdKcsN7DlxHyf+/T4d9GveeGukwha5Fx3MuYeGZWKag7TFL2ZY4w54A==}
@@ -2958,6 +2965,10 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
+  slidev-theme-dracula@0.2.0:
+    resolution: {integrity: sha512-ndMD27+gUNYt9aXrb4/0vSBHKP007mpD2eCJppzhqXDG1DmN0Q6I6iFz+QvIjOPDKzzPjoYZbsWp6lPLJjgs9g==}
+    engines: {node: '>=14.0.0', slidev: '>=0.19.3'}
+
   smol-toml@1.6.0:
     resolution: {integrity: sha512-4zemZi0HvTnYwLfrpk/CF9LOd9Lt87kAt50GnqhMpyF9U3poDAP2+iukq2bZsO/ufegbYehBkqINbsWxj4l4cw==}
     engines: {node: '>= 18'}
@@ -3027,6 +3038,10 @@ packages:
     resolution: {integrity: sha512-XDpWUOPC6FEibaLzjfe0ucaV0YrOjYotGJO1WpF0Zd+n6ZGEQUsSugaoLq9QkEZtAfQIxT42UChcssDVPP3+/w==}
     engines: {node: '>=16'}
     hasBin: true
+
+  theme-vitesse@0.7.9:
+    resolution: {integrity: sha512-wgxHWOIEcIBp/5MAdO8Z5c0vdKy5J5008Kqt/uOYruel9oJ4TrvH3qXgCsatp4ImROd1UWsIgQ3C0R8db38qgA==}
+    engines: {vscode: ^1.43.0}
 
   time-span@5.1.0:
     resolution: {integrity: sha512-75voc/9G4rDIJleOo4jPvN4/YC4GRZrY8yy1uU4lwrB3XEQbWve8zXoO5No4eFrGcTAMYyoY67p8jRQdtA1HbA==}
@@ -4542,6 +4557,8 @@ snapshots:
       '@slidev/types': 0.47.5
       codemirror-theme-vars: 0.1.2
       prism-theme-vars: 0.2.5
+
+  '@slidev/types@0.42.11': {}
 
   '@slidev/types@0.47.5': {}
 
@@ -7110,6 +7127,13 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
+  slidev-theme-dracula@0.2.0:
+    dependencies:
+      '@slidev/types': 0.42.11
+      codemirror-theme-vars: 0.1.2
+      prism-theme-vars: 0.2.5
+      theme-vitesse: 0.7.9
+
   smol-toml@1.6.0: {}
 
   sort-object-keys@2.1.0: {}
@@ -7189,6 +7213,8 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.1.1
       sax: 1.5.0
+
+  theme-vitesse@0.7.9: {}
 
   time-span@5.1.0:
     dependencies:

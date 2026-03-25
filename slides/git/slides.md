@@ -1,10 +1,18 @@
 ---
-theme: default
+theme: dracula
 title: Git & GitHub 基礎
-titleTemplate: '%s — 毛哥EM'
+titleTemplate: "%s — 毛哥EM"
 author: 毛哥EM
 transition: fade
 mdc: true
+fonts:
+  sans: LXGW WenKai TC
+  serif: LXGW WenKai TC
+  mono: Fira Code
+htmlAttrs:
+  lang: zh-Hant-TW
+defaults:
+  layout: intro
 ---
 
 # Git & GitHub
@@ -18,61 +26,90 @@ mdc: true
 <https://emtech.cc/p/github-and-git/>
 
 ---
+layout: statement
+---
 
 你們用過 Git / GitHub 嗎？
 
+---
+layout: statement
 ---
 
 「等等剛才寫錯了...可以改回來嗎？」
 
 ---
+layout: statement
+---
 
 「額原本真的是這樣嗎？怎麼跑不起來了？」
 
+---
+layout: section
 ---
 
 ## 版本控制
 
 ---
-
-![資料夾版本一](./img/folder-1.webp)
-
+layout: image
+image: ./img/folder-1.webp
+backgroundSize: contain
+backgroundSize: auto 85%
 ---
 
-![資料夾版本二](./img/folder-2.webp)
-
+---
+layout: image
+image: ./img/folder-2.webp
+backgroundSize: contain
+backgroundSize: auto 85%
 ---
 
-![資料夾版本三](./img/folder-3.webp)
-
+---
+layout: image
+image: ./img/folder-3.webp
+backgroundSize: contain
+backgroundSize: auto 85%
 ---
 
-![資料夾版本四](./img/folder-4.webp)
+---
+layout: image
+image: ./img/folder-4.webp
+backgroundSize: contain
+backgroundSize: auto 85%
+---
 
+---
+layout: statement
 ---
 
 「可以把程式碼 email 給我嗎？」
 
 ---
-
+layout: statement
+---
+  
 「欸等等這垃圾是誰寫的？」
 
+---
+layout: statement
 ---
 
 introducing...
 
 ---
+layout: statement
+---
 
 # Git
 
 ---
+---
 
 ## Git 可以幹嘛？
-
+ª
 - 專案版本控制：記錄修改歷史
 - 團隊協作：多人同時編輯、合併
 - 回溯錯誤：回到之前正常的狀態
-- Open Source：與世界接軌
+- Open Source
 
 > 「哦，原來這個垃圾是我寫的。」
 
@@ -135,6 +172,8 @@ git config --global user.name "你的名字"
 git config --global user.email "you@example.com"
 ```
 
+---
+layout: statement
 ---
 
 我們來嘗試把今天做的網站部署到 GitHub 上！
@@ -275,10 +314,12 @@ git pull
 ```
 
 ---
+layout: statement
+---
 
 本投影片由 [毛哥EM](https://elvismao.com/) 製作  
 採用創用 CC「[姓名標示 4.0 國際](https://creativecommons.org/licenses/by/4.0/deed.zh-hant)」授權
 
-![CC](./img/cc.svg)
+<img src="./img/cc.svg" alt="CC" class="mx-auto" />
 
 [毛哥EM資訊密技](https://emtech.cc/) · [毛哥EM公開簡報](https://g.elvismao.com/slides)
