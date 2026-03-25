@@ -1,8 +1,8 @@
 {
 	"name": "slides",
-	"compatibility_date": "2026-03-12",
+	"compatibility_date": "2026-03-26",
 	"assets": {
-		"directory": "./dist",
+		"directory": "./",
 		"html_handling": "force-trailing-slash",
 		"not_found_handling": "404-page"
 	}
