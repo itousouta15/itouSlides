@@ -12,9 +12,9 @@ fonts:
 htmlAttrs:
   lang: zh-Hant-TW
 defaults:
-  layout: default
-lineNumbers: false
-layout: intro
+  layout: intro
+css: ./style.css
+selectable: true
 ---
 
 # CSS
@@ -29,7 +29,7 @@ layout: intro
 - CSS：外觀
 - JavaScript：行為
 
-<img src="/img/CSS/骨架、外觀、行為.png" style="height:400px;display:block;margin:0 auto;" />
+<img src="./img/bone.webp" style="height:400px;display:block;margin:0 auto;" />
 
 ---
 
@@ -41,7 +41,7 @@ layout: intro
 4. 建立 `<h1>` 與 `<style>`
 5. 用 Live Server / Go Live 開瀏覽器開始寫 CSS
 
-<img src="/img/CSS/Frame_11.jpg" style="height:320px;display:block;margin:0 auto;" />
+<img src="./img/Frame_11.webp" style="height:320px;display:block;margin:0 auto;" />
 
 ---
 
@@ -150,7 +150,7 @@ h1 {
 - `a[href="https://x.com"]`：屬性選擇器
 - `a[href*="tuts"]`：包含某字
 - `a[href^="http"]`：開頭是
-- `[href$=".jpg"]`：結尾是
+- `[href$=".webp"]`：結尾是
 
 ---
 
@@ -190,7 +190,7 @@ h1 {
 
 ---
 
-<img src="/img/CSS/image 1.png" style="display:block;margin:0 auto;" />
+<img src="./img/image 1.webp" style="display:block;margin:0 auto;" />
 
 ---
 
@@ -325,7 +325,7 @@ S：saturation 飽和度
 <div data-id="hsl" style="background:linear-gradient(90deg,hsl(0,100%,50%),hsl(0,50%,50%),hsl(0,0%,50%));height:100px"></div>
 
 ---
-transition: fade
+
 ---
 
 ### HSL
@@ -360,7 +360,7 @@ background-color: hsl(0, 100%, 50%);
 - `%`
 
 ---
-transition: fade
+
 ---
 
 ### px
@@ -368,7 +368,7 @@ transition: fade
 相對顯示器的解析度，為絕對單位（pixel）
 
 ---
-transition: fade
+
 ---
 
 ### em
@@ -376,7 +376,7 @@ transition: fade
 相對父元素的字體大小（預設通常 16px）
 
 ---
-transition: fade
+
 ---
 
 ### rem
@@ -384,7 +384,7 @@ transition: fade
 相對根元素的字體大小（預設通常 16px）
 
 ---
-transition: fade
+
 ---
 
 ### vw / vh
@@ -392,7 +392,7 @@ transition: fade
 viewport（視口）寬 / 高
 
 ---
-transition: fade
+
 ---
 
 ### vmin / vmax
@@ -401,7 +401,7 @@ transition: fade
 - `vmax`：視窗寬高較大者的百分比
 
 ---
-transition: fade
+
 ---
 
 ### %
@@ -433,14 +433,14 @@ div {
 }
 ```
 
-<img src="/img/CSS/image 2.png" style="height:240px;display:block;margin:0 auto;" />
+<img src="./img/image 2.webp" style="height:240px;display:block;margin:0 auto;" />
 
 ---
 
 ## 背景圖片
 
 ```css
-background-image: url(./image/cloud.png); /* 背景圖片 */
+background-image: url(./image/cloud.webp); /* 背景圖片 */
 background-repeat: no-repeat; /* 背景重複 */
 background-size: cover; /* 不管有沒有全部進去，反正就是塞滿 */
 background-size: contain; /* 全部塞進去 */
@@ -449,7 +449,7 @@ background-position: 20% 40%; /* 從左上開始算 */
 background-attachment: scroll;
 background-attachment: fixed;
 background-attachment: local;
-background: no-repeat url("image.png");
+background: no-repeat url("image.webp");
 ```
 
 ---
@@ -459,7 +459,7 @@ background: no-repeat url("image.png");
 
 `background-size: contain;`
 
-<video style="width:100%;height:300px;border:2px solid #FFF" autoplay muted playsinline loop src="/img/CSS/long.webp"></video>
+<video style="width:100%;height:300px;border:2px solid #FFF" autoplay muted playsinline loop src="./img/long.webm"></video>
 
 </div>
 
@@ -467,7 +467,7 @@ background: no-repeat url("image.png");
 
 `background-size: cover;`
 
-<video style="width:100%;height:300px;border:2px solid #FFF;object-fit: cover;object-position: top;" autoplay muted playsinline loop src="/img/CSS/long.webp"></video>
+<video style="width:100%;height:300px;border:2px solid #FFF;object-fit: cover;object-position: top;" autoplay muted playsinline loop src="./img/long.webm"></video>
 
 </div>
 
@@ -565,8 +565,6 @@ background: radial-gradient(ellipse at center, 顏色1, 顏色2);
 - `radial-gradient()`：由中心往外
 - `conic-gradient()`：繞著中心旋轉放射
 
-<img src="/img/CSS/XUupJaf.png" style="height:280px;display:block;margin:0 auto;" />
-
 ---
 
 ## border 邊框
@@ -613,7 +611,7 @@ div {
 }
 ```
 
-<img src="/img/CSS/image 3.png" style="height:230px;display:block;margin:0 auto;" />
+<img src="./img/image 3.webp" style="height:230px;display:block;margin:0 auto;" />
 
 ---
 
@@ -623,7 +621,7 @@ div {
 - 給 `100px` 或 `50%` 圓角
 - 就會變成圓形
 
-<img src="/img/CSS/image 4.png" style="height:260px;display:block;margin:0 auto;" />
+<img src="./img/image 4.webp" style="height:260px;display:block;margin:0 auto;" />
 
 ---
 
@@ -687,7 +685,7 @@ margin-left: 16px;
 margin-right: 16px;
 ```
 
-<img src="/img/CSS/image 5.png" style="height:240px;display:block;margin:0 auto;" />
+<img src="./img/image 5.webp" style="height:240px;display:block;margin:0 auto;" />
 
 ---
 
@@ -738,7 +736,7 @@ div {
 }
 ```
 
-<img src="/img/CSS/image 6.png" style="height:230px;display:block;margin:0 auto;" />
+<img src="./img/image 6.webp" style="height:230px;display:block;margin:0 auto;" />
 
 ---
 
@@ -747,11 +745,11 @@ div {
 ---
 class: text-white
 layout: image
-image: /img/CSS/box-sizing.webp
+image: ./img/CSS/box-sizing.webp
 ---
 
 ---
-background: /img/CSS/box-sizing.webp
+background: ./img/CSS/box-sizing.webp
 class: text-white
 ---
 
@@ -791,7 +789,7 @@ box-sizing: border-box; /* padding 跟 border 會包含在內 */
 
 這是一個幾乘幾的地獄門呢？
 
-<img src="/img/CSS/image 7.png" style="height:280px;display:block;margin:0 auto;" />
+<img src="./img/image 7.webp" style="height:280px;display:block;margin:0 auto;" />
 
 ---
 
@@ -813,7 +811,7 @@ div {
 }
 ```
 
-<img src="/img/CSS/image 8.png" style="height:220px;display:block;margin:0 auto;" />
+<img src="./img/image 8.webp" style="height:220px;display:block;margin:0 auto;" />
 
 ---
 
@@ -822,7 +820,7 @@ box-sizing: content-box; /* 只算內容 */
 box-sizing: border-box; /* 包含邊框 */
 ```
 
-<img src="/img/CSS/image 9.png" style="height:240px;display:block;margin:0 auto;" />
+<img src="./img/image 9.webp" style="height:240px;display:block;margin:0 auto;" />
 
 ---
 
@@ -840,7 +838,7 @@ outline 位置在 border 的外面一圈，不佔用元素的任何空間。
 }
 ```
 
-<img src="/img/CSS/image 10.png" style="height:220px;display:block;margin:0 auto;" />
+<img src="./img/image 10.webp" style="height:220px;display:block;margin:0 auto;" />
 
 ---
 
@@ -856,7 +854,7 @@ Display 可以控制元素怎麼排。
 - 行內元素：`<b>`、`<i>`，放在文字之間不會換行
 - `<img>` 預設也是行內元素
 
-<img src="/img/CSS/image 11.png" style="height:240px;display:block;margin:0 auto;" />
+<img src="./img/image 11.webp" style="height:240px;display:block;margin:0 auto;" />
 
 ---
 
@@ -878,7 +876,7 @@ img {
 }
 ```
 
-<img src="/img/CSS/image 12.png" style="height:240px;display:block;margin:0 auto;" />
+<img src="./img/image 12.webp" style="height:240px;display:block;margin:0 auto;" />
 
 ---
 
@@ -914,7 +912,7 @@ div {
 }
 ```
 
-<img src="/img/CSS/image 13.png" style="height:210px;display:block;margin:0 auto;" />
+<img src="./img/image 13.webp" style="height:210px;display:block;margin:0 auto;" />
 
 ---
 
@@ -928,7 +926,7 @@ section {
 }
 ```
 
-<img src="/img/CSS/image 14.png" style="height:210px;display:block;margin:0 auto;" />
+<img src="./img/image 14.webp" style="height:210px;display:block;margin:0 auto;" />
 
 ---
 
@@ -941,7 +939,7 @@ flex-direction: column; /* 上到下 */
 flex-direction: column-reverse; /* 下到上 */
 ```
 
-<img src="/img/CSS/image 15.png" style="height:220px;display:block;margin:0 auto;" />
+<img src="./img/image 15.webp" style="height:220px;display:block;margin:0 auto;" />
 
 ---
 
@@ -953,7 +951,7 @@ flex-wrap: wrap; /* 太寬換行 */
 flex-wrap: wrap-reverse; /* 換行但從下到上排 */
 ```
 
-<img src="/img/CSS/image 16.png" style="height:160px;display:block;margin:0 auto;" /><img src="/img/CSS/image 17.png" style="height:160px;display:block;margin:0 auto;" />
+<img src="./img/image 16.webp" style="height:160px;display:block;margin:0 auto;" /><img src="./img/image 17.webp" style="height:160px;display:block;margin:0 auto;" />
 
 ---
 
@@ -979,7 +977,7 @@ justify-content: space-between; /* 水平均分 */
 justify-content: space-around; /* 水平環繞均分 */
 ```
 
-<img src="/img/CSS/justify-content.svg" style="height:220px;display:block;margin:0 auto;" />
+<img src="./img/justify-content.svg" style="height:220px;display:block;margin:0 auto;" />
 
 ---
 
@@ -991,7 +989,7 @@ justify-content: space-around; /* 水平環繞均分 */
 - `stretch`
 - `baseline`
 
-<img src="/img/CSS/align-items.svg" style="height:220px;display:block;margin:0 auto;" />
+<img src="./img/align-items.svg" style="height:220px;display:block;margin:0 auto;" />
 
 ---
 
@@ -1023,7 +1021,7 @@ align-self: flex-end;
 - 預設值為 `0`
 - 1 以上會依照比例分配剩餘空間
 
-<img src="/img/CSS/flex-grow.svg" style="height:220px;display:block;margin:0 auto;" />
+<img src="./img/flex-grow.svg" style="height:220px;display:block;margin:0 auto;" />
 
 ---
 
@@ -1081,7 +1079,7 @@ order: 5;
 - 固定在上方的選單
 - 蓋在畫面上的彈窗
 
-<img src="/img/CSS/image 18.png" style="height:260px;display:block;margin:0 auto;" />
+<img src="./img/image 18.webp" style="height:260px;display:block;margin:0 auto;" />
 
 ---
 
@@ -1118,7 +1116,7 @@ position: 屬性;
 }
 ```
 
-<img src="/img/CSS/image 19.png" style="height:250px;display:block;margin:0 auto;" />
+<img src="./img/image 19.webp" style="height:250px;display:block;margin:0 auto;" />
 
 ---
 
@@ -1153,7 +1151,7 @@ position: 屬性;
 }
 ```
 
-<img src="/img/CSS/image 20.png" style="height:220px;display:block;margin:0 auto;" />
+<img src="./img/image 20.webp" style="height:220px;display:block;margin:0 auto;" />
 
 ---
 
@@ -1167,7 +1165,7 @@ position: 屬性;
 }
 ```
 
-<img src="/img/CSS/image 21.png" style="height:220px;display:block;margin:0 auto;" />
+<img src="./img/image 21.webp" style="height:220px;display:block;margin:0 auto;" />
 
 ---
 
@@ -1188,7 +1186,7 @@ nav {
 }
 ```
 
-<video style="width:100%;max-height:300px;" controls src="/img/CSS/Screen_Recording_2026-03-23_at_11.30.08_AM.mov"></video>
+<video style="width:100%;max-height:300px;" controls src="./img/Screen_Recording_2026-03-23_at_11.30.08_AM.webp"></video>
 
 ---
 
@@ -1209,7 +1207,7 @@ h2 {
 }
 ```
 
-<video style="width:100%;max-height:300px;" controls src="/img/CSS/Screen_Recording_2026-03-23_at_2.42.56_PM.mov"></video>
+<video style="width:100%;max-height:300px;" controls src="./img/Screen_Recording_2026-03-23_at_2.42.56_PM.webp"></video>
 
 ---
 
@@ -1217,7 +1215,7 @@ h2 {
 
 <https://codepen.io/elvismao/pen/rNoYOKZ>
 
-<img src="/img/CSS/sunny.webp" style="height:250px;display:block;margin:0 auto;" />
+<img src="./img/sunny.webp" style="height:250px;display:block;margin:0 auto;" />
 
 ---
 
@@ -1258,7 +1256,7 @@ body {
 - 建築物是 `relative`
 - 屋頂是 `absolute`
 
-<img src="/img/CSS/image_1.jpg" style="height:240px;display:block;margin:0 auto;" />
+<img src="./img/image_1.webp" style="height:240px;display:block;margin:0 auto;" />
 
 ---
 
@@ -1295,8 +1293,6 @@ transform: translateY(往下偏移多少);
 }
 ```
 
-<img src="/img/CSS/IFdDGiC.png" style="height:220px;display:block;margin:0 auto;" />
-
 ---
 
 ### 定位置中
@@ -1313,8 +1309,6 @@ img {
 	transform: translate(-50%, -50%);
 }
 ```
-
-<img src="/img/CSS/jM1Hazt.png" style="height:220px;display:block;margin:0 auto;" />
 
 ---
 
@@ -1379,7 +1373,7 @@ Media 可以告訴瀏覽器在不同螢幕大小下該如何呈現。
 - `h1` 就改成較小螢幕適合的大小
 
 ---
-transition: fade
+
 ---
 
 玩得開心 (:
@@ -1389,12 +1383,12 @@ transition: fade
 Flex：<https://emtech.cc/p/2023ironman-3>
 
 ---
-layout: center
+layout: statement
 ---
 
 本投影片由 [毛哥EM](https://elvismao.com/) 製作  
 採用創用 CC「[姓名標示 4.0 國際](https://creativecommons.org/licenses/by/4.0/deed.zh-hant)」授權
 
-<img src="/img/cc.svg" alt="CC" class="mx-auto" />
+<img src="./img/cc.svg" alt="CC" class="mx-auto" />
 
 [毛哥EM資訊密技](https://emtech.cc/) · [毛哥EM公開簡報](https://g.elvismao.com/slides)

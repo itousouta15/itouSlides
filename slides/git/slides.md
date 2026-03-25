@@ -54,28 +54,24 @@ layout: section
 ---
 layout: image
 image: ./img/folder-1.webp
-backgroundSize: contain
 backgroundSize: auto 85%
 ---
 
 ---
 layout: image
 image: ./img/folder-2.webp
-backgroundSize: contain
 backgroundSize: auto 85%
 ---
 
 ---
 layout: image
 image: ./img/folder-3.webp
-backgroundSize: contain
 backgroundSize: auto 85%
 ---
 
 ---
 layout: image
 image: ./img/folder-4.webp
-backgroundSize: contain
 backgroundSize: auto 85%
 ---
 
