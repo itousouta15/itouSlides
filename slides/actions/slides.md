@@ -11,6 +11,8 @@ fonts:
   mono: Fira Code
 htmlAttrs:
   lang: zh-Hant-TW
+seoMeta:
+  ogImage: auto
 defaults:
   layout: intro
 css: ./style.css

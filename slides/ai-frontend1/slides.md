@@ -11,6 +11,8 @@ fonts:
   mono: Fira Code
 htmlAttrs:
   lang: zh-Hant-TW
+seoMeta:
+  ogImage: auto
 defaults:
   layout: intro
 css: ./style.css
@@ -136,20 +138,16 @@ layout: statement
 而是更會 **拆需求、查資料、驗證結果、整合工具** 的人
 
 ---
+
+未來的面試可能會分為兩 Part：
+
+* **十分核心底層原理**
+* **AI 應用能力**
+
+*-莊育棋 Andes 軟體研發處協理*
+
+---
 layout: statement
----
-
-莊育棋：未來的面試可能會分為兩 Part
-
-* 十分核心底層原理
-* AI 應用能力
-
----
-layout: statement
----
-
-# 什麼是 vibe coding？
-
 ---
 
 ## vibe coding 是什麼？
@@ -172,13 +170,13 @@ layout: statement
 layout: statement
 ---
 
-## AI 是一個精英放大器
+# AI 是一個精英放大器
 
 ---
 layout: image
-image: ./img/vibe_google.webp
-backgroundSize: contain
 ---
+
+<img src="./img/vibe_google.webp" class="mx-auto h-full" />
 
 ---
 

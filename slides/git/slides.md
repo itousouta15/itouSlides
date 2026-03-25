@@ -11,6 +11,8 @@ fonts:
   mono: Fira Code
 htmlAttrs:
   lang: zh-Hant-TW
+seoMeta:
+  ogImage: auto
 defaults:
   layout: intro
 css: ./style.css
@@ -53,27 +55,27 @@ layout: section
 
 ---
 layout: image
-image: ./img/folder-1.webp
-backgroundSize: auto 85%
 ---
+
+<img src="./img/folder-1.webp" class="mx-auto h-full" />
 
 ---
 layout: image
-image: ./img/folder-2.webp
-backgroundSize: auto 85%
 ---
+
+<img src="./img/folder-2.webp" class="mx-auto h-full" />
 
 ---
 layout: image
-image: ./img/folder-3.webp
-backgroundSize: auto 85%
 ---
+
+<img src="./img/folder-3.webp" class="mx-auto h-full" />
 
 ---
 layout: image
-image: ./img/folder-4.webp
-backgroundSize: auto 85%
 ---
+
+<img src="./img/folder-4.webp" class="mx-auto h-full" />
 
 ---
 layout: statement
