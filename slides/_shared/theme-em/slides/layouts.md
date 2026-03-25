@@ -1,7 +1,7 @@
 ---
 theme: ../
 layout: cover
-favicon: 'https://draculatheme.com/static/img/favicon.ico'
+favicon: "https://draculatheme.com/static/img/favicon.ico"
 ---
 
 # Cover Layout
@@ -34,11 +34,11 @@ I'm a passionate about creating and contributing to open source projects. I am a
 
 Slide Subtitle
 
-* Slide bullet text
-  * Slide bullet text
-  * Slide bullet text
-* Slide bullet text
-* Slide bullet text
+- Slide bullet text
+  - Slide bullet text
+  - Slide bullet text
+- Slide bullet text
+- Slide bullet text
 
 ---
 layout: image-right
@@ -49,11 +49,11 @@ image: https://source.unsplash.com/collection/94734566/1920x1080
 
 Colons can be used to align columns.
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
+| Tables        |      Are      |  Cool |
+| ------------- | :-----------: | ----: |
 | col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| col 2 is      |   centered    |   $12 |
+| zebra stripes |   are neat    |    $1 |
 
 ---
 layout: image-left
@@ -64,11 +64,11 @@ image: https://source.unsplash.com/collection/94734566/1920x1080
 
 Colons can be used to align columns.
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
+| Tables        |      Are      |  Cool |
+| ------------- | :-----------: | ----: |
 | col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| col 2 is      |   centered    |   $12 |
+| zebra stripes |   are neat    |    $1 |
 
 ---
 layout: section
@@ -106,4 +106,3 @@ class: "text-center"
 # Learn More
 
 [Source Code](https://github.com/jd-solanki/slidev-theme-dracula/blob/main/slides/layouts.md) / [GitHub Repo](https://github.com/jd-solanki/slidev-theme-dracula)
-
