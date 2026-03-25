@@ -1,0 +1,29 @@
+{
+	"name": "slidev-theme-em-shared",
+	"private": true,
+	"slidev": {
+		"addons": [
+			"slidev-theme-dracula"
+		],
+		"defaults": {
+			"download": false,
+			"transition": "fade",
+			"mdc": true,
+			"fonts": {
+				"sans": "LXGW WenKai TC",
+				"serif": "LXGW WenKai TC",
+				"mono": "Fira Code"
+			},
+			"htmlAttrs": {
+				"lang": "zh-Hant-TW"
+			},
+			"seoMeta": {
+				"ogImage": "auto"
+			},
+			"defaults": {
+				"layout": "intro"
+			},
+			"selectable": true
+		}
+	}
+}

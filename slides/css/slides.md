@@ -1,22 +1,8 @@
 ---
-theme: dracula
+theme: ../_shared/theme
 title: CSS 基礎
 titleTemplate: "%s — 毛哥EM"
 author: 毛哥EM
-transition: fade
-mdc: true
-fonts:
-  sans: LXGW WenKai TC
-  serif: LXGW WenKai TC
-  mono: Fira Code
-htmlAttrs:
-  lang: zh-Hant-TW
-seoMeta:
-  ogImage: auto
-defaults:
-  layout: intro
-css: ./style.css
-selectable: true
 ---
 
 # CSS
@@ -328,6 +314,7 @@ S：saturation 飽和度
 
 ---
 
+
 ---
 
 ### HSL
@@ -363,6 +350,7 @@ background-color: hsl(0, 100%, 50%);
 
 ---
 
+
 ---
 
 ### px
@@ -370,6 +358,7 @@ background-color: hsl(0, 100%, 50%);
 相對顯示器的解析度，為絕對單位（pixel）
 
 ---
+
 
 ---
 
@@ -379,6 +368,7 @@ background-color: hsl(0, 100%, 50%);
 
 ---
 
+
 ---
 
 ### rem
@@ -386,6 +376,7 @@ background-color: hsl(0, 100%, 50%);
 相對根元素的字體大小（預設通常 16px）
 
 ---
+
 
 ---
 
@@ -395,6 +386,7 @@ viewport（視口）寬 / 高
 
 ---
 
+
 ---
 
 ### vmin / vmax
@@ -403,6 +395,7 @@ viewport（視口）寬 / 高
 - `vmax`：視窗寬高較大者的百分比
 
 ---
+
 
 ---
 
@@ -1375,6 +1368,7 @@ Media 可以告訴瀏覽器在不同螢幕大小下該如何呈現。
 - `h1` 就改成較小螢幕適合的大小
 
 ---
+
 
 ---
 

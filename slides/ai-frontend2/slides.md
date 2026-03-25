@@ -1,22 +1,8 @@
 ---
-theme: dracula
+theme: ../_shared/theme
 title: Front-end AI Workshop
 titleTemplate: "%s — 毛哥EM"
 author: 毛哥EM
-transition: fade
-mdc: true
-fonts:
-  sans: LXGW WenKai TC
-  serif: LXGW WenKai TC
-  mono: Fira Code
-htmlAttrs:
-  lang: zh-Hant-TW
-seoMeta:
-  ogImage: auto
-defaults:
-  layout: intro
-css: ./style.css
-selectable: true
 ---
 
 # AI 協作前端開發入門

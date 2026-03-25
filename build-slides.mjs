@@ -25,8 +25,8 @@ for (const dir of dirs) {
 	console.log(`building ${slug}...`);
 	console.log(`entry: ${entry}`);
 	console.log(`out:   ${outDir}`);
-	console.log(`command: pnpm exec slidev build ${entry} --out ${outDir} --base ${base}\n`);
-	const result = spawnSync("pnpm", ["exec", "slidev", "build", entry, "--out", outDir, "--base", base], {
+	console.log(`command: pnpm exec slidev build ${entry} --out ${outDir} --base ${base} --download true\n`);
+	const result = spawnSync("pnpm", ["exec", "slidev", "build", entry, "--out", outDir, "--base", base, "--download", "true"], {
 		stdio: "inherit",
 		cwd: repoRoot
 	});

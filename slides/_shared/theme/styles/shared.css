@@ -1,0 +1,28 @@
+.slidev-layout h1 {
+	margin-bottom: 1.5rem;
+}
+
+.slidev-layout h2 {
+	margin-bottom: 1rem;
+}
+
+.slidev-layout {
+	font-size: 1.4rem;
+}
+
+.slidev-layout blockquote {
+	font-size: 1em;
+	position: relative;
+	margin-top: 1em;
+	padding-left: 1em;
+}
+
+.slidev-layout blockquote::before {
+	content: "";
+	width: 0.2rem;
+	height: 100%;
+	background-color: #a4a5a6;
+	position: absolute;
+	left: 0;
+	top: 0;
+}

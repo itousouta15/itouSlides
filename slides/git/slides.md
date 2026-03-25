@@ -1,22 +1,8 @@
 ---
-theme: dracula
+theme: ../_shared/theme
 title: Git & GitHub 基礎
 titleTemplate: "%s — 毛哥EM"
 author: 毛哥EM
-transition: fade
-mdc: true
-fonts:
-  sans: LXGW WenKai TC
-  serif: LXGW WenKai TC
-  mono: Fira Code
-htmlAttrs:
-  lang: zh-Hant-TW
-seoMeta:
-  ogImage: auto
-defaults:
-  layout: intro
-css: ./style.css
-selectable: true
 ---
 
 # Git & GitHub
@@ -86,7 +72,7 @@ layout: statement
 ---
 layout: statement
 ---
-  
+
 「欸等等這垃圾是誰寫的？」
 
 ---
@@ -102,10 +88,11 @@ layout: statement
 # Git
 
 ---
----
 
 ## Git 可以幹嘛？
+
 ª
+
 - 專案版本控制：記錄修改歷史
 - 團隊協作：多人同時編輯、合併
 - 回溯錯誤：回到之前正常的狀態

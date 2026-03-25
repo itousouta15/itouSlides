@@ -1,22 +1,8 @@
 ---
-theme: dracula
+theme: ../_shared/theme
 title: GitHub Actions
 titleTemplate: "%s — 毛哥EM"
 author: 毛哥EM
-transition: fade
-mdc: true
-fonts:
-  sans: LXGW WenKai TC
-  serif: LXGW WenKai TC
-  mono: Fira Code
-htmlAttrs:
-  lang: zh-Hant-TW
-seoMeta:
-  ogImage: auto
-defaults:
-  layout: intro
-css: ./style.css
-selectable: true
 ---
 
 # GitHub Actions
@@ -72,7 +58,6 @@ selectable: true
 
 例如：`ci.yml`
 
----
 ---
 
 ```yaml
@@ -141,7 +126,6 @@ on:
   - `strategy`: matrix 等進階設定
 
 ---
----
 
 ```yaml
 jobs:
@@ -162,7 +146,6 @@ Step 有兩種常見寫法：
 1. **使用現成 Action** → `uses`
 2. **直接跑指令** → `run`
 
----
 ---
 
 ```yaml
@@ -260,7 +243,6 @@ jobs:
 - 在 push / PR 時自動：安裝依賴、跑 lint + test
 
 ---
----
 
 ```yaml
 name: Node CI
@@ -293,7 +275,6 @@ jobs:
 每次 push 到 `main` 就自動 build，部署到 GitHub Pages
 
 ---
----
 
 ```yaml
 name: Deploy to GitHub Pages
@@ -325,18 +306,17 @@ jobs:
 ```
 
 ---
----
 
 ```yaml
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+deploy:
+  needs: build
+  runs-on: ubuntu-latest
+  environment:
+    name: github-pages
+    url: ${{ steps.deployment.outputs.page_url }}
+  steps:
+    - id: deployment
+      uses: actions/deploy-pages@v4
 ```
 
 ---
@@ -345,7 +325,6 @@ jobs:
 
 push tag 時自動 build Docker image 並推到 GHCR
 
----
 ---
 
 ```yaml
@@ -544,6 +523,7 @@ on:
 - 只要會寫一點 YAML，就能讓專案從「手動」升級到「自動化」
 
 ---
+
 
 ---
 layout: statement
