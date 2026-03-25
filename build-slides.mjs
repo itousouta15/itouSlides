@@ -15,20 +15,18 @@ const targets = dirs
 	.map(dir => dir.name)
 	.filter(slug => existsSync(resolve(slidesRoot, slug, "slides.md")));
 
-const runBuild = (slug, index) => {
+const runBuild = slug => {
 	const entry = resolve(slidesRoot, slug, "slides.md");
 	const outDir = resolve(outRoot, slug);
 	const base = `/talks/${slug}/`;
-	const port = 3030 + index;
-	const args = ["exec", "slidev", "build", entry, "--out", outDir, "--base", base, "--download", "true", "--port", String(port)];
 
 	console.log(`building ${slug}...`);
 	console.log(`entry: ${entry}`);
 	console.log(`out:   ${outDir}`);
-	console.log(`command: pnpm ${args.join(" ")}\n`);
+	console.log(`command: pnpm exec slidev build ${entry} --out ${outDir} --base ${base} --download true\n`);
 
 	return new Promise(resolveBuild => {
-		const child = spawn("pnpm", args, {
+		const child = spawn("pnpm", ["exec", "slidev", "build", entry, "--out", outDir, "--base", base, "--download", "true"], {
 			stdio: "inherit",
 			cwd: repoRoot
 		});
