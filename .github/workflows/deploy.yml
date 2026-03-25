@@ -32,8 +32,8 @@ jobs:
       - name: Build Slidev
         run: pnpm build
 
-      - name: Deploy to Cloudflare Pages
-        run: pnpm dlx wrangler pages deploy dist --project-name slides
+      - name: Deploy
+        run: pnpm dlx wrangler deploy --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
