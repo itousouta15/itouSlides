@@ -57,8 +57,7 @@ layout: intro
 	</head>
 	<body>
 		<h1>我是標題</h1>
-		<style>
-		</style>
+		<style></style>
 	</body>
 </html>
 ```
@@ -69,7 +68,7 @@ layout: intro
 
 ```css
 h1 {
-    color: red;
+	color: red;
 }
 ```
 
@@ -79,7 +78,7 @@ h1 {
 
 ```css
 h1 {
-    color: red;
+	color: red;
 }
 ```
 
@@ -114,19 +113,19 @@ h1 {
 ```html {3,12|7-11|14}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        h1{
-            color: red;
-        }
-    </style>
-</head>
-<body>
-    <h1>標題</h1>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			h1 {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>標題</h1>
+	</body>
 </html>
 ```
 
@@ -450,7 +449,7 @@ background-position: 20% 40%; /* 從左上開始算 */
 background-attachment: scroll;
 background-attachment: fixed;
 background-attachment: local;
-background: no-repeat url('image.png');
+background: no-repeat url("image.png");
 ```
 
 ---
@@ -461,6 +460,7 @@ background: no-repeat url('image.png');
 `background-size: contain;`
 
 <video style="width:100%;height:300px;border:2px solid #FFF" autoplay muted playsinline loop src="/img/CSS/long.webp"></video>
+
 </div>
 
 <div style="flex:1;font-size:1rem">
@@ -468,6 +468,7 @@ background: no-repeat url('image.png');
 `background-size: cover;`
 
 <video style="width:100%;height:300px;border:2px solid #FFF;object-fit: cover;object-position: top;" autoplay muted playsinline loop src="/img/CSS/long.webp"></video>
+
 </div>
 
 </div>
@@ -542,12 +543,7 @@ background: radial-gradient(red, blue);
 #### 指定形狀、範圍、中心位置
 
 ```css
-background: radial-gradient(
-    形狀 範圍 at 中心位置,
-    顏色 色彩位置,
-    顏色 色彩位置,
-    ...
-);
+background: radial-gradient(形狀 範圍 at 中心位置, 顏色 色彩位置, 顏色 色彩位置, ...);
 ```
 
 圓形
@@ -836,11 +832,11 @@ outline 位置在 border 的外面一圈，不佔用元素的任何空間。
 
 ```css
 #box {
-  width: 100px;
-  height: 100px;
-  background-color: lightblue;
-  border: 20px solid lightgreen;
-  outline: 20px solid lightcoral;
+	width: 100px;
+	height: 100px;
+	background-color: lightblue;
+	border: 20px solid lightgreen;
+	outline: 20px solid lightcoral;
 }
 ```
 
@@ -967,7 +963,7 @@ flex-wrap: wrap-reverse; /* 換行但從下到上排 */
 
 ```css
 .flex-container {
-	flex-flow: <"flex-direction"> || <"flex-wrap">;
+	flex-flow: < "flex-direction" > || < "flex-wrap" >;
 }
 ```
 
@@ -1185,7 +1181,7 @@ position: 屬性;
 nav {
 	width: 100%;
 	height: 100px;
-	background: #E0DEF4;
+	background: #e0def4;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -1329,8 +1325,10 @@ img {
 ```css
 transition: 屬性 轉換時間 延遲時間 速度;
 
-transition: all .3s 0s ease;
-transition: padding .3s 0s, background-color 1s 1s;
+transition: all 0.3s 0s ease;
+transition:
+	padding 0.3s 0s,
+	background-color 1s 1s;
 ```
 
 - hover
@@ -1391,9 +1389,7 @@ transition: fade
 Flex：<https://emtech.cc/p/2023ironman-3>
 
 ---
-
 layout: center
-
 ---
 
 本投影片由 [毛哥EM](https://elvismao.com/) 製作  

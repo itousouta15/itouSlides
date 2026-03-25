@@ -13,6 +13,8 @@ htmlAttrs:
   lang: zh-Hant-TW
 defaults:
   layout: intro
+css: ./style.css
+selectable: true
 ---
 
 # Git & GitHub
