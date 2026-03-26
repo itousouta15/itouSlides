@@ -24,7 +24,6 @@
 #app {
 	#slide-content {
 		--at-apply: text-$foreground bg-$background !important;
-		font-size: 1.4rem;
 
 		h1,
 		h2,

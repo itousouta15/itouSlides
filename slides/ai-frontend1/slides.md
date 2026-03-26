@@ -132,8 +132,6 @@ layout: statement
 _-莊育棋 Andes 軟體研發處協理_
 
 ---
-layout: statement
----
 
 ## vibe coding 是什麼？
 
@@ -144,9 +142,13 @@ layout: statement
 - 你再去判斷、修正、測試、整合
 
 ---
+layout: statement
+---
 
 > 我不是在 Vibe Coding，我這叫做 「Agentic Coding」
 
+---
+layout: statement
 ---
 
 > 我這不叫做畫畫，我是在人物素描
@@ -739,7 +741,7 @@ git push
 - `style: update card layout`
 - `fix: correct mobile spacing`
 
-重點不是一定要超專業，而是 **未來看得懂你改了什麼**
+重點不是一定要看起來很專業，而是 **未來看得懂你改了什麼**
 
 ---
 
@@ -840,42 +842,6 @@ Projects
 ├─ 2~4 個作品
 Contact
 └─ Email / GitHub / 社群
-```
-
----
-
-## 內容先整理，再寫畫面
-
-先不要急著寫 code，  
-請先用文字整理：
-
-- 我是誰？
-- 我做過什麼？
-- 我想讓別人記住什麼？
-- 如果只有 10 秒，別人該看到哪 3 件事？
-
-> 內容清楚，網站才會有靈魂
-
----
-
-## 個人網站文案模板
-
-```md
-名字：＿＿＿＿
-
-一句定位：我是一位＿＿＿＿，專注於＿＿＿＿。
-
-自我介紹：我目前是＿＿＿＿，喜歡＿＿＿＿，最近在學＿＿＿＿。
-
-技能：HTML / CSS / JavaScript / Figma / Git / ...
-
-作品：
-
-1. ＿＿＿＿
-2. ＿＿＿＿
-3. ＿＿＿＿
-
-聯絡方式：GitHub / Instagram / Email / X / LinkedIn
 ```
 
 ---
