@@ -1,12 +1,7 @@
-/* Dracula spec: https://spec.draculatheme.com/ */
+@import "https://font.emtech.cc/css/LXGWWenKaiTC";
+@import "https://font.emtech.cc/css/JetBrainsMono";
 
 :root {
-	/*
-    default theme color
-    can be overrided by uses `themeConfig` option
-   */
-
-	/* Dracula colors: https: //draculatheme.com/contribute */
 	--background: hsl(231, 15%, 18%);
 	--current-line: hsl(232, 14%, 31%);
 	--foreground: hsl(60, 30%, 96%);
@@ -35,11 +30,15 @@
 		}
 
 		h1 {
-			--at-apply: mb-2;
+			--at-apply: mb-4;
 		}
 
 		h2 {
-			--at-apply: mb-2;
+			--at-apply: mb-4;
+		}
+
+		p {
+			line-height: 160%;
 		}
 
 		strong {
@@ -87,6 +86,7 @@
 		/* ℹ️ Update background color of code. We made it darker so we don't get same color for slide bg & code bg. */
 		.slidev-code.shiki {
 			background: hsl(231, 15%, 10%) !important;
+			padding: 3rem;
 		}
 
 		:not(pre) > code {
