@@ -10,6 +10,8 @@ author: 毛哥EM
 毛哥EM
 
 ---
+src: ../global/me.md
+---
 
 ## CSS 簡介
 
@@ -1379,12 +1381,5 @@ Media 可以告訴瀏覽器在不同螢幕大小下該如何呈現。
 Flex：<https://emtech.cc/p/2023ironman-3>
 
 ---
-layout: statement
+src: ../global/cc.md
 ---
-
-本投影片由 [毛哥EM](https://elvismao.com/) 製作  
-採用創用 CC「[姓名標示 4.0 國際](https://creativecommons.org/licenses/by/4.0/deed.zh-hant)」授權
-
-<img src="./img/cc.svg" alt="CC" class="mx-auto" />
-
-[毛哥EM資訊密技](https://emtech.cc/) · [毛哥EM公開簡報](https://g.elvismao.com/slides)

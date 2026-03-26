@@ -14,30 +14,7 @@ author: 毛哥EM
 </div>
 
 ---
-layout: full
-class: px-14
----
-
-<div class="h-full grid grid-cols-[1fr_420px] items-center">
-<div>
-
-**關於我**
-
-## 毛哥EM
-
-- 十年網頁開發經驗
-- 國際網頁設計競賽 Awwwards - 常態評審
-- 陽明交通大學 軟體開發社 - 前端開發組長、設計組長
-- 陽明交通大學 網路安全策進會 - 網管
-- 2024/2025 學生計算機年會 - 講者
-
-</div>
-
-<div class="flex justify-center">
-    <img src="./img/profile.webp" width="300" />
-  </div>
-</div>
-
+src: ../global/me.md
 ---
 
 ## 課程目標
@@ -986,12 +963,5 @@ layout: statement
 你已經能做出一個可上線的個人網站
 
 ---
-layout: center
+src: ../global/cc.md
 ---
-
-本投影片由 [毛哥EM](https://elvismao.com/) 製作  
-採用創用 CC「[姓名標示 4.0 國際](https://creativecommons.org/licenses/by/4.0/deed.zh-hant)」授權
-
-<img src="./img/cc.svg" alt="CC" class="mx-auto" />
-
-[毛哥EM資訊密技](https://emtech.cc/) · [毛哥EM公開簡報](https://g.elvismao.com/slides)

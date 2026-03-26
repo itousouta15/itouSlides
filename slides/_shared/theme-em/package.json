@@ -9,9 +9,10 @@
 			"transition": "fade",
 			"mdc": true,
 			"fonts": {
-				"sans": "LXGW WenKai TC",
-				"serif": "LXGW WenKai TC",
-				"mono": "Fira Code"
+				"provider": "none",
+				"sans": "LXGWWenKaiTC",
+				"serif": "LXGWWenKaiTC",
+				"mono": "JetBrainsMono"
 			},
 			"htmlAttrs": {
 				"lang": "zh-Hant-TW"

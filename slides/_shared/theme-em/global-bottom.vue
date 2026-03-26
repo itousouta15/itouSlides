@@ -31,7 +31,7 @@ const progress = computed(() => {
 	bottom: 0.8rem;
 	display: flex;
 	align-items: center;
-	gap: 0.75rem;
+	gap: 0.5rem;
 	pointer-events: none;
 }
 
@@ -52,7 +52,7 @@ const progress = computed(() => {
 .slide-progress-page {
 	font-size: 0.7rem;
 	opacity: 0.75;
-	min-width: 3.8rem;
+	min-width: 3rem;
 	text-align: right;
 }
 </style>
