@@ -8,6 +8,7 @@
 		"dev": "astro dev",
 		"export:slides": "node export-slides.mjs",
 		"format": "prettier --write .",
+		"prepare": "husky",
 		"preview": "astro preview"
 	},
 	"dependencies": {
@@ -21,6 +22,7 @@
 	},
 	"devDependencies": {
 		"@slidev/types": "^52.14.1",
+		"husky": "^9.1.7",
 		"playwright-chromium": "^1.58.2",
 		"prettier": "^3.8.1",
 		"prettier-plugin-astro": "^0.14.1",

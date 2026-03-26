@@ -6,10 +6,10 @@
 
 我的簡報主題是基於 [`slidev-theme-dracula`](https://github.com/jd-solanki/slidev-theme-dracula) by JD Solanki 添加了：
 
-* [emfont](https://font.emtech.cc/) 字體（必須的！）
-* 頁碼與時間軸
-* 放大字體和間距
-* Default 垂直置中
+- [emfont](https://font.emtech.cc/) 字體（必須的！）
+- 頁碼與時間軸
+- 放大字體和間距
+- Default 垂直置中
 
 ## 授權
 
