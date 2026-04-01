@@ -30,28 +30,33 @@ layout: section
 - LLM / Chatbot / Agent 基本觀念
 - Markdown 與規格整理
 - 工具比較與串接
-- 用 AI 規劃並完成個人專案
-- 再次部署與整理成作品
+- AI Skills 與 MCP
 
+---
+layout: statement
 ---
 
 ## 我們要一直用重複的東西欸
 
-<img src="./img/image.webp" class="h-100 mx-auto" />
+<img src="./img/home.webp" class="h-100 mx-auto" />
 
 ---
-layout: quote
+layout: statement
+title: "如果沒有元件化，我們就要一直複製貼上"
 ---
 
 難道我要一直複製貼上嗎？
 
 ---
-layout: quote
+layout: statement
+title: "改一個東西全部都要改欸..."
 ---
 
 改一個東西全部都要改欸...
 
 ---
+
+## Component - 發明自己的 HTML
 
 React 中假設你有 10 張作品卡片：
 
@@ -83,8 +88,8 @@ React 中假設你有 10 張作品卡片：
 - 框架 / SSR / SSG / Islands
 - 設計系統
 - 套件生態
-- AI 輔助開發
-- 雲端部署與自動化
+- **AI 輔助開發**
+- **雲端部署與自動化**
 
 </div>
 </div>
@@ -93,13 +98,13 @@ React 中假設你有 10 張作品卡片：
 
 ## 常見前端框架比較
 
-其實 React、Vue、Angular 更多是信仰問題。
+其實 React、Vue、Angular 更多是信仰問題。選自己用的順手就好了。
 
 - **React**：UI 元件函式化。生態豐富要什麼自己裝
 - **Vue**：模板直覺、上手快
 - **Angular**：完整、重型、規範導向
-- **Next.js**：React + routing + server 能力
-- **Astro**：內容為主，預設少送 JS
+- **Next.js**：幫你裝好一堆套件的 React（內建 routing + server 能力）
+- **Astro**：內容為主，適合靜態網站，支援多框架
 
 ---
 
@@ -117,10 +122,9 @@ React 中假設你有 10 張作品卡片：
 
 ## 如果我是初學者，怎麼選？
 
-- 一定要先懂網頁本質：**先學 HTML / CSS / JS**
+- \*一定要先懂網頁本質：**先學 HTML / CSS / JS\***
 - 想做作品集 / 部落格這種靜態網頁：**Astro**
-- 想接職缺最多的主流：**React / Next.js**
-- 想快速上手框架：**Vue**
+- 想接職缺最多的主流：**React / Next.js / Vue**
 - 想做大型企業系統／公司需要：**Angular**
 
 ---
@@ -167,24 +171,6 @@ pnpm dev
 
 ---
 
-## React 檔案架構範例
-
-```txt
-src/
-├─ components/ #可重用元件
-│  ├─ layout/
-│  ├─ ui/
-│  └─ sections/
-├─ pages/ #頁面
-├─ hooks/ #自訂邏輯
-├─ lib/ #工具函式
-├─ assets/ #圖片 / icons
-├─ styles/ #樣式
-└─ App.jsx
-```
-
----
-
 ## 元件化的好處
 
 假設你有 10 張作品卡片：
@@ -200,8 +186,26 @@ src/
 
 ---
 
+## React 檔案架構範例
+
+```bash
+src/
+├─ components/ #可重用元件
+│  ├─ layout/
+│  ├─ ui/
+│  └─ sections/
+├─ pages/ #頁面
+├─ hooks/ #自訂邏輯
+├─ lib/ #工具函式
+├─ assets/ #圖片 / icons
+├─ styles/ #樣式
+└─ App.jsx
+```
+
+---
+
 <div class="pl-10">
-<div class="absolute left-20 top-10">現代前端常見能力圖</div>
+<div class="absolute left-10 top-10">現代前端常見能力圖（非常簡略）</div>
 
 ```mermaid
 mindmap
@@ -257,6 +261,8 @@ layout: section
 - 對靜態網站、Next.js 支援很好
 - 免費方案對學生與個人作品很夠用
 
+> 小心用太多會很貴，不過個人使用不容易要花錢
+
 ---
 
 ## Vercel 基本部署流程
@@ -275,6 +281,12 @@ layout: section
 ---
 
 ## AI 類：原理、限制、工作流
+
+---
+layout: statement
+---
+
+## _prompt, paste, and pray?_
 
 ---
 
@@ -299,31 +311,31 @@ LLM（大型語言模型）本質上是在做：
 - 不一定理解你的真實需求
 - 若沒有即時工具，知識可能過時
 
-> 所以工程師的價值變成：**定義問題與驗證結果**
+> 所以工程師很重要的工作是：**定義問題與驗證結果**
 
 ---
 
 ## Chatbot vs Agent
 
-| 類型    | 特徵                                       |
-| ------- | ------------------------------------------ |
-| Chatbot | 主要靠對話，一來一回回答問題               |
-| Agent   | 會更主動地拆任務、使用工具、執行多步驟流程 |
+| 類型    | 特徵               |
+| ------- | ------------------ |
+| Chatbot | 空出一張嘴         |
+| Agent   | 話更多，不過會做事 |
 
 ---
 
 ## AI 可以在哪些地方幫你？
 
+_額就所有地方_
+
+- 整理規格
 - 文案整理
 - 畫面結構建議
-- 產生 HTML / CSS / JS 初稿
+- 拆分待辦清單
+- 產生初稿
 - Debug
 - 寫 commit message
 - 產生 README
-- 整理規格
-- 拆分待辦清單
-
-_額就所有地方_
 
 ---
 
@@ -334,7 +346,7 @@ _額就所有地方_
 - 是否可信
 - 是否安全
 - 是否可維護
-- 是否真的像你本人風格
+- 是否符合你的風格
 
 ---
 
@@ -358,40 +370,21 @@ _額就所有地方_
 2. 指定輸出格式
 3. 讓 AI 先產初稿
 4. 自己測試與迭代
-5. 每次只改一小塊
 
 ---
 
 ## 好 prompt 長什麼樣？
 
-```md
-請幫我做一個單頁個人網站。
+請幫我做一個**深色、簡潔、科技感**的**單頁**個人網站來**展示我的專案**，給**實習面試**官看。包含 **hero / about / skills / projects / contact**。使用 **HTML + CSS + JS**，**不要用外部框架**，要同時支援**電腦和手機版**。請分成 index.html / style.css / script.js **三個檔案**。
 
-需求：
-
-- 原因：我想要一個作品集網站來展示我的專案，給實習面試官看
+- 需求：一個個人作品集網站
+- 目的：展示專案給實習面試官
 - 風格：深色、簡潔、科技感
 - 區塊：hero / about / skills / projects / contact
 - 技術：HTML + CSS + JS
 - 限制：不要用外部框架
 - 目標：支援電腦和手機版
 - 輸出：分成 index.html / style.css / script.js
-```
-
----
-
-## 更好的 prompt：加入評估標準
-
-```md
-請幫我輸出一版個人網站程式碼，並符合以下標準：
-
-- 語意化 HTML
-- CSS 結構清楚
-- 手機版可用
-- 不要過度炫技
-- 先求穩定能跑
-- 每段程式加簡短註解
-```
 
 ---
 
@@ -400,14 +393,13 @@ _額就所有地方_
 你可以提供：
 
 - 錯誤訊息
-- 目前程式碼
 - 預期行為
 - 實際行為
 - 你已經試過什麼
+- 檔案在哪／目前程式碼
+- 他可能需要看的文件（如果有的話）
 
 ---
-
-## AI 協作不是一次出完，而是不斷迭代
 
 ```mermaid
 flowchart LR
@@ -421,6 +413,32 @@ flowchart LR
 
 ---
 
+## 典型工作流：從規格到代碼
+
+### 規格對話階段
+
+- 用自然語言與 LLM 來回討論需求、邊界條件、非功能性需求（效能、安全、相容性等）。
+- 最終產出一份可讀的「開發說明/設計草稿」，作為後續 AI 產碼與人工審查的共同依據。
+
+### 架構與模組設計
+
+- 要求 LLM 先畫出架構圖、模組分解與資料流，再逐模組生成程式碼，避免一次生成 monolith。
+- 對每個模組明確指定介面（函式簽章、事件、API schema），提高後續 refactor 與替換的彈性。
+
+---
+
+### 程式碼生成與本地驗證
+
+- 在支援 LLM 的 IDE（如 Cursor、Copilot Chat、Claude Code、ChatGPT in IDE）中選定檔案或專案範圍，讓模型產生或修改程式碼。
+- 立刻跑測試、lint 與型別檢查，將錯誤訊息與 log 貼回對話中要求修正。
+
+### 迭代與 refactor
+
+- 當功能通了之後，再用「請重構以下檔案以符合某某架構/設計原則」之類的 prompt 要求模型整理程式碼。
+- 在重要路徑上人工做一次 code review，必要時手動重寫關鍵區塊。
+
+---
+
 ## 平台怎麼選？
 
 - ChatGPT / Claude 是模型
@@ -428,7 +446,7 @@ flowchart LR
 - GitHub Copilot / Cursor 是把模型放在 IDE 裡
 - Open Code 等等 Cli Agent 是把模型放在終端機裡
 
-用習慣的就好，個人經驗是**除了前端 GPT 很爛建議用 Claude** 以外其他都很聰明了。
+用習慣的就好，個人經驗是**除了 GPT Web Dev 很爛建議用 Claude** 以外其他都很聰明了。
 
 ---
 layout: section
@@ -535,19 +553,6 @@ console.log(name);
 
 ---
 
-```markdown
-## 風格
-
-簡潔、現代、深色、留白感
-
-## 技術限制
-
-- HTML / CSS / JS
-- 不使用外部框架
-```
-
----
-
 ## 為什麼規格重要？
 
 因為 AI 很會補空白。  
@@ -577,19 +582,7 @@ layout: section
 | IDE 裡的 AI |      |          |
 | CLI 工具    |      |          |
 
-**你爽就好。**
-
----
-
-## 一個實務工作流範例
-
-1. 在 ChatGPT / Claude 整理規格
-2. 把 spec 丟進 Agent 幫忙起草
-3. 用終端機跑專案與測試
-4. 用 Git 記錄進度
-5. push 到 GitHub
-6. 用 Vercel 部署
-7. 再回頭讓 AI 幫你寫 README / 最佳化文案
+**沒什麼好比的你爽就好。**
 
 ---
 
@@ -600,8 +593,93 @@ layout: section
 - Claude 官方甚至建議直接 `@README.md`。
 
 ---
+layout: section
+---
+
+## Skills & MCP
+
+讓 AI 能做更多事。
+
+---
+
+## 要做更多事的話他就得要
+
+- 有手：用 MCP 操作工具
+- 有腦：讀書，給他技能（Skills）
+
+---
+layout: section
+---
 
 ## Skills
+
+讓 AI 學會新的技能
+
+---
+
+### 背後長怎樣？
+
+一個 Skills 的基本結構很簡單，至少需要一個 SKILL.md 檔案：
+
+```
+skill-name/
+└── SKILL.md
+```
+
+這個 SKILL.md 檔案開頭必須包含一段 YAML frontmatter：
+
+```
+---
+name: skill-name
+description: A description of what this skill does and when to use it.
+---
+```
+
+---
+
+如果你的 Skills 比較複雜，需要額外的腳本或參考資料，可以建立這樣的目錄結構：
+
+```
+skill-name/
+├── SKILL.md      # 必要的
+├── scripts/      # 可執行的程式碼（Python、Bash、JavaScript）
+├── references/   # 額外的參考文件
+└── assets/       # 靜態資源（範本、圖片、資料檔）
+```
+
+> 更多規範可以參考：https://agentskills.io
+
+---
+
+
+---
+
+## 很重要嗎？
+
+你要寫的爛 Code 如果很間單的話 GPT 直接就能寫出來了。如果要用的東西很冷門或是很新的話建議可以使用。
+
+---
+
+## 實際使用範例：
+
+- 實用工具合集：https://github.com/blencorp/claude-code-kit
+- 我做簡報用的 Slidev：https://sli.dev/guide/work-with-ai
+
+以 Slidev 為例，安裝方式為：
+
+```bash
+pnpx skills add slidevjs/slidev
+```
+
+接下來你在和 AI 溝通時他就會在需要時自己去查資料囉！
+
+---
+layout: section
+---
+
+## MCP
+
+給他工具
 
 ---
 
@@ -619,6 +697,50 @@ layout: section
 - 文件系統
 
 讓 Chatbot 走向 Agent 獲得**工具使用能力**
+
+---
+
+## 很重要嗎？
+
+其實重要的基本上都內建好了：
+
+- 寫文件
+- 操作終端機
+- 上網
+
+---
+
+## 範例：使用 SITCON MCP 來讀取專案文件
+
+在你的專案根目錄（或 ~/.config/opencode/opencode.json 作為全域設定）中加入以下內容：
+
+```yaml
+{ "$schema": "https://opencode.ai/config.json", "mcp": { "sitcon": { "type": "remote", "url": "https://mcp.sitcon.org/mcp", "enabled": true } } }
+```
+
+---
+layout: statement
+---
+
+啟動 OpenCode，即可開始使用！
+
+<img src="./img/SITCON.webp" class="h-100 mx-auto" />
+
+---
+
+## 總結
+
+### 事前
+
+- 先跟 Chatbot 討論完再執行
+- 用好工具：
+  - OpenCode / Claude Code
+- 把你要做什麼事情講清楚，寫好規格跟需求
+- AI 記憶力很有限話不要太多，用完就扔
+- 要用很新很小眾的東西建議給 Skills
+- 記得自行檢查，實在無法請 AI 詳細檢查
+- 不要把 Token 寫進 Code 裡！
+- **重要的事花錢交給專業的**
 
 ---
 src: ../global/cc.md
