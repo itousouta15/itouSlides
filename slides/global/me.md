@@ -22,5 +22,5 @@ description: 我是毛哥EM
 
 <div class="flex justify-center">
     <img src="./img/profile.webp" width="300" />
-  </div>
+</div>
 </div>
