@@ -710,6 +710,24 @@ layout: section
 
 ---
 
+```
+  opencode mcp add            add an MCP server
+  opencode mcp list           list MCP servers and their status
+  opencode mcp auth [name]    authenticate with an OAuth-enabled MCP server
+  opencode mcp logout [name]  remove OAuth credentials for an MCP server
+  opencode mcp debug <name>   debug OAuth connection for an MCP server
+```
+
+---
+
+## 範例：連接 Notion
+
+```
+opencode mcp auth notion
+```
+
+---
+
 ## 範例：使用 SITCON MCP 來讀取專案文件
 
 在你的專案根目錄（或 ~/.config/opencode/opencode.json 作為全域設定）中加入以下內容：
