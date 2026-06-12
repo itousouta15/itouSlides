@@ -1,6 +1,8 @@
 {
 	"name": "itouslides",
 	"compatibility_date": "2026-06-26",
+	"workers_dev": false,
+	"routes": [{ "pattern": "slides.itousouta15.tw/*", "custom_domain": true }],
 	"assets": {
 		"directory": "./dist",
 		"html_handling": "force-trailing-slash",
