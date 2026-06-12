@@ -3,7 +3,7 @@
 	"private": true,
 	"description": "EM shared Slidev theme, based on Dracula",
 	"slidev": {
-		"colorSchema": "dark",
+		"colorSchema": "both",
 		"highlighter": "shiki",
 		"defaults": {
 			"transition": "fade",

@@ -192,3 +192,38 @@
 		}
 	}
 }
+
+/* Light Mode */
+html.light {
+	--background: hsl(0, 0%, 100%);
+	--current-line: hsl(0, 0%, 95%);
+	--foreground: hsl(0, 0%, 20%);
+	--comment: hsl(0, 0%, 50%);
+	--cyan: #00629d;
+	--green: hsl(120, 100%, 25%);
+	--orange: hsl(30, 100%, 45%);
+	--pink: hsl(320, 100%, 50%);
+	--purple: #00629d;
+	--red: hsl(0, 100%, 50%);
+	--yellow: hsl(50, 100%, 40%);
+}
+
+html.light #app {
+	#slide-content {
+		--at-apply: text-$foreground bg-$background !important;
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			--at-apply: text-$purple;
+		}
+
+		.slidev-code.shiki {
+			background: hsl(0, 0%, 98%) !important;
+			padding: 3rem;
+		}
+	}
+}

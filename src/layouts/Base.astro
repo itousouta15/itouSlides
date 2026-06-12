@@ -4,7 +4,7 @@ interface Props {
 	description?: string;
 }
 
-const { title = "毛哥EM公開簡報", description = "毛哥EM的公開簡報集，涵蓋網頁開發、軟體開發、設計與開源社群。" } = Astro.props;
+const { title = "itouSlides", description = "伊藤蒼太的公開簡報集，涵蓋網頁開發、軟體開發、設計與開源社群。" } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -16,7 +16,10 @@ const base = import.meta.env.BASE_URL;
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-9R5PZG2VQG"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet" />
+		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-9R5PZG2VQG"></script>
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
@@ -24,6 +27,11 @@ const base = import.meta.env.BASE_URL;
 			}
 			gtag("js", new Date());
 			gtag("config", "G-9R5PZG2VQG");
+			// Initialize dark mode before paint to avoid flash
+			const saved = localStorage.getItem("theme");
+			if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+				document.documentElement.setAttribute("data-theme", "dark");
+			}
 		</script>
 	</head>
 	<body>
@@ -32,24 +40,50 @@ const base = import.meta.env.BASE_URL;
 </html>
 
 <style is:global>
-	@import url("https://font.emtech.cc/css/GenSekiGothicTW");
 	@import url("https://font.emtech.cc/css/JetBrainsMono");
 
 	:root {
-		--bg: #f0ede8;
-		--bg-alt: #e8e5e0;
+		/* Base: #00629d ≈ hsl(203, 100%, 31%) */
+		--accent: #00629d;
+		--accent-0: hsl(203, 100%, 22%);
+		--accent-2: hsl(203, 100%, 45%);
+		--accent-3: hsl(203, 55%, 78%);
+		--accent-4: hsl(203, 55%, 90%);
+		--accent-5: hsl(203, 55%, 95%);
+		--accent-6: hsl(203, 55%, 98%);
+
+		--bg: #eeeeee;
+		--bg-alt: #e4e4e4;
 		--surface: #ffffff;
-		--surface-hover: #f5f2ed;
-		--border: #c8c4bc;
-		--border-dark: #9c9890;
+		--border: hsl(203, 45%, 82%);
+		--border-dark: #00629d;
 		--text: #1a1916;
-		--text-muted: #6b6860;
-		--text-faint: #9c9890;
-		--accent: #1a1916;
-		--accent-alt: #4a4640;
-		--grid-color: rgba(0, 0, 0, 0.07);
-		--grid-size: 24px;
+		--text-muted: #555555;
+		--text-faint: #888888;
+		--hover-shadow: rgba(120, 120, 120, 0.15);
+		--accent-shadow: rgba(0, 98, 157, 0.2);
+		--accent-shadow-strong: rgba(0, 98, 157, 0.45);
 		--font-mono: "JetBrainsMono", monospace;
+		--radius: 10px;
+	}
+
+	[data-theme="dark"]:root {
+		--accent: #98cbff;
+		--accent-3: hsla(203, 55%, 78%, 0.35);
+		--accent-4: hsla(203, 55%, 90%, 0.12);
+		--accent-5: hsla(203, 55%, 95%, 0.07);
+		--accent-6: hsla(203, 55%, 98%, 0.04);
+		--bg: #21252b;
+		--bg-alt: #1a1d22;
+		--surface: #272b30;
+		--border: hsla(203, 45%, 82%, 0.18);
+		--border-dark: hsla(203, 80%, 62%, 0.5);
+		--text: #cccccc;
+		--text-muted: #999999;
+		--text-faint: #666666;
+		--hover-shadow: rgba(0, 0, 0, 0.35);
+		--accent-shadow: rgba(0, 98, 157, 0.25);
+		--accent-shadow-strong: rgba(0, 98, 157, 0.5);
 	}
 
 	*,
@@ -66,20 +100,17 @@ const base = import.meta.env.BASE_URL;
 	}
 
 	body {
-		font-family: "GenSekiGothicTW", sans-serif;
+		font-family: "Mulish", "Noto Serif TC", sans-serif;
 		background-color: var(--bg);
 		color: var(--text);
 		min-height: 100vh;
-		/* Blueprint/sketch grid background */
-		background-image:
-			linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-		background-size:
-			var(--grid-size) var(--grid-size),
-			var(--grid-size) var(--grid-size),
-			calc(var(--grid-size) * 4) calc(var(--grid-size) * 4),
-			calc(var(--grid-size) * 4) calc(var(--grid-size) * 4);
-		background-attachment: fixed;
+		-webkit-font-smoothing: antialiased;
+		text-size-adjust: 100%;
+	}
+
+	::selection {
+		background: var(--accent);
+		color: #fff;
 	}
 
 	a {
@@ -94,8 +125,18 @@ const base = import.meta.env.BASE_URL;
 		background: none;
 	}
 
-	/* Utility */
 	.mono {
 		font-family: var(--font-mono);
+	}
+
+	::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+		background-color: var(--bg-alt);
+	}
+
+	::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		background-color: var(--accent-3);
 	}
 </style>

@@ -17,7 +17,6 @@ interface Props {
 const { slide, index } = Astro.props;
 const { url } = slide;
 
-// Detect link type from URL pattern
 function getLinkType(url: string): "hosted" | "drive" | "sitcon" | "github" | "external" {
 	if (url.startsWith("/talks/")) return "hosted";
 	if (url.includes("drive.google.com")) return "drive";
@@ -42,31 +41,16 @@ const tagLabels: Record<string, string> = {
 	web: "網頁開發",
 	software: "軟體開發",
 	design: "設計",
-	oss: "開源社群"
+	oss: "開源社群",
+	AI: "人工智慧"
 };
-
-const tagColors: Record<string, string> = {
-	web: "cat-web",
-	software: "cat-software",
-	design: "cat-design",
-	oss: "cat-oss"
-};
-
-// Use first tag for card accent colour
-const primaryTag = slide.tags[0] ?? "";
-const catClass = tagColors[primaryTag] ?? "";
 ---
 
-<article class={`slide-card ${catClass}`} data-tags={slide.tags.join(",")} style={`animation-delay: ${index * 60}ms`}>
-	<div class="card-corner tl"></div>
-	<div class="card-corner tr"></div>
-	<div class="card-corner bl"></div>
-	<div class="card-corner br"></div>
-
+<article class="slide-card" data-tags={slide.tags.join(",")} style={`animation-delay: ${index * 60}ms`}>
 	<header class="card-header">
 		<span class="card-index mono">#{String(index + 1).padStart(2, "0")}</span>
 		<div class="card-tags">
-			{slide.tags.map(tag => <span class={`card-tag tag-${tag}`}>{tagLabels[tag] ?? tag}</span>)}
+			{slide.tags.map((tag: string) => <span class={`card-tag tag-${tag}`}>{tagLabels[tag] ?? tag}</span>)}
 		</div>
 	</header>
 
@@ -90,16 +74,18 @@ const catClass = tagColors[primaryTag] ?? "";
 		position: relative;
 		background: var(--surface);
 		border: 1.5px solid var(--border);
+		border-radius: var(--radius);
 		padding: 1.5rem;
 		transition:
-			border-color 0.15s,
-			box-shadow 0.15s,
-			transform 0.15s;
+			transform 0.2s,
+			box-shadow 0.2s,
+			border-color 0.2s;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
 		opacity: 0;
 		animation: card-in 0.3s ease forwards;
+		box-shadow: 0 0 10px 2px var(--hover-shadow);
 	}
 
 	@keyframes card-in {
@@ -114,40 +100,12 @@ const catClass = tagColors[primaryTag] ?? "";
 	}
 
 	.slide-card:hover {
-		border-color: var(--accent);
-		box-shadow: 4px 4px 0 var(--accent);
-		transform: translate(-2px, -2px);
+		transform: scale(1.01) translateY(-2px);
+		box-shadow: 0 0 18px 4px var(--hover-shadow);
+		border-color: var(--accent-3);
 	}
 
-	/* Corner decorations — sketch/blueprint style */
-	.card-corner {
-		position: absolute;
-		width: 10px;
-		height: 10px;
-		border-color: var(--border-dark);
-		border-style: solid;
-	}
-	.card-corner.tl {
-		top: -1px;
-		left: -1px;
-		border-width: 2px 0 0 2px;
-	}
-	.card-corner.tr {
-		top: -1px;
-		right: -1px;
-		border-width: 2px 2px 0 0;
-	}
-	.card-corner.bl {
-		bottom: -1px;
-		left: -1px;
-		border-width: 0 0 2px 2px;
-	}
-	.card-corner.br {
-		bottom: -1px;
-		right: -1px;
-		border-width: 0 2px 2px 0;
-	}
-
+	/* ─── Header ─── */
 	.card-header {
 		display: flex;
 		align-items: center;
@@ -171,15 +129,17 @@ const catClass = tagColors[primaryTag] ?? "";
 
 	.card-tag {
 		font-size: 0.72rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		font-weight: 600;
-		padding: 0.2rem 0.6rem;
+		letter-spacing: 0.06em;
+		font-weight: 700;
+		padding: 0.2rem 0.65rem;
+		border-radius: 10px;
 		border: 1px solid var(--border);
 		color: var(--text-muted);
-		background: var(--bg-alt);
+		background: var(--accent-6);
+		text-transform: uppercase;
 	}
 
+	/* Tag colors — light mode */
 	.tag-web {
 		border-color: #7b9e87;
 		color: #3a6146;
@@ -200,7 +160,40 @@ const catClass = tagColors[primaryTag] ?? "";
 		color: #4e2a80;
 		background: #f4f0f9;
 	}
+	.tag-AI {
+		border-color: #5ba8b5;
+		color: #1a5a6b;
+		background: #edf7f9;
+	}
 
+	/* Tag colors — dark mode */
+	:global([data-theme="dark"]) .tag-web {
+		border-color: #4a6e54;
+		color: #7bc893;
+		background: rgba(60, 100, 72, 0.2);
+	}
+	:global([data-theme="dark"]) .tag-software {
+		border-color: #3d5285;
+		color: #7da4e8;
+		background: rgba(45, 74, 130, 0.2);
+	}
+	:global([data-theme="dark"]) .tag-design {
+		border-color: #7a5340;
+		color: #d4956a;
+		background: rgba(122, 69, 32, 0.2);
+	}
+	:global([data-theme="dark"]) .tag-oss {
+		border-color: #5e3d7a;
+		color: #b590e8;
+		background: rgba(78, 42, 128, 0.2);
+	}
+	:global([data-theme="dark"]) .tag-AI {
+		border-color: #2d6b7a;
+		color: #6ac9d8;
+		background: rgba(26, 90, 107, 0.2);
+	}
+
+	/* ─── Body ─── */
 	.card-body {
 		flex: 1;
 		display: flex;
@@ -229,6 +222,7 @@ const catClass = tagColors[primaryTag] ?? "";
 		margin-top: 0.25rem;
 	}
 
+	/* ─── Footer ─── */
 	.card-footer {
 		display: flex;
 		align-items: center;
@@ -248,20 +242,24 @@ const catClass = tagColors[primaryTag] ?? "";
 		align-items: center;
 		gap: 0.35rem;
 		font-size: 0.82rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--text);
-		padding: 0.35rem 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		color: var(--accent);
+		padding: 0.35rem 0.9rem;
 		border: 1.5px solid var(--accent);
+		border-radius: 10px;
+		background: var(--accent-6);
 		transition:
-			background 0.12s,
-			color 0.12s;
+			background 0.15s,
+			color 0.15s,
+			box-shadow 0.15s;
+		box-shadow: 0 0 5px 1px var(--accent-shadow);
 	}
 
 	.card-link:hover {
 		background: var(--accent);
-		color: var(--surface);
+		color: #fff;
+		box-shadow: 0 0 10px var(--accent-shadow-strong);
 	}
 
 	.link-arrow {
