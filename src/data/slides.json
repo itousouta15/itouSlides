@@ -6,7 +6,7 @@
 			"description": "這是一個範例簡報卡片，填入你自己的標題、副標題、描述與連結即可。",
 			"tags": ["web"],
 			"year": 2026,
-			"url": "https://slides.itousouta15.tw"
+			"url": "/talks/example/"
 		}
 	],
 	"author": {
