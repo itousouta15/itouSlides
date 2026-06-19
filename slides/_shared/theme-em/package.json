@@ -1,0 +1,29 @@
+{
+	"name": "slidev-theme-em",
+	"private": true,
+	"description": "EM shared Slidev theme, based on Dracula",
+	"slidev": {
+		"colorSchema": "both",
+		"highlighter": "shiki",
+		"defaults": {
+			"transition": "fade",
+			"mdc": true,
+			"fonts": {
+				"provider": "none",
+				"sans": "LXGWWenKaiTC",
+				"serif": "LXGWWenKaiTC",
+				"mono": "JetBrainsMono"
+			},
+			"htmlAttrs": {
+				"lang": "zh-Hant-TW"
+			},
+			"seoMeta": {
+				"ogImage": "auto"
+			},
+			"defaults": {
+				"layout": "intro"
+			},
+			"selectable": true
+		}
+	}
+}

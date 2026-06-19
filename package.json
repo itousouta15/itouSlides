@@ -1,0 +1,37 @@
+{
+	"name": "slides",
+	"type": "module",
+	"scripts": {
+		"astro": "astro",
+		"build": "pnpm run build:slides && astro build",
+		"build:slides": "node build-slides.mjs",
+		"dev": "astro dev",
+		"export:slides": "node export-slides.mjs",
+		"format": "prettier --write .",
+		"prepare": "husky",
+		"preview": "astro preview"
+	},
+	"dependencies": {
+		"@slidev/cli": "^52.14.1",
+		"@slidev/theme-default": "^0.25.0",
+		"astro": "^6.0.2",
+		"codemirror-theme-vars": "^0.1.2",
+		"prism-theme-vars": "^0.2.5",
+		"slidev-theme-dracula": "^0.2.0",
+		"theme-vitesse": "^1.0.0"
+	},
+	"devDependencies": {
+		"@slidev/types": "^52.14.1",
+		"husky": "^9.1.7",
+		"playwright-chromium": "^1.58.2",
+		"prettier": "^3.8.1",
+		"prettier-plugin-astro": "^0.14.1",
+		"prettier-plugin-organize-imports": "^4.3.0",
+		"prettier-plugin-packagejson": "^3.0.2",
+		"prettier-plugin-slidev": "^1.0.5"
+	},
+	"packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be",
+	"engines": {
+		"node": ">=22.12.0"
+	}
+}

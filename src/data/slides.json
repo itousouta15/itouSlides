@@ -1,0 +1,18 @@
+{
+	"slides": [
+		{
+			"title": "範例簡報",
+			"subtitle": "itouSlides 示範",
+			"description": "這是一個範例簡報卡片，填入你自己的標題、副標題、描述與連結即可。",
+			"tags": ["web"],
+			"year": 2026,
+			"url": "/talks/example/"
+		}
+	],
+	"author": {
+		"name": "伊藤蒼太",
+		"fullName": "伊藤蒼太",
+		"url": "https://itousouta15.tw",
+		"blog": "https://blog.itousouta15.tw"
+	}
+}
