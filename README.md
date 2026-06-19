@@ -64,4 +64,3 @@ pnpm preview
 
 - `astro.config.mjs` 內的 `site` 仍可能需要依你的正式網域調整。
 - 若你要新增一份簡報，可以先把內容放進 `slides/`，再更新 `src/data/slides.json`。
-
