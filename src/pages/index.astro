@@ -1,0 +1,451 @@
+---
+import Base from "../layouts/Base.astro";
+import SlideCard from "../components/SlideCard.astro";
+import data from "../data/slides.json";
+
+const { slides, author } = data;
+
+const tagLabels: Record<string, string> = {
+	web: "網頁開發",
+	software: "軟體開發",
+	design: "設計",
+	oss: "開源社群",
+	AI: "人工智慧"
+};
+
+const uniqueTags = [...new Set(slides.flatMap(s => s.tags))];
+const categories = [{ id: "all", label: "所有分類" }, ...uniqueTags.map(t => ({ id: t, label: tagLabels[t] ?? t }))];
+---
+
+<Base title="itouSlides" description="伊藤蒼太的公開簡報集，涵蓋網頁開發、軟體開發、設計與開源社群。">
+	<div class="page-wrap">
+		<header class="site-header">
+			<div class="header-meta mono">
+				<span class="meta-brand">ITOUSLIDES</span>
+				<span class="sep">·</span>
+				<span>{new Date().getFullYear()}.{(new Date().getMonth() + 1).toString().padStart(2, "0")}</span>
+				<span class="sep">·</span>
+				<span>CC BY 4.0</span>
+				<button class="theme-toggle" id="theme-toggle" aria-label="切換深色模式" title="切換深色模式">
+					<span id="theme-icon">◑</span>
+				</button>
+			</div>
+
+			<div class="title-block">
+				<h1>
+					<span class="title-en mono">PUBLIC SLIDES</span>
+					<span class="title-zh">itouSlides</span>
+				</h1>
+				<div class="title-underline"></div>
+			</div>
+
+			<p class="header-desc">
+				簡報均採用創用 CC「<a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hant" target="_blank" rel="noopener">姓名標示 4.0 國際</a>」授權。部分會重複使用於不同課程，持續更新。
+			</p>
+		</header>
+
+		<main class="main-content">
+			<nav class="filter-bar" aria-label="分類篩選">
+				<span class="filter-label mono">FILTER</span>
+				<div class="filter-btns" role="tablist">
+					{
+						categories.map((cat, i) => (
+							<button class={`filter-btn${i === 0 ? " active" : ""}`} data-category={cat.id} role="tab" aria-selected={i === 0 ? "true" : "false"}>
+								{cat.label}
+							</button>
+						))
+					}
+				</div>
+			</nav>
+
+			<div class="slides-grid" id="slides-grid">
+				{slides.map((slide, i) => <SlideCard slide={{ ...slide, hosted: (slide as any).hosted ?? false }} index={i} />)}
+			</div>
+
+			<p class="no-results hidden" id="no-results">此分類目前沒有簡報。</p>
+		</main>
+
+		<footer class="site-footer">
+			<div class="footer-line"></div>
+			<div class="footer-content">
+				<span class="mono footer-copy">© {new Date().getFullYear()} <a href={author.url}>{author.fullName}</a></span>
+				<span class="footer-links">
+					<a href={author.blog} target="_blank" rel="noopener">部落格</a>
+					<span aria-hidden="true">·</span>
+					<a href="https://github.com/itousouta15" target="_blank" rel="noopener">GitHub</a>
+				</span>
+			</div>
+		</footer>
+	</div>
+</Base>
+
+<script>
+	// Filter
+	const filterBtns = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+	const cards = document.querySelectorAll<HTMLElement>(".slide-card");
+	const noResults = document.getElementById("no-results")!;
+	const statTotal = document.getElementById("stat-total")!;
+
+	filterBtns.forEach(btn => {
+		btn.addEventListener("click", () => {
+			filterBtns.forEach(b => {
+				b.classList.remove("active");
+				b.setAttribute("aria-selected", "false");
+			});
+			btn.classList.add("active");
+			btn.setAttribute("aria-selected", "true");
+
+			const cat = btn.dataset.category!;
+			let visible = 0;
+
+			cards.forEach(card => {
+				const tags = card.dataset.tags?.split(",") ?? [];
+				const show = cat === "all" || tags.includes(cat);
+				(card as HTMLElement).style.display = show ? "" : "none";
+				if (show) visible++;
+			});
+
+			statTotal.textContent = String(visible);
+			noResults.classList.toggle("hidden", visible > 0);
+		});
+	});
+
+	// Dark mode toggle
+	const toggle = document.getElementById("theme-toggle")!;
+	const icon = document.getElementById("theme-icon")!;
+
+	function updateIcon() {
+		const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+		icon.textContent = isDark ? "☀" : "◑";
+	}
+
+	toggle.addEventListener("click", () => {
+		const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+		if (isDark) {
+			document.documentElement.removeAttribute("data-theme");
+			localStorage.setItem("theme", "light");
+		} else {
+			document.documentElement.setAttribute("data-theme", "dark");
+			localStorage.setItem("theme", "dark");
+		}
+		updateIcon();
+	});
+
+	updateIcon();
+</script>
+
+<style>
+	.page-wrap {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 2rem 1.5rem 4rem;
+	}
+
+	/* ─── Header ─── */
+	.site-header {
+		padding: 3rem 0 2.5rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.header-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.72rem;
+		color: var(--text-faint);
+		letter-spacing: 0.08em;
+		margin-bottom: 2rem;
+	}
+
+	.header-meta .sep {
+		opacity: 0.5;
+	}
+
+	.meta-brand {
+		color: var(--accent);
+		font-weight: 700;
+		letter-spacing: 0.12em;
+	}
+
+	.theme-toggle {
+		margin-left: auto;
+		font-size: 1rem;
+		color: var(--text-faint);
+		padding: 0.25rem 0.6rem;
+		border-radius: 8px;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		transition:
+			color 0.15s,
+			background 0.15s,
+			border-color 0.15s;
+		line-height: 1;
+	}
+
+	.theme-toggle:hover {
+		color: var(--accent);
+		border-color: var(--border-dark);
+		box-shadow: 0 0 8px var(--accent-shadow);
+	}
+
+	/* ─── Title ─── */
+	.title-block {
+		margin-bottom: 1.5rem;
+	}
+
+	h1 {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		padding-bottom: 0.6rem;
+	}
+
+	.title-en {
+		font-size: 0.78rem;
+		letter-spacing: 0.22em;
+		color: var(--text-faint);
+		text-transform: uppercase;
+	}
+
+	.title-zh {
+		font-size: clamp(2rem, 5vw, 3.5rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		line-height: 1.1;
+		color: var(--text);
+	}
+
+	/* Blog-style animated underline */
+	.title-underline {
+		position: relative;
+		height: 1px;
+		background: var(--border);
+		margin-top: 0.25rem;
+	}
+
+	.title-underline::after {
+		content: "";
+		position: absolute;
+		background: var(--accent);
+		width: 2em;
+		height: 7px;
+		top: -3px;
+		left: 0;
+		border-radius: 10px;
+		box-shadow: 0 2px 12px var(--accent-shadow-strong);
+		transition: width 0.3s;
+	}
+
+	.title-block:hover .title-underline::after {
+		width: 6em;
+	}
+
+	/* ─── Description ─── */
+	.header-desc {
+		font-size: 0.9rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+		margin-bottom: 1.5rem;
+	}
+
+	.header-desc a {
+		color: var(--accent);
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.15s;
+	}
+
+	.header-desc a:hover {
+		border-color: var(--accent);
+	}
+
+	/* ─── Stats ─── */
+	.stats-row {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+		background: var(--surface);
+		padding: 1rem 1.5rem;
+		border-radius: var(--radius);
+		box-shadow: 0 0 10px 3px var(--hover-shadow);
+		width: fit-content;
+		border: 1px solid var(--border);
+	}
+
+	.stat {
+		display: flex;
+		align-items: baseline;
+		gap: 0.4rem;
+	}
+
+	.stat-num {
+		font-size: 1.75rem;
+		font-weight: 700;
+		color: var(--accent);
+		line-height: 1;
+	}
+
+	.stat-label {
+		font-size: 0.72rem;
+		color: var(--text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.stat-divider {
+		color: var(--border-dark);
+		font-size: 1.2rem;
+		opacity: 0.5;
+	}
+
+	/* ─── Filter bar ─── */
+	.filter-bar {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.75rem;
+		flex-wrap: wrap;
+	}
+
+	.filter-label {
+		font-size: 0.7rem;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--text-faint);
+	}
+
+	.filter-btns {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.filter-btn {
+		font-size: 0.78rem;
+		font-weight: 600;
+		padding: 0.35rem 0.9rem;
+		border-radius: 10px;
+		border: 1.5px solid var(--border);
+		color: var(--text-muted);
+		background: var(--surface);
+		letter-spacing: 0.04em;
+		transition:
+			border-color 0.15s,
+			color 0.15s,
+			background 0.15s,
+			box-shadow 0.15s;
+		box-shadow: 0 0 5px 1px var(--hover-shadow);
+	}
+
+	.filter-btn:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+		box-shadow: 0 0 8px 2px var(--accent-shadow);
+	}
+
+	.filter-btn.active {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+		box-shadow: 0 0 10px var(--accent-shadow-strong);
+	}
+
+	/* ─── Cards grid ─── */
+	.slides-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.no-results {
+		text-align: center;
+		color: var(--text-muted);
+		padding: 3rem 0;
+		font-size: 0.9rem;
+	}
+
+	.hidden {
+		display: none !important;
+	}
+
+	/* ─── Footer ─── */
+	.site-footer {
+		margin-top: 4rem;
+	}
+
+	/* Animated blue dashed line from blog */
+	.footer-line {
+		position: relative;
+		overflow: hidden;
+		height: 6px;
+		margin-bottom: 1rem;
+		opacity: 0.4;
+		transition: opacity 0.3s;
+	}
+
+	.footer-line::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 200%;
+		height: 100%;
+		background: linear-gradient(to left, var(--accent) 50%, transparent 0%) repeat-x 0 0 / 100px 6px;
+		animation: slide-line 3s linear infinite;
+		filter: drop-shadow(0 0 2px var(--accent));
+	}
+
+	.site-footer:hover .footer-line {
+		opacity: 0.7;
+	}
+
+	@keyframes slide-line {
+		100% {
+			transform: translateX(-100px);
+		}
+	}
+
+	.footer-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		font-size: 0.8rem;
+		color: var(--text-faint);
+	}
+
+	.footer-copy a,
+	.footer-links a {
+		color: var(--accent);
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.15s;
+	}
+
+	.footer-copy a:hover,
+	.footer-links a:hover {
+		border-color: var(--accent);
+	}
+
+	.footer-links {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	/* ─── Responsive ─── */
+	@media (max-width: 640px) {
+		.slides-grid {
+			grid-template-columns: 1fr;
+		}
+		.title-zh {
+			font-size: 2rem;
+		}
+		.header-meta {
+			flex-wrap: wrap;
+		}
+		.stats-row {
+			width: 100%;
+			justify-content: space-between;
+		}
+	}
+</style>
