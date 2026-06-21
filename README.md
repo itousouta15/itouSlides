@@ -1,9 +1,11 @@
 # itouSlides
 
+<img width="1280" height="813" alt="image" src="https://github.com/user-attachments/assets/44a04591-f695-4655-b4f4-12f0be258939" />
+
+
 公開的簡報集合與展示站，使用 [Astro](https://astro.build/) 與 [Slidev](https://sli.dev/) 建置。
 
 ## Features
-
 - 簡報首頁會自動列出所有 slide
 - 支援分類篩選與深色模式切換
 - 簡報內容與網站前台分離，方便維護
