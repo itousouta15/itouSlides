@@ -1,5 +1,5 @@
 ---
-theme: ../_shared/theme-em
+theme: ../_shared/theme-itou
 title: 示例簡報
 titleTemplate: "%s — 範例"
 author: 作者名稱

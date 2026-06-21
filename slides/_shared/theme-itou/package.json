@@ -10,8 +10,8 @@
 			"mdc": true,
 			"fonts": {
 				"provider": "none",
-				"sans": "LXGWWenKaiTC",
-				"serif": "LXGWWenKaiTC",
+				"sans": "Mulish",
+				"serif": "Noto Serif TC",
 				"mono": "JetBrainsMono"
 			},
 			"htmlAttrs": {
