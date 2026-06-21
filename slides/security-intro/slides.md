@@ -7,8 +7,6 @@ author: 郭家睿 itouSouta
 
 # 資訊安全入門
 
-你的數位生活，你來守護
-
 itouSouta
 
 ---
@@ -23,12 +21,9 @@ layout: default
 - 惡意軟體（Malware）
 - 釣魚攻擊（Phishing）
 - 社交工程
-- 密碼安全
 - 多因素驗證（MFA）
-- 安全上網習慣
 - 隱私保護
 - CTF 是什麼？
-- 如何入門資安
 
 ---
 layout: section
@@ -376,27 +371,6 @@ abc123
 - 使用**密碼管理器**（Bitwarden、1Password）
 
 ---
-
-## 密碼管理器
-
-你只需要記住**一個主密碼**，其他交給軟體管理
-
-<br>
-
-**推薦工具（免費）：**
-
-- **Bitwarden** — 開源、跨平台、免費
-- **KeePassXC** — 本機端儲存，不上雲
-
-<br>
-
-**密碼管理器做什麼：**
-
-- 幫你產生強隨機密碼（如 `kX9#mP2@qLv7`）
-- 記住所有網站的帳密
-- 自動填入登入表單
-
----
 layout: section
 ---
 
@@ -425,11 +399,9 @@ layout: section
 假設你的密碼在某次資料外洩中被取得：
 
 ```
-沒有 2FA：
-攻擊者有密碼 → 直接登入 ✅ (for attacker)
+沒有 2FA： 攻擊者有密碼 → 直接登入 ✅ (for attacker)
 
-有 2FA：
-攻擊者有密碼 → 還需要你的手機驗證碼 ❌ (for attacker)
+有 2FA： 攻擊者有密碼 → 還需要你的手機驗證碼 ❌ (for attacker)
 ```
 
 <br>
@@ -627,9 +599,6 @@ layout: section
 │   └── 工具：Kali Linux、Burp Suite、Nmap
 └── 防禦面（Defensive）→ 藍隊、SOC
     └── 工具：Wireshark、SIEM
-
-實戰練習
-└── CTF → Bug Bounty → 實際專案
 ```
 
 ---
@@ -641,11 +610,6 @@ layout: section
 - **TryHackMe** — 互動式學習房間
 - **Cybrary** — 資安課程平台
 - **YouTube：John Hammond** — CTF 解題影片
-
-**書籍：**
-
-- 《駭客大曝光》（Hacking Exposed）
-- 《The Web Application Hacker's Handbook》
 
 **社群：**
 

@@ -6,6 +6,7 @@ import data from "../data/slides.json";
 const { slides, author } = data;
 
 const tagLabels: Record<string, string> = {
+	security: "資訊安全",
 	web: "網頁開發",
 	software: "軟體開發",
 	design: "設計",
@@ -70,7 +71,11 @@ const categories = [{ id: "all", label: "所有分類" }, ...uniqueTags.map(t =>
 			<div class="footer-content">
 				<span class="mono footer-copy">© {new Date().getFullYear()} <a href={author.url}>{author.fullName}</a></span>
 				<span class="footer-links">
-					<a href={author.blog} target="_blank" rel="noopener">部落格</a>
+					<a href="https://links.itousouta15.tw" target="_blank" rel="noopener">itouLinks</a>
+					<span aria-hidden="true">·</span>
+					<a href="https://cards.itousouta15.tw/" target="_blank" rel="noopener">itouCards</a>
+					<span aria-hidden="true">·</span>
+					<a href="https://blog.itousouta15.tw/" target="_blank" rel="noopener">itouBLoGa</a>
 					<span aria-hidden="true">·</span>
 					<a href="https://github.com/itousouta15/itouSlides" target="_blank" rel="noopener">GitHub</a>
 				</span>
