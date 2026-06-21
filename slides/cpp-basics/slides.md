@@ -9,6 +9,8 @@ author: 郭家睿 itouSouta
 
 從零開始學習 C++ 程式設計
 
+itouSouta
+
 ---
 layout: default
 ---
