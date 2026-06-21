@@ -1,12 +1,20 @@
 {
 	"slides": [
 		{
-			"title": "範例簡報",
-			"subtitle": "itouSlides 示範",
-			"description": "這是一個範例簡報卡片，填入你自己的標題、副標題、描述與連結即可。",
+			"title": "C++ 基礎語法",
+			"subtitle": null,
+			"description": "涵蓋 C++ 核心語法：資料型別、運算子、條件判斷、迴圈、函式、陣列與指標入門。",
+			"tags": ["software"],
+			"year": 2026,
+			"url": "/talks/cpp-basics/"
+		},
+		{
+			"title": "前端基礎 - HTML",
+			"subtitle": "HTML 不是程式語言(xD)",
+			"description": "介紹 HTML 的基本結構、標籤、屬性與語意化，並說明如何建立網頁的骨架。",
 			"tags": ["web"],
 			"year": 2026,
-			"url": "/talks/example/"
+			"url": "/talks/html/"
 		}
 	],
 	"author": {
