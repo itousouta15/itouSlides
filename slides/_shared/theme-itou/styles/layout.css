@@ -1,24 +1,27 @@
-@import "https://font.emtech.cc/css/LXGWWenKaiTC";
+@import "https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@400;700&display=swap";
 @import "https://font.emtech.cc/css/JetBrainsMono";
 
 :root {
-	--background: hsl(231, 15%, 18%);
-	--current-line: hsl(232, 14%, 31%);
-	--foreground: hsl(60, 30%, 96%);
-	--comment: hsl(225, 27%, 51%);
-	--cyan: hsl(191, 97%, 77%);
-	--green: hsl(135, 94%, 65%);
-	--orange: hsl(31, 100%, 71%);
-	--pink: hsl(326, 100%, 74%);
-	--purple: hsl(265, 89%, 78%);
-	--red: hsl(0, 100%, 67%);
-	--yellow: hsl(65, 92%, 76%);
+	--background: #21252b;
+	--current-line: #2e353f;
+	--foreground: #cccccc;
+	--comment: #999999;
+	--blue: #98cbff;
+	--blue-dim: #add6ff;
+	--green: #99cc99;
+	--orange: #f69d50;
+	--purple: #dcbdfb;
+	--red: #ff7b7b;
+	--yellow: #ffcc66;
+	--aqua: #66cccc;
+	--font-sans: "Mulish", "Noto Serif TC", sans-serif;
+	--font-mono: "JetBrainsMono", "JetBrains Mono", monospace;
 }
 
-/* ℹ️ #app increases the specificity of .dark selector from upstream layout styles  */
 #app {
 	#slide-content {
 		--at-apply: text-$foreground bg-$background !important;
+		font-family: var(--font-sans);
 
 		h1,
 		h2,
@@ -26,7 +29,9 @@
 		h4,
 		h5,
 		h6 {
-			--at-apply: text-$purple;
+			--at-apply: text-$blue;
+			font-family: var(--font-sans);
+			font-weight: 700;
 		}
 
 		h1 {
@@ -50,13 +55,15 @@
 		}
 
 		a {
-			--at-apply: text-$cyan;
+			--at-apply: text-$blue;
+			text-decoration: underline;
+			text-underline-offset: 3px;
 		}
 
 		ul,
 		ol {
 			li::marker {
-				--at-apply: text-$cyan;
+				--at-apply: text-$blue;
 			}
 		}
 
@@ -73,7 +80,7 @@
 			content: "";
 			width: 0.2rem;
 			height: 100%;
-			background-color: #a4a5a6;
+			background-color: #454d59;
 			position: absolute;
 			left: 0;
 			top: 0;
@@ -83,9 +90,8 @@
 			--at-apply: text-$green;
 		}
 
-		/* ℹ️ Update background color of code. We made it darker so we don't get same color for slide bg & code bg. */
 		.slidev-code.shiki {
-			background: hsl(231, 15%, 10%) !important;
+			background: #1a1d22 !important;
 			padding: 3rem;
 		}
 
@@ -100,7 +106,7 @@
 		--at-apply: h-full grid;
 
 		h1 {
-			--at-apply: text-6xl leading-20 text-$purple;
+			--at-apply: text-6xl leading-20 text-$blue;
 		}
 
 		h1 + p {
@@ -114,16 +120,16 @@
 		}
 	}
 
-	/* Layout: Face */
+	/* Layout: Fact */
 	.slidev-layout.fact {
 		--at-apply: text-center grid h-full;
 
 		h1 {
-			--at-apply: text-8xl font-700;
+			--at-apply: text-8xl font-700 text-$blue;
 		}
 
 		h1 + p {
-			--at-apply: font-700 text-2xl;
+			--at-apply: font-700 text-2xl text-$comment;
 		}
 	}
 
@@ -132,27 +138,14 @@
 		--at-apply: text-center grid h-full;
 
 		h1 {
-			--at-apply: text-6xl font-700;
+			--at-apply: text-6xl font-700 text-$blue;
 		}
 	}
 
 	/* Layout: Section */
 	.slidev-layout.section {
 		h1 {
-			--at-apply: text-6xl font-500 leading-20;
-		}
-	}
-
-	/* Layout: Face */
-	.slidev-layout.fact {
-		--at-apply: text-center grid h-full;
-
-		h1 {
-			--at-apply: text-8xl font-700;
-		}
-
-		h1 + p {
-			--at-apply: font-700 text-2xl;
+			--at-apply: text-6xl font-500 leading-20 text-$blue;
 		}
 	}
 
@@ -195,17 +188,18 @@
 
 /* Light Mode */
 html.light {
-	--background: hsl(0, 0%, 100%);
-	--current-line: hsl(0, 0%, 95%);
-	--foreground: hsl(0, 0%, 20%);
-	--comment: hsl(0, 0%, 50%);
-	--cyan: #00629d;
-	--green: hsl(120, 100%, 25%);
-	--orange: hsl(30, 100%, 45%);
-	--pink: hsl(320, 100%, 50%);
-	--purple: #00629d;
-	--red: hsl(0, 100%, 50%);
-	--yellow: hsl(50, 100%, 40%);
+	--background: #ffffff;
+	--current-line: #f0f0f0;
+	--foreground: #555555;
+	--comment: #888888;
+	--blue: #00629d;
+	--blue-dim: #5aaeff;
+	--green: #2ea52e;
+	--orange: #b66014;
+	--purple: #7135ac;
+	--red: #cc0000;
+	--yellow: #cb911d;
+	--aqua: #479d9d;
 }
 
 html.light #app {
@@ -218,11 +212,11 @@ html.light #app {
 		h4,
 		h5,
 		h6 {
-			--at-apply: text-$purple;
+			--at-apply: text-$blue;
 		}
 
 		.slidev-code.shiki {
-			background: hsl(0, 0%, 98%) !important;
+			background: #f8f8f8 !important;
 			padding: 3rem;
 		}
 	}
