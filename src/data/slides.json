@@ -2,8 +2,8 @@
 	"slides": [
 		{
 			"title": "資訊安全入門",
-			"subtitle": "你的數位生活，你來守護",
-			"description": "介紹資訊安全基礎概念：CIA 三元素、常見威脅（惡意軟體、釣魚、社交工程）、密碼安全、MFA，以及 CTF 入門與學習資源。",
+			"subtitle": null,
+			"description": "介紹資訊安全基礎概念",
 			"tags": ["security"],
 			"year": 2026,
 			"url": "/talks/security-intro/"
