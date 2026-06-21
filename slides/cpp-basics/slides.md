@@ -69,6 +69,10 @@ layout: section
 | `bool`   | 布林值   | `true`, `false` |
 | `string` | 字串     | `"Hello"`       |
 
+---
+
+## 基本資料型別
+
 ```cpp
 int age = 18;
 double pi = 3.14159;
