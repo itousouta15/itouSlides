@@ -90,6 +90,28 @@
 			--at-apply: text-$green;
 		}
 
+		table {
+			font-size: 0.85em;
+			border-collapse: collapse;
+			width: 100%;
+
+			th,
+			td {
+				padding: 0.3em 0.75em;
+				border: 1px solid #454d59;
+				line-height: 1.4;
+			}
+
+			th {
+				--at-apply: text-$blue bg-$current-line;
+				font-weight: 600;
+			}
+
+			tr:nth-child(even) td {
+				background: rgba(255, 255, 255, 0.03);
+			}
+		}
+
 		.slidev-code.shiki {
 			background: #1a1d22 !important;
 			padding: 3rem;
@@ -218,6 +240,21 @@ html.light #app {
 		.slidev-code.shiki {
 			background: #f8f8f8 !important;
 			padding: 3rem;
+		}
+
+		table {
+			th,
+			td {
+				border-color: #cccccc;
+			}
+
+			th {
+				background: #f0f0f0;
+			}
+
+			tr:nth-child(even) td {
+				background: rgba(0, 0, 0, 0.02);
+			}
 		}
 	}
 }
