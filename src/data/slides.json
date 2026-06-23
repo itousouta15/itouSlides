@@ -25,6 +25,15 @@
 			"url": "/talks/html/"
 		}
 	],
+	"homework": [
+		{
+			"title": "陰蝨（Pubic Lice）健康報告",
+			"subject": "健康教育",
+			"description": "介紹陰蝨，涵蓋病原體、寄生部位、傳播途徑、症狀、診斷、治療與預防，並說明近年感染率下降的原因。",
+			"year": 2026,
+			"url": "/talks/pubic-lice/"
+		}
+	],
 	"author": {
 		"name": "伊藤蒼太",
 		"fullName": "郭家睿",

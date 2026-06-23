@@ -1,9 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
 import SlideCard from "../components/SlideCard.astro";
+import HomeworkCard from "../components/HomeworkCard.astro";
 import data from "../data/slides.json";
 
-const { slides, author } = data;
+const { slides, homework, author } = data;
 
 const tagLabels: Record<string, string> = {
 	security: "資訊安全",
@@ -27,9 +28,12 @@ const categories = [{ id: "all", label: "所有分類" }, ...uniqueTags.map(t =>
 				<span>{new Date().getFullYear()}.{(new Date().getMonth() + 1).toString().padStart(2, "0")}</span>
 				<span class="sep">·</span>
 				<span>CC BY 4.0</span>
-				<button class="theme-toggle" id="theme-toggle" aria-label="切換深色模式" title="切換深色模式">
-					<span id="theme-icon">◑</span>
-				</button>
+				<div class="header-actions">
+					<button class="hw-login-btn" id="hw-unlock-btn">登入</button>
+					<button class="theme-toggle" id="theme-toggle" aria-label="切換深色模式" title="切換深色模式">
+						<span id="theme-icon">◑</span>
+					</button>
+				</div>
 			</div>
 
 			<div class="title-block">
@@ -65,6 +69,37 @@ const categories = [{ id: "all", label: "所有分類" }, ...uniqueTags.map(t =>
 
 			<p class="no-results hidden" id="no-results">此分類目前沒有簡報。</p>
 		</main>
+
+		<section class="hw-section hidden" id="hw-section">
+			<div class="hw-section-header">
+				<div class="hw-title-block">
+					<span class="hw-label mono">HOMEWORK</span>
+					<h2 class="hw-heading">學校</h2>
+				</div>
+				<button class="hw-logout-btn" id="hw-logout-btn">登出</button>
+			</div>
+			<div class="hw-grid">
+				{homework.map((hw, i) => <HomeworkCard hw={hw} index={i} />)}
+			</div>
+		</section>
+
+		<!-- Password Modal -->
+		<div class="modal-backdrop hidden" id="modal-backdrop" role="dialog" aria-modal="true" aria-label="輸入密碼">
+			<div class="modal">
+				<div class="modal-header">
+					<span class="modal-title">登入</span>
+					<button class="modal-close" id="modal-close" aria-label="關閉">✕</button>
+				</div>
+				<div class="modal-body">
+					<label for="pw-input" class="pw-label">密碼</label>
+					<input type="password" id="pw-input" class="pw-input" placeholder="輸入密碼…" autocomplete="current-password" />
+					<p class="pw-error hidden" id="pw-error">密碼錯誤，請再試一次。</p>
+				</div>
+				<div class="modal-footer">
+					<button class="pw-submit" id="pw-submit">確認</button>
+				</div>
+			</div>
+		</div>
 
 		<footer class="site-footer">
 			<div class="footer-line"></div>
@@ -113,6 +148,65 @@ const categories = [{ id: "all", label: "所有分類" }, ...uniqueTags.map(t =>
 			statTotal.textContent = String(visible);
 			noResults.classList.toggle("hidden", visible > 0);
 		});
+	});
+
+	// Homework lock
+	const HW_KEY = "hw_unlocked";
+	const HW_PW = "Zxc19201080@";
+
+	const hwSection = document.getElementById("hw-section")!;
+	const hwUnlockBtn = document.getElementById("hw-unlock-btn")!;
+	const hwLogoutBtn = document.getElementById("hw-logout-btn")!;
+	const backdrop = document.getElementById("modal-backdrop")!;
+	const modalClose = document.getElementById("modal-close")!;
+	const pwInput = document.getElementById("pw-input") as HTMLInputElement;
+	const pwSubmit = document.getElementById("pw-submit")!;
+	const pwError = document.getElementById("pw-error")!;
+
+	function unlockHw() {
+		hwSection.classList.remove("hidden");
+		hwUnlockBtn.classList.add("hidden");
+		sessionStorage.setItem(HW_KEY, "1");
+	}
+
+	function lockHw() {
+		hwSection.classList.add("hidden");
+		hwUnlockBtn.classList.remove("hidden");
+		sessionStorage.removeItem(HW_KEY);
+	}
+
+	function openModal() {
+		backdrop.classList.remove("hidden");
+		pwInput.value = "";
+		pwError.classList.add("hidden");
+		setTimeout(() => pwInput.focus(), 50);
+	}
+
+	function closeModal() {
+		backdrop.classList.add("hidden");
+	}
+
+	function tryUnlock() {
+		if (pwInput.value === HW_PW) {
+			unlockHw();
+			closeModal();
+		} else {
+			pwError.classList.remove("hidden");
+			pwInput.select();
+		}
+	}
+
+	if (sessionStorage.getItem(HW_KEY) === "1") unlockHw();
+
+	hwUnlockBtn.addEventListener("click", openModal);
+	hwLogoutBtn.addEventListener("click", lockHw);
+	modalClose.addEventListener("click", closeModal);
+	backdrop.addEventListener("click", e => {
+		if (e.target === backdrop) closeModal();
+	});
+	pwSubmit.addEventListener("click", tryUnlock);
+	pwInput.addEventListener("keydown", e => {
+		if (e.key === "Enter") tryUnlock();
 	});
 
 	// Dark mode toggle
@@ -172,14 +266,20 @@ const categories = [{ id: "all", label: "所有分類" }, ...uniqueTags.map(t =>
 		letter-spacing: 0.12em;
 	}
 
-	.theme-toggle {
+	.header-actions {
 		margin-left: auto;
-		font-size: 1rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.theme-toggle {
+		font-size: 1.15rem;
 		color: var(--text-faint);
-		padding: 0.25rem 0.6rem;
-		border-radius: 8px;
+		padding: 0.45rem 0.85rem;
+		border-radius: 10px;
 		background: var(--surface);
-		border: 1px solid var(--border);
+		border: 1.5px solid var(--border);
 		transition:
 			color 0.15s,
 			background 0.15s,
@@ -370,6 +470,203 @@ const categories = [{ id: "all", label: "所有分類" }, ...uniqueTags.map(t =>
 
 	.hidden {
 		display: none !important;
+	}
+
+	/* ─── Homework Section ─── */
+	.hw-login-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 1.15rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		color: var(--text-faint);
+		padding: 0.45rem 0.9rem;
+		border: 1.5px solid var(--border);
+		border-radius: 10px;
+		background: var(--surface);
+		transition:
+			color 0.15s,
+			background 0.15s,
+			border-color 0.15s;
+		line-height: 1;
+		font-family: inherit;
+	}
+
+	.hw-login-btn:hover {
+		color: var(--accent);
+		border-color: var(--border-dark);
+		box-shadow: 0 0 8px var(--accent-shadow);
+	}
+
+	.hw-section {
+		margin-top: 3.5rem;
+		padding-top: 2rem;
+		border-top: 1.5px solid var(--border);
+	}
+
+	.hw-section-header {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		margin-bottom: 1.5rem;
+		gap: 1rem;
+	}
+
+	.hw-label {
+		display: block;
+		font-size: 0.7rem;
+		letter-spacing: 0.2em;
+		color: var(--text-faint);
+		margin-bottom: 0.3rem;
+	}
+
+	.hw-heading {
+		font-size: 1.6rem;
+		font-weight: 800;
+		color: var(--text);
+		letter-spacing: -0.01em;
+	}
+
+	.hw-logout-btn {
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		color: var(--text-faint);
+		padding: 0.35rem 0.9rem;
+		border: 1.5px solid var(--border);
+		border-radius: 10px;
+		background: transparent;
+		transition:
+			color 0.15s,
+			border-color 0.15s;
+	}
+
+	.hw-logout-btn:hover {
+		color: var(--text);
+		border-color: var(--border-dark);
+	}
+
+	.hw-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		gap: 1.25rem;
+	}
+
+	/* ─── Password Modal ─── */
+	.modal-backdrop {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.45);
+		backdrop-filter: blur(4px);
+		z-index: 100;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+	}
+
+	.modal {
+		background: var(--surface);
+		border: 1.5px solid var(--border);
+		border-radius: var(--radius);
+		width: 100%;
+		max-width: 400px;
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+		overflow: hidden;
+	}
+
+	.modal-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1rem 1.25rem;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.modal-title {
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: var(--text);
+	}
+
+	.modal-close {
+		font-size: 0.85rem;
+		color: var(--text-faint);
+		padding: 0.2rem 0.5rem;
+		border-radius: 6px;
+		transition:
+			background 0.15s,
+			color 0.15s;
+	}
+
+	.modal-close:hover {
+		background: var(--bg-alt);
+		color: var(--text);
+	}
+
+	.modal-body {
+		padding: 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
+	.pw-label {
+		font-size: 0.82rem;
+		font-weight: 600;
+		color: var(--text-muted);
+		letter-spacing: 0.04em;
+	}
+
+	.pw-input {
+		width: 100%;
+		padding: 0.6rem 0.9rem;
+		border: 1.5px solid var(--border);
+		border-radius: 8px;
+		background: var(--bg);
+		color: var(--text);
+		font-size: 0.95rem;
+		font-family: var(--font-mono);
+		outline: none;
+		transition:
+			border-color 0.15s,
+			box-shadow 0.15s;
+	}
+
+	.pw-input:focus {
+		border-color: var(--accent);
+		box-shadow: 0 0 0 3px var(--accent-shadow);
+	}
+
+	.pw-error {
+		font-size: 0.8rem;
+		color: #c0392b;
+		font-weight: 600;
+	}
+
+	.modal-footer {
+		padding: 0.75rem 1.25rem 1.25rem;
+	}
+
+	.pw-submit {
+		width: 100%;
+		padding: 0.65rem;
+		font-size: 0.9rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		color: #fff;
+		background: var(--accent);
+		border-radius: 8px;
+		transition:
+			background 0.15s,
+			box-shadow 0.15s;
+		box-shadow: 0 0 8px var(--accent-shadow);
+	}
+
+	.pw-submit:hover {
+		background: var(--accent-0);
+		box-shadow: 0 0 14px var(--accent-shadow-strong);
 	}
 
 	/* ─── Footer ─── */
