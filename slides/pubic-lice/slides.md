@@ -32,7 +32,7 @@ layout: section
 
 ---
 layout: image-right
-image: https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Crab_louse_ZS_PMax.jpg/480px-Crab_louse_ZS_PMax.jpg
+image: /1.webp
 ---
 
 ## 陰蝨（Pubic Lice）
@@ -56,7 +56,7 @@ layout: section
 
 ---
 layout: image-right
-image: https://upload.wikimedia.org/wikipedia/commons/8/8e/Pthirus_pubis_CDC.jpg
+image: /3.jpg
 ---
 
 ## _Pthirus pubis_
@@ -123,7 +123,7 @@ layout: section
 
 **常見迷思：**
 
-|  迷思      |  事實                        |
+| 迷思         | 事實                           |
 | ------------ | ------------------------------ |
 | 馬桶座會傳染 | 不會——離體後迅速死亡，無法爬行 |
 | 游泳池會傳染 | 不會——氯會快速殺死陰蝨         |
@@ -191,7 +191,7 @@ layout: section
 
 ---
 layout: image-left
-image: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Dermoscopy_of_pubic_lice.jpg/480px-Dermoscopy_of_pubic_lice.jpg
+image: /2.jpg
 ---
 
 ## 如何確診？
