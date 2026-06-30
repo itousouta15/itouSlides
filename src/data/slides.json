@@ -23,6 +23,38 @@
 			"tags": ["web"],
 			"year": 2026,
 			"url": "/talks/html/"
+		},
+		{
+			"title": "第二天 認識變數",
+			"subtitle": "大里 APCS 營隊",
+			"description": "資料型態（int / double / char / string）、變數宣告與型態轉換、運算子，以及 if / else if / else 流程控制，含奇偶判斷、三數取最大、簡易計算機練習。",
+			"tags": ["software"],
+			"year": 2026,
+			"url": "/talks/apcs-day2-variables/"
+		},
+		{
+			"title": "第三天 迴圈",
+			"subtitle": "大里 APCS 營隊",
+			"description": "for / while / do-while 三種迴圈與三元素、巢狀迴圈（九九乘法表、圖形列印）、break / continue，含質數判斷、累乘、數字翻轉練習。",
+			"tags": ["software"],
+			"year": 2026,
+			"url": "/talks/apcs-day3-loops/"
+		},
+		{
+			"title": "第四天 陣列、字串",
+			"subtitle": "大里 APCS 營隊",
+			"description": "一維陣列宣告走訪、找最大最小與平均、二維陣列（矩陣加總、九宮格），以及字串長度、字元走訪與比對。",
+			"tags": ["software"],
+			"year": 2026,
+			"url": "/talks/apcs-day4-arrays-strings/"
+		},
+		{
+			"title": "第五天 總複習與實戰演練",
+			"subtitle": "大里 APCS 營隊",
+			"description": "四天重點總複習、模擬 APCS 實作題（成績統計、迴文判斷）、常見錯誤與除錯技巧，並含 QA 時間與結業。",
+			"tags": ["software"],
+			"year": 2026,
+			"url": "/talks/apcs-day5-review/"
 		}
 	],
 	"homework": [
