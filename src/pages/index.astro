@@ -19,7 +19,7 @@ const uniqueTags = [...new Set(slides.flatMap(s => s.tags))];
 const categories = [{ id: "all", label: "所有分類" }, ...uniqueTags.map(t => ({ id: t, label: tagLabels[t] ?? t }))];
 ---
 
-<Base title="itouSlides" description="伊藤蒼太的公開簡報集，涵蓋網頁開發、軟體開發、設計與開源社群。">
+<Base title="itouSlides" description="郭家睿 / 伊藤蒼太的公開簡報集，涵蓋網頁開發、軟體開發、設計與開源社群。">
 	<div class="page-wrap">
 		<header class="site-header">
 			<div class="header-meta mono">
