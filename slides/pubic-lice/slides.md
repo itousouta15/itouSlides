@@ -23,7 +23,6 @@ layout: default
 - 診斷方式
 - 治療方法
 - 預防方式
-- 為什麼「冷門」？
 
 ---
 layout: section
@@ -33,7 +32,7 @@ layout: section
 
 ---
 layout: image-right
-image: https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Crab_louse_ZS_PMax.jpg/480px-Crab_louse_ZS_PMax.jpg
+image: /1.webp
 ---
 
 ## 陰蝨（Pubic Lice）
@@ -57,7 +56,7 @@ layout: section
 
 ---
 layout: image-right
-image: https://upload.wikimedia.org/wikipedia/commons/8/8e/Pthirus_pubis_CDC.jpg
+image: /3.jpg
 ---
 
 ## _Pthirus pubis_
@@ -104,7 +103,7 @@ layout: section
 
 <br>
 
-> ❌ **不**寄生於頭髮——頭髮間距太密，陰蝨爪子無法抓附
+> **不**寄生於頭髮——頭髮間距太密，陰蝨爪子無法抓附
 
 ---
 layout: section
@@ -124,7 +123,7 @@ layout: section
 
 **常見迷思：**
 
-| ❌ 迷思      | ✅ 事實                        |
+| 迷思         | 事實                           |
 | ------------ | ------------------------------ |
 | 馬桶座會傳染 | 不會——離體後迅速死亡，無法爬行 |
 | 游泳池會傳染 | 不會——氯會快速殺死陰蝨         |
@@ -133,7 +132,7 @@ layout: section
 
 ## 傳播注意事項
 
-> ⚠️ 性伴侶若未同步治療，幾乎必定**再度感染**（乒乓效應）
+> 性伴侶若未同步治療，幾乎必定**再度感染**（乒乓效應）
 
 <br>
 
@@ -166,7 +165,7 @@ layout: section
 
 <br>
 
-> ⚠️ 約 **30%** 的感染者**完全無症狀**，卻仍具有傳染性
+> 約 **30%** 的感染者**完全無症狀**，卻仍具有傳染性
 
 ---
 
@@ -192,7 +191,7 @@ layout: section
 
 ---
 layout: image-left
-image: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Dermoscopy_of_pubic_lice.jpg/480px-Dermoscopy_of_pubic_lice.jpg
+image: /2.jpg
 ---
 
 ## 如何確診？
@@ -252,7 +251,7 @@ layout: section
 ## 如何預防陰蝨？
 
 - 不共用貼身衣物、毛巾、寢具
-- 使用保險套（⚠️ 無法完全防止，皮膚接觸仍可傳播）
+- 使用保險套（無法完全防止，皮膚接觸仍可傳播）
 - 若有多個性伴侶，定期進行 STI 篩檢
 - 發現症狀立即就醫，避免繼續傳播
 
@@ -264,7 +263,7 @@ layout: section
 layout: section
 ---
 
-# 為什麼「冷門」？
+# 為什麼越來越少見？
 
 ---
 
@@ -306,7 +305,7 @@ layout: quote
 layout: default
 ---
 
-## 重點回顧
+## 回顧
 
 - **陰蝨** = 節肢動物寄生蟲，非細菌也非病毒
 - **傳播**：性接觸為主，也可經由寢具衣物
