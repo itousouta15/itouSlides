@@ -47,14 +47,6 @@
 			"tags": ["software"],
 			"year": 2026,
 			"url": "/talks/apcs-day4-arrays-strings/"
-		},
-		{
-			"title": "第五天 總複習與實戰演練",
-			"subtitle": "大里 APCS 營隊",
-			"description": "四天重點總複習、模擬 APCS 實作題（成績統計、迴文判斷）、常見錯誤與除錯技巧，並含 QA 時間與結業。",
-			"tags": ["software"],
-			"year": 2026,
-			"url": "/talks/apcs-day5-review/"
 		}
 	],
 	"homework": [
