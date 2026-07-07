@@ -18,7 +18,11 @@ const base = import.meta.env.BASE_URL;
 		<link rel="icon" type="image/x-icon" href={`${base}favicon.ico`} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;600;700;900&family=Shippori+Mincho:wght@500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="https://font.emtech.cc/css/ChenYuLuoYan" />
 		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-9R5PZG2VQG"></script>
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
@@ -27,10 +31,10 @@ const base = import.meta.env.BASE_URL;
 			}
 			gtag("js", new Date());
 			gtag("config", "G-9R5PZG2VQG");
-			// Initialize dark mode before paint to avoid flash
+			// Dark is the default theme; apply light before paint to avoid flash
 			const saved = localStorage.getItem("theme");
-			if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-				document.documentElement.setAttribute("data-theme", "dark");
+			if (saved === "light" || (!saved && window.matchMedia("(prefers-color-scheme: light)").matches)) {
+				document.documentElement.setAttribute("data-theme", "light");
 			}
 		</script>
 	</head>
@@ -40,50 +44,43 @@ const base = import.meta.env.BASE_URL;
 </html>
 
 <style is:global>
-	@import url("https://font.emtech.cc/css/JetBrainsMono");
-
+	/* Design tokens mirrored from itousouta15.tw — dark first */
 	:root {
-		/* Base: #00629d ≈ hsl(203, 100%, 31%) */
-		--accent: #00629d;
-		--accent-0: hsl(203, 100%, 22%);
-		--accent-2: hsl(203, 100%, 45%);
-		--accent-3: hsl(203, 55%, 78%);
-		--accent-4: hsl(203, 55%, 90%);
-		--accent-5: hsl(203, 55%, 95%);
-		--accent-6: hsl(203, 55%, 98%);
-
-		--bg: #eeeeee;
-		--bg-alt: #e4e4e4;
-		--surface: #ffffff;
-		--border: hsl(203, 45%, 82%);
-		--border-dark: #00629d;
-		--text: #1a1916;
-		--text-muted: #555555;
-		--text-faint: #888888;
-		--hover-shadow: rgba(120, 120, 120, 0.15);
-		--accent-shadow: rgba(0, 98, 157, 0.2);
-		--accent-shadow-strong: rgba(0, 98, 157, 0.45);
-		--font-mono: "JetBrainsMono", monospace;
-		--radius: 10px;
+		--bg: #1b1e23;
+		--panel: #24262b;
+		--panel2: #27292e;
+		--inset: #181b20;
+		--bd: #ffffff12;
+		--bd2: #ffffff24;
+		--tx: #e8ebf2;
+		--dim: #9aa1ad;
+		--mute: #6a7280;
+		--blue: #b0bdf7;
+		--purple: #a1ade0;
+		--btn: #94a6cc;
+		--btntx: #21252b;
+		--shadow: #00000073;
+		--font-sans: "Noto Sans TC", system-ui, sans-serif;
+		--font-serif: "Shippori Mincho", "Noto Serif TC", serif;
+		--font-mono: "JetBrains Mono", monospace;
+		--font-hand: "ChenYuLuoYan", "Dancing Script", cursive;
 	}
 
-	[data-theme="dark"]:root {
-		--accent: #98cbff;
-		--accent-3: hsla(203, 55%, 78%, 0.35);
-		--accent-4: hsla(203, 55%, 90%, 0.12);
-		--accent-5: hsla(203, 55%, 95%, 0.07);
-		--accent-6: hsla(203, 55%, 98%, 0.04);
-		--bg: #21252b;
-		--bg-alt: #1a1d22;
-		--surface: #272b30;
-		--border: hsla(203, 45%, 82%, 0.18);
-		--border-dark: hsla(203, 80%, 62%, 0.5);
-		--text: #cccccc;
-		--text-muted: #999999;
-		--text-faint: #666666;
-		--hover-shadow: rgba(0, 0, 0, 0.35);
-		--accent-shadow: rgba(0, 98, 157, 0.25);
-		--accent-shadow-strong: rgba(0, 98, 157, 0.5);
+	[data-theme="light"]:root {
+		--bg: #c2c3ca;
+		--panel: #d5d6dd;
+		--panel2: #d5d6dd;
+		--inset: #d2d5db;
+		--bd: #06060714;
+		--bd2: #14182829;
+		--tx: #22262d;
+		--dim: #494f59;
+		--mute: #6b7280;
+		--blue: #364a7c;
+		--purple: #5c7cbf;
+		--btn: #2b2f36;
+		--btntx: #f2f4f9;
+		--shadow: #3c465a29;
 	}
 
 	*,
@@ -100,17 +97,17 @@ const base = import.meta.env.BASE_URL;
 	}
 
 	body {
-		font-family: "Mulish", "Noto Serif TC", sans-serif;
+		font-family: var(--font-sans);
 		background-color: var(--bg);
-		color: var(--text);
+		color: var(--tx);
 		min-height: 100vh;
 		-webkit-font-smoothing: antialiased;
 		text-size-adjust: 100%;
 	}
 
 	::selection {
-		background: var(--accent);
-		color: #fff;
+		background: var(--btn);
+		color: var(--btntx);
 	}
 
 	a {
@@ -129,14 +126,18 @@ const base = import.meta.env.BASE_URL;
 		font-family: var(--font-mono);
 	}
 
+	.serif {
+		font-family: var(--font-serif);
+	}
+
 	::-webkit-scrollbar {
 		width: 8px;
 		height: 8px;
-		background-color: var(--bg-alt);
+		background-color: var(--inset);
 	}
 
 	::-webkit-scrollbar-thumb {
-		border-radius: 10px;
-		background-color: var(--accent-3);
+		border-radius: 999px;
+		background-color: var(--mute);
 	}
 </style>
