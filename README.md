@@ -1,7 +1,6 @@
 # itouSlides
 
-<img width="1280" height="813" alt="image" src="https://github.com/user-attachments/assets/44a04591-f695-4655-b4f4-12f0be258939" />
-
+<img width="1365" height="917" alt="image" src="https://github.com/user-attachments/assets/ee8421f0-0a16-4981-9891-0d5d483a5d58" />
 
 公開的簡報集合與展示站，使用 [Astro](https://astro.build/) 與 [Slidev](https://sli.dev/) 建置。
 
