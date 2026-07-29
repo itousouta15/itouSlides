@@ -70,7 +70,7 @@ layout: section
 
 <div class="text-sm">
 
-1. 打開瀏覽器，前往 **oj.itousouta.me**
+1. 打開瀏覽器，前往 [**oj.itousouta.me**](https://oj.itousouta.me)
 2. 用你的帳號登入（沒有帳號跟老師說）
 3. 確認畫面右上角顯示你的帳號名稱
 
@@ -1390,7 +1390,7 @@ flowchart LR
 
 <div class="mt-4 text-sm">
 
-課程連結：**oj.itousouta.me/courses/3**
+課程連結：[**oj.itousouta.me/courses/3**](https://oj.itousouta.me/courses/3)
 
 </div>
 
@@ -1496,7 +1496,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 → Day1
+打開 [oj.itousouta.me → 課程 → Day1](https://oj.itousouta.me/courses/3)
 
 按照剛剛的步驟，寫到 AC 為止
 

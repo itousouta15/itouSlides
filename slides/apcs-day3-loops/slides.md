@@ -503,7 +503,7 @@ layout: section
 
 ---
 
-## 第 7 題　累加與累乘
+## 第 6 題　累加與累乘
 
 輸入 n（1 ≤ n ≤ 10），輸出總和與總乘積。
 
@@ -518,7 +518,7 @@ layout: section
 
 ---
 
-## 第 7 題　程式
+## 第 6 題　程式
 
 ```cpp
 int n;
@@ -545,7 +545,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day3 → 第 7 題
+打開 [oj.itousouta.me → 課程 Day3 → 第 6 題](https://oj.itousouta.me/problems/17)
 
 寫到 AC 為止，再往下聽
 
@@ -781,7 +781,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day3 → 第 6 題
+打開 [oj.itousouta.me → 課程 Day3 → 第 6 題](https://oj.itousouta.me/problems/16)
 
 寫到 AC 為止，再往下聽
 
@@ -974,7 +974,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day3 → 第 8 題
+打開 [oj.itousouta.me → 課程 Day3 → 第 8 題](https://oj.itousouta.me/problems/18)
 
 寫到 AC 為止，再往下聽
 
@@ -1184,7 +1184,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day3 → 第 9 題
+打開 [oj.itousouta.me → 課程 Day3 → 第 9 題](https://oj.itousouta.me/problems/19)
 
 寫到 AC 為止，再往下聽
 
@@ -1269,7 +1269,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day3 → 第 10 題
+打開 [oj.itousouta.me → 課程 Day3 → 第 10 題](https://oj.itousouta.me/problems/20)
 
 寫到 AC 為止，再往下聽
 
@@ -1391,7 +1391,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day3 → 第 11 題
+打開 [oj.itousouta.me → 課程 Day3 → 第 11 題](https://oj.itousouta.me/problems/21)
 
 寫到 AC 為止——今天 6 題全部完成！
 
@@ -1620,7 +1620,7 @@ layout: section
 
 | 教了什麼                 | 馬上練   |
 | ------------------------ | -------- |
-| for 迴圈、累加累乘       | 第 7 題  |
+| for 迴圈、累加累乘       | 第 6 題  |
 | break/continue、質數技巧 | 第 6 題  |
 | while/do-while           | 第 8 題  |
 | 巢狀迴圈基礎             | 第 9 題  |
@@ -1657,4 +1657,4 @@ layout: statement
 
 # 謝謝大家
 
-明天見 👋
+明天見
