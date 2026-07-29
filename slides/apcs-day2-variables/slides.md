@@ -19,22 +19,24 @@ layout: default
 
 <div class="text-sm">
 
-| 時段          | 內容                       |
-| ------------- | -------------------------- |
-| 00:00 – 00:15 | 開場、回顧昨天、暖身       |
-| 00:15 – 01:00 | 資料型態                   |
-| 01:00 – 01:45 | 變數、常數與型別轉換       |
-| 01:45 – 02:00 | ☕ 中場休息                |
-| 02:00 – 03:00 | 運算子（算術／比較／邏輯） |
-| 03:00 – 03:35 | 流程控制：if / else        |
-| 03:35 – 03:45 | 🍱 短暫休息                |
-| 03:45 – 04:00 | 今日題目、回顧、預告明天   |
+| 時段          | 內容                                         |
+| ------------- | -------------------------------------------- |
+| 00:00 – 00:15 | 開場、回顧昨天、暖身                         |
+| 00:15 – 00:45 | 資料型態、變數                               |
+| 00:45 – 01:05 | 運算子基礎、if 基礎 → **練習 #12**           |
+| 01:05 – 01:20 | if 重複使用的技巧 → **練習 #13**             |
+| 01:20 – 01:35 | ☕ 中場休息                                  |
+| 01:35 – 02:15 | 運算子進階、if/else if 完整鏈 → **練習 #14** |
+| 02:15 – 02:50 | 常數與型別轉換 → **練習 #15**                |
+| 02:50 – 03:00 | 🍱 短暫休息                                  |
+| 03:00 – 03:45 | 綜合小考、分組討論                           |
+| 03:45 – 04:00 | 回顧、預告明天                               |
 
 </div>
 
 <br>
 
-> 今天的份量比昨天重，中間會停更多次。跟不上的地方，隨時打斷我。
+> 今天每教完一段，馬上去 itouOJ 練一題——學完立刻用，比全部聽完再一次寫更容易記住。
 
 ---
 
@@ -44,7 +46,7 @@ layout: default
 - 學會**變數**的宣告、初始化與型態轉換
 - 熟悉各種**運算子**：算術、遞增遞減、比較、邏輯
 - 用 **if / else if / else** 做流程控制
-- 完成 itouOJ Day2 的 4 題
+- 完成 itouOJ Day2 的 4 題，**教一段、練一題**
 
 <br>
 
@@ -71,7 +73,7 @@ layout: section
 
 ---
 
-## 暖身問題（不寫程式）
+## 暖身問題
 
 如果要用中文描述「幫一群學生的成績打等第（90 分以上是 A，80 以上是 B……）」，你會怎麼跟一個完全不懂程式的人解釋這個規則？
 
@@ -286,44 +288,13 @@ cout << b << endl;  // 0.12345678901234560  ← 比較準
 
 ---
 
-## 小測驗：該用哪個型態？（三）
-
-要存「班上的第一名的座號」（例如 12 號），該用哪個型態？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`int`**——座號是沒有小數點的整數。</div>
-
-</v-click>
-
----
-layout: section
----
-
-# 變數、常數與型別轉換
-
----
-
-## 宣告 vs 賦值
+## 變數宣告與初始化
 
 ```cpp
 int a;          // 宣告：先佔位，值不確定（垃圾值）
 a = 10;         // 賦值：把值放進去
-```
 
-<div class="mt-4 text-sm opacity-70">
-
-宣告是「跟電腦要一格記憶體」，賦值是「把值放進那一格」。這兩件事可以分開寫，也可以合併成一行。
-
-</div>
-
----
-
-## 宣告同時初始化（建議）
-
-```cpp
-int b = 20;     // 宣告同時初始化
-
+int b = 20;     // 宣告同時初始化（建議！）
 int x = 1, y = 2, z = 3;   // 一次宣告多個
 ```
 
@@ -349,156 +320,10 @@ cout << sum << endl;   // 忘記先給值，印出垃圾值
 </div>
 
 ---
-
-## 小練習：找出問題
-
-```cpp
-int total;
-total += 10;   // total 原本是多少？
-cout << total << endl;
-```
-
-這段程式有什麼問題？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">
-
-`total` 宣告後沒有初始化就直接用 `+=`（等同 `total = total + 10`），第一次用到的 `total` 是垃圾值，加完還是垃圾值。應該先寫 `int total = 0;`。
-
-</div>
-
-</v-click>
-
----
-
-## 常數：宣告後不能再改
-
-```cpp
-const double PI = 3.14159;
-const int MAX_SCORE = 100;
-
-PI = 3.14;   // ❌ 編譯錯誤：不能修改常數
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-`const` 是「常數」的意思。宣告時給一次值之後，**整支程式都不能再改**。編譯器會幫你把這個規則守住，改了就報錯。
-
-</div>
-
----
-
-## 為什麼要用常數？
-
-<v-clicks>
-
-- 有些值本來就**不該被改**（例如圓周率、及格分數）
-- 用 `const` 宣告，如果不小心手滑寫錯改到它，編譯器會馬上抓到
-- 比起用一般變數，`const` 讓別人看你的程式碼時**一眼看出這是固定值**
-
-</v-clicks>
-
----
-
-## 型別轉換是什麼
-
-```cpp
-double x = 9.7;
-int y = (int)x;        // y = 9，小數直接捨去（不是四捨五入！）
-```
-
-<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
-
-`(int)x` 叫做**強制轉型**，把 `double` 硬轉成 `int`。規則很單純：**直接捨去小數點後面**，不會四捨五入。`9.7` 變成 `9`，`9.99` 也會變成 `9`。
-
-</div>
-
----
-
-## 整數除法：最常見的踩雷點
-
-```cpp
-int a = 5, b = 2;
-
-cout << a / b;              // 2    ← 不是 2.5！
-cout << (double)a / b;      // 2.5  ← 先轉型再除
-```
-
-<div class="mt-4 grid grid-cols-3 gap-3 text-center text-sm">
-  <div class="border border-red-500 border-opacity-60 p-3">
-    <div class="font-mono text-lg">5 / 2</div>
-    <div class="opacity-60">兩邊都是 int</div>
-    <div class="font-bold">= 2</div>
-  </div>
-  <div class="border border-green-500 border-opacity-60 p-3">
-    <div class="font-mono text-lg">5.0 / 2</div>
-    <div class="opacity-60">有一邊是小數</div>
-    <div class="font-bold">= 2.5</div>
-  </div>
-  <div class="border border-green-500 border-opacity-60 p-3">
-    <div class="font-mono text-lg">(double)5 / 2</div>
-    <div class="opacity-60">明確轉型</div>
-    <div class="font-bold">= 2.5</div>
-  </div>
-</div>
-
----
-
-## 為什麼 `5 / 2` 是 `2` 不是 `2.5`？
-
-<v-clicks>
-
-- C++ 看到 `int / int`，會認定「你要的也是 int」
-- 於是先算出真正的商 `2.5`，再把小數部分整個丟掉，只留 `2`
-- 只要算式裡**有一邊是 `double`**，結果就會是 `double`，才會有小數
-- 這也是為什麼 `(double)a / b` 要轉的是**其中一個**，不用兩個都轉
-
-</v-clicks>
-
----
-
-## 小測驗：這樣算出來是多少？
-
-```cpp
-int a = 7, b = 2;
-cout << a / b << endl;
-```
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`3`**——`7 / 2` 數學上是 3.5，兩邊都是 int，捨去小數變成 3。</div>
-
-</v-click>
-
----
-
-## 小測驗：這樣呢？
-
-```cpp
-int a = 7, b = 2;
-cout << (double)a / b << endl;
-```
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`3.5`**——轉型成 double 之後再除，小數就保留下來了。</div>
-
-</v-click>
-
----
-layout: fact
----
-
-# ☕ 中場休息
-
-15 分鐘後回來，我們進入「運算子」
-
----
 layout: section
 ---
 
-# 運算子
+# 運算子基礎
 
 ---
 
@@ -516,7 +341,7 @@ cout << a % b;   // 2   （餘數 modulo）
 
 <div class="mt-4 text-sm opacity-70">
 
-`+ - *` 跟數學一樣好懂，`/` 剛剛講過陷阱，`%` 是今天的新面孔。
+`+ - *` 跟數學一樣好懂，`/` 等一下會講陷阱，`%` 是今天的新面孔。
 
 </div>
 
@@ -564,6 +389,281 @@ cout << a % b;   // 2   （餘數 modulo）
 <div class="mt-6 border-l-4 border-green-500 pl-4">**`3`**——`23 = 5 × 4 + 3`，餘數是 3。</div>
 
 </v-click>
+
+---
+layout: section
+---
+
+# if 基礎
+
+---
+
+## if 是什麼
+
+<v-clicks>
+
+- `if` 讓程式**檢查一個條件**，成立才執行接下來的程式
+- 條件寫在 `if` 後面的括號裡，結果一定是 `true` / `false`
+- 只有條件成立（true）時，大括號裡的內容才會被執行
+
+</v-clicks>
+
+---
+
+## 只有 if，沒有 else 會怎樣
+
+```cpp
+int score = 45;
+
+if (score < 60) {
+    cout << "不及格" << endl;
+}
+cout << "考試結束" << endl;
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+沒有 `else` 也完全合法。條件不成立的話，就直接跳過大括號，往下繼續執行 `if` 之後的程式碼。
+
+</div>
+
+---
+
+## if / else：讓程式做決定
+
+```mermaid
+flowchart LR
+  A["讀入 n"] --> B{"n % 2 == 0 ?"}
+  B -->|"是"| C["輸出 Even"]
+  B -->|"否"| D["輸出 Odd"]
+```
+
+```cpp
+if (n % 2 == 0) cout << "Even" << endl;
+else            cout << "Odd"  << endl;
+```
+
+---
+
+## else 什麼時候會觸發
+
+<v-clicks>
+
+- `else` 只有在 `if` 的條件**不成立**時才會執行
+- 一個 `if` 最多只能配一個 `else`
+- `if` 和 `else` 是**互斥**的：兩者當中一定剛好執行一個
+
+</v-clicks>
+
+---
+layout: section
+---
+
+# 練習時間
+
+---
+
+## 第 12 題　判斷奇偶數
+
+輸入一個整數，判斷奇數還是偶數。
+
+| 輸入 | 一行一個整數 n（−10⁹ ≤ n ≤ 10⁹） |
+| ---- | -------------------------------- |
+| 輸出 | 偶數輸出 `Even`，否則輸出 `Odd`  |
+
+<div class="grid grid-cols-2 gap-4 my-4 font-mono text-sm">
+  <div class="border border-gray-400 border-opacity-40 p-3">
+    <div class="opacity-60 text-xs mb-1">輸入</div>7
+  </div>
+  <div class="border border-gray-400 border-opacity-40 p-3">
+    <div class="opacity-60 text-xs mb-1">輸出</div>Odd
+  </div>
+</div>
+
+<div class="mt-2 text-sm opacity-70">
+
+剛好用到你剛學的**兩樣東西**：`%` 運算子和 `if / else`。
+
+</div>
+
+---
+
+## 第 12 題　讀題
+
+<v-clicks>
+
+- **輸入**：一個整數，可能是負數
+- **輸出**：`Even` 或 `Odd`，注意大小寫
+- **處理**：只需要判斷一次，用 `%` 檢查能不能被 2 整除
+
+</v-clicks>
+
+---
+
+## 第 12 題　規劃程式骨架
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    // 這裡判斷奇偶，輸出結果
+    return 0;
+}
+```
+
+---
+
+## 第 12 題　完成判斷
+
+```cpp
+if (n % 2 == 0) cout << "Even" << endl;
+else            cout << "Odd" << endl;
+```
+
+<div class="mt-4 border-l-4 border-red-500 pl-4 text-sm">
+
+**負數陷阱**：`-7 % 2` 在 C++ 是 `-1`，不是數學上習慣的 `1`。如果寫成 `n % 2 == 1` 判斷奇數，負的奇數會判斷失敗。 **永遠用 `n % 2 == 0` 判斷偶數**，其餘情況自然就是奇數，比較安全。
+
+</div>
+
+---
+
+## 第 12 題　完整程式
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    if (n % 2 == 0) cout << "Even" << endl;
+    else            cout << "Odd" << endl;
+    return 0;
+}
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+注意大小寫：是 `Even` / `Odd`，不是 `even` / `odd`。判題逐字比對。
+
+</div>
+
+---
+layout: fact
+---
+
+# 動手做
+
+打開 oj.itousouta.me → 課程 Day2 → 第 12 題
+
+寫到 AC 為止，再往下聽
+
+---
+layout: section
+---
+
+# if 重複使用的技巧
+
+---
+
+## 先假設，再逐一比較更新
+
+<v-clicks>
+
+- 先假設第一個數字最大，記在一個變數裡
+- 拿第二個數字跟目前記的最大值比，比較大就換掉
+- 拿第三個數字再比一次
+- 走完所有數字，記下來的就是真正的最大值
+
+</v-clicks>
+
+<div class="mt-4 border-l-4 border-blue-500 pl-4 text-sm" v-click>
+
+注意：這裡是**兩個獨立的 if**，不是 if/else——因為每一次比較都是「獨立事件」，跟前一次比較的結果無關。
+
+</div>
+
+---
+
+## 第 13 題　三數取最大值
+
+輸入三個整數，輸出最大的一個。
+
+<div class="grid grid-cols-2 gap-4 my-4 font-mono text-sm">
+  <div class="border border-gray-400 border-opacity-40 p-3">
+    <div class="opacity-60 text-xs mb-1">輸入</div>3 7 5
+  </div>
+  <div class="border border-gray-400 border-opacity-40 p-3">
+    <div class="opacity-60 text-xs mb-1">輸出</div>7
+  </div>
+</div>
+
+---
+
+## 第 13 題　逐步追蹤
+
+輸入 `3 7 5` 時：
+
+| 步驟     | 動作                | ans |
+| -------- | ------------------- | --- |
+| 開始     | 假設 a=3 最大       | 3   |
+| 檢查 b=7 | 7 > 3，換成 7       | 7   |
+| 檢查 c=5 | 5 > 7？不成立，不換 | 7   |
+
+<div class="mt-4 text-sm opacity-70">
+
+走完三個數字，`ans` 是 `7`，就是答案。
+
+</div>
+
+---
+
+## 第 13 題　程式
+
+```cpp
+int a, b, c;
+cin >> a >> b >> c;
+
+int ans = a;                 // 先假設 a 最大
+if (b > ans) ans = b;        // b 更大就換成 b
+if (c > ans) ans = c;        // c 更大就換成 c
+
+cout << ans << endl;
+```
+
+<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
+
+這個「**先假設，再逐一比較更新**」的招式，第四天找陣列最大值時會原封不動再用一次。
+
+</div>
+
+---
+layout: fact
+---
+
+# 動手做
+
+打開 oj.itousouta.me → 課程 Day2 → 第 13 題
+
+寫到 AC 為止，再往下聽
+
+---
+layout: fact
+---
+
+# ☕ 中場休息
+
+15 分鐘後回來，我們進入運算子與流程控制的進階內容
+
+---
+layout: section
+---
+
+# 運算子進階
 
 ---
 
@@ -727,7 +827,6 @@ bool valid = (score >= 60 && score <= 100);  // true
 ```cpp
 cout << 2 + 3 * 4;        // 14，不是 20（先乘除後加減）
 cout << (2 + 3) * 4;      // 20，括號優先
-cout << a > 5 && b < 3;   // 先比較，再邏輯運算
 ```
 
 <div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
@@ -773,66 +872,7 @@ cout << (a % 2 == 0 && a > 5);
 layout: section
 ---
 
-# 流程控制
-
----
-
-## if 是什麼
-
-<v-clicks>
-
-- `if` 讓程式**檢查一個條件**，成立才執行接下來的程式
-- 條件寫在 `if` 後面的括號裡，結果一定是 `true` / `false`
-- 只有條件成立（true）時，大括號裡的內容才會被執行
-
-</v-clicks>
-
----
-
-## 只有 if，沒有 else 會怎樣
-
-```cpp
-int score = 45;
-
-if (score < 60) {
-    cout << "不及格" << endl;
-}
-cout << "考試結束" << endl;
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-沒有 `else` 也完全合法。條件不成立的話，就直接跳過大括號，往下繼續執行 `if` 之後的程式碼。
-
-</div>
-
----
-
-## if / else：讓程式做決定
-
-```mermaid
-flowchart LR
-  A["讀入 n"] --> B{"n % 2 == 0 ?"}
-  B -->|"是"| C["輸出 Even"]
-  B -->|"否"| D["輸出 Odd"]
-```
-
-```cpp
-if (n % 2 == 0) cout << "Even" << endl;
-else            cout << "Odd"  << endl;
-```
-
----
-
-## else 什麼時候會觸發
-
-<v-clicks>
-
-- `else` 只有在 `if` 的條件**不成立**時才會執行
-- 一個 `if` 最多只能配一個 `else`
-- `if` 和 `else` 是**互斥**的：兩者當中一定剛好執行一個
-
-</v-clicks>
+# if / else if / else 完整鏈
 
 ---
 
@@ -945,194 +985,10 @@ else cout << "小";
 </v-click>
 
 ---
-
-## 小測驗：這兩段哪裡不一樣？
-
-```cpp
-// 版本 A
-if (x > 0) cout << "正數";
-if (x > 10) cout << "大於十";
-
-// 版本 B
-if (x > 0) cout << "正數";
-else if (x > 10) cout << "大於十";
-```
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">
-
-`x = 15` 時：版本 A 兩行都會印（兩個獨立的 if）；版本 B 只會印「正數」，因為第一個 if 已經成立，`else if` 就不會再檢查了。
-
-</div>
-
-</v-click>
-
----
-layout: fact
----
-
-# 🍱 短暫休息
-
-10 分鐘後回來，寫今天的題目
-
----
 layout: section
 ---
 
-# 今日題目
-
----
-
-## 第 12 題　判斷奇偶數
-
-輸入一個整數，判斷奇數還是偶數。
-
-| 輸入 | 一行一個整數 n（−10⁹ ≤ n ≤ 10⁹） |
-| ---- | -------------------------------- |
-| 輸出 | 偶數輸出 `Even`，否則輸出 `Odd`  |
-
-<div class="grid grid-cols-2 gap-4 my-4 font-mono text-sm">
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸入</div>7
-  </div>
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸出</div>Odd
-  </div>
-</div>
-
----
-
-## 第 12 題　讀題
-
-<v-clicks>
-
-- **輸入**：一個整數，可能是負數
-- **輸出**：`Even` 或 `Odd`，注意大小寫
-- **處理**：只需要判斷一次，用 `%` 檢查能不能被 2 整除
-
-</v-clicks>
-
----
-
-## 第 12 題　規劃程式骨架
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    // 這裡判斷奇偶，輸出結果
-    return 0;
-}
-```
-
----
-
-## 第 12 題　完成判斷
-
-```cpp
-if (n % 2 == 0) cout << "Even" << endl;
-else            cout << "Odd" << endl;
-```
-
-<div class="mt-4 border-l-4 border-red-500 pl-4 text-sm">
-
-**負數陷阱**：`-7 % 2` 在 C++ 是 `-1`，不是數學上習慣的 `1`。如果寫成 `n % 2 == 1` 判斷奇數，負的奇數會判斷失敗。 **永遠用 `n % 2 == 0` 判斷偶數**，其餘情況自然就是奇數，比較安全。
-
-</div>
-
----
-
-## 第 12 題　完整程式
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    if (n % 2 == 0) cout << "Even" << endl;
-    else            cout << "Odd" << endl;
-    return 0;
-}
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-注意大小寫：是 `Even` / `Odd`，不是 `even` / `odd`。判題逐字比對。
-
-</div>
-
----
-
-## 第 13 題　三數取最大值
-
-輸入三個整數，輸出最大的一個。
-
-<div class="grid grid-cols-2 gap-4 my-4 font-mono text-sm">
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸入</div>3 7 5
-  </div>
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸出</div>7
-  </div>
-</div>
-
----
-
-## 第 13 題　想法：先假設，再逐一比較
-
-<v-clicks>
-
-- 先假設第一個數字最大，記在一個變數裡
-- 拿第二個數字跟目前記的最大值比，比較大就換掉
-- 拿第三個數字再比一次
-- 走完所有數字，記下來的就是真正的最大值
-
-</v-clicks>
-
----
-
-## 第 13 題　逐步追蹤
-
-輸入 `3 7 5` 時：
-
-| 步驟     | 動作                | ans |
-| -------- | ------------------- | --- |
-| 開始     | 假設 a=3 最大       | 3   |
-| 檢查 b=7 | 7 > 3，換成 7       | 7   |
-| 檢查 c=5 | 5 > 7？不成立，不換 | 7   |
-
-<div class="mt-4 text-sm opacity-70">
-
-走完三個數字，`ans` 是 `7`，就是答案。
-
-</div>
-
----
-
-## 第 13 題　程式
-
-```cpp
-int a, b, c;
-cin >> a >> b >> c;
-
-int ans = a;                 // 先假設 a 最大
-if (b > ans) ans = b;        // b 更大就換成 b
-if (c > ans) ans = c;        // c 更大就換成 c
-
-cout << ans << endl;
-```
-
-<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
-
-這個「**先假設，再逐一比較更新**」的招式，第四天找陣列最大值時會原封不動再用一次。
-
-</div>
+# 練習時間
 
 ---
 
@@ -1151,6 +1007,12 @@ cout << ans << endl;
 <div class="font-mono border border-gray-400 border-opacity-40 p-3">
 輸入　6 * 7<br/>輸出　42
 </div>
+</div>
+
+<div class="mt-2 text-sm opacity-70">
+
+這題會用到今天教的**所有運算子**，再配上完整的 if/else if 鏈。
+
 </div>
 
 ---
@@ -1226,7 +1088,7 @@ else if (op == '/') {
 
 <div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
 
-這題**不要**轉成 `double`——這跟今天前面教的「除法陷阱」剛好相反，這裡用 `int` 直接除才是正確答案，轉型反而會出錯。先讀懂題目要的是哪一種除法，再決定要不要轉型。
+這題**不要**轉成 `double`——這裡用 `int` 直接除才是正確答案，轉型反而會出錯。先讀懂題目要的是哪一種除法，再決定要不要轉型（等一下 BMI 那題就剛好相反，會需要轉型）。
 
 </div>
 
@@ -1247,6 +1109,144 @@ else if (op == '/') {
     else        cout << a / b << endl;
 }
 ```
+
+---
+layout: fact
+---
+
+# 動手做
+
+打開 oj.itousouta.me → 課程 Day2 → 第 14 題
+
+寫到 AC 為止，再往下聽
+
+---
+layout: section
+---
+
+# 常數與型別轉換
+
+---
+
+## 常數：宣告後不能再改
+
+```cpp
+const double PI = 3.14159;
+const int MAX_SCORE = 100;
+
+PI = 3.14;   // ❌ 編譯錯誤：不能修改常數
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+`const` 是「常數」的意思。宣告時給一次值之後，**整支程式都不能再改**。編譯器會幫你把這個規則守住，改了就報錯。
+
+</div>
+
+---
+
+## 為什麼要用常數？
+
+<v-clicks>
+
+- 有些值本來就**不該被改**（例如圓周率、及格分數）
+- 用 `const` 宣告，如果不小心手滑寫錯改到它，編譯器會馬上抓到
+- 比起用一般變數，`const` 讓別人看你的程式碼時**一眼看出這是固定值**
+
+</v-clicks>
+
+---
+
+## 型別轉換是什麼
+
+```cpp
+double x = 9.7;
+int y = (int)x;        // y = 9，小數直接捨去（不是四捨五入！）
+```
+
+<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
+
+`(int)x` 叫做**強制轉型**，把 `double` 硬轉成 `int`。規則很單純：**直接捨去小數點後面**，不會四捨五入。`9.7` 變成 `9`，`9.99` 也會變成 `9`。
+
+</div>
+
+---
+
+## 整數除法：最常見的踩雷點
+
+```cpp
+int a = 5, b = 2;
+
+cout << a / b;              // 2    ← 不是 2.5！
+cout << (double)a / b;      // 2.5  ← 先轉型再除
+```
+
+<div class="mt-4 grid grid-cols-3 gap-3 text-center text-sm">
+  <div class="border border-red-500 border-opacity-60 p-3">
+    <div class="font-mono text-lg">5 / 2</div>
+    <div class="opacity-60">兩邊都是 int</div>
+    <div class="font-bold">= 2</div>
+  </div>
+  <div class="border border-green-500 border-opacity-60 p-3">
+    <div class="font-mono text-lg">5.0 / 2</div>
+    <div class="opacity-60">有一邊是小數</div>
+    <div class="font-bold">= 2.5</div>
+  </div>
+  <div class="border border-green-500 border-opacity-60 p-3">
+    <div class="font-mono text-lg">(double)5 / 2</div>
+    <div class="opacity-60">明確轉型</div>
+    <div class="font-bold">= 2.5</div>
+  </div>
+</div>
+
+---
+
+## 為什麼 `5 / 2` 是 `2` 不是 `2.5`？
+
+<v-clicks>
+
+- C++ 看到 `int / int`，會認定「你要的也是 int」
+- 於是先算出真正的商 `2.5`，再把小數部分整個丟掉，只留 `2`
+- 只要算式裡**有一邊是 `double`**，結果就會是 `double`，才會有小數
+- 這也是為什麼 `(double)a / b` 要轉的是**其中一個**，不用兩個都轉
+
+</v-clicks>
+
+---
+
+## 小測驗：這樣算出來是多少？
+
+```cpp
+int a = 7, b = 2;
+cout << a / b << endl;
+```
+
+<v-click>
+
+<div class="mt-6 border-l-4 border-green-500 pl-4">**`3`**——`7 / 2` 數學上是 3.5，兩邊都是 int，捨去小數變成 3。</div>
+
+</v-click>
+
+---
+
+## 小測驗：這樣呢？
+
+```cpp
+int a = 7, b = 2;
+cout << (double)a / b << endl;
+```
+
+<v-click>
+
+<div class="mt-6 border-l-4 border-green-500 pl-4">**`3.5`**——轉型成 double 之後再除，小數就保留下來了。</div>
+
+</v-click>
+
+---
+layout: section
+---
+
+# 練習時間
 
 ---
 
@@ -1349,6 +1349,24 @@ else                 cout << "肥胖" << endl;
 ```
 
 ---
+layout: fact
+---
+
+# 動手做
+
+打開 oj.itousouta.me → 課程 Day2 → 第 15 題
+
+寫到 AC 為止——今天 4 題全部完成！
+
+---
+layout: fact
+---
+
+# 🍱 短暫休息
+
+10 分鐘後回來，做綜合小考
+
+---
 layout: section
 ---
 
@@ -1434,16 +1452,6 @@ BMI 那一題，如果拿到 `else if (bmi < 18.5)` 這種寫法漏掉一個邊�
 跟旁邊同學交換程式碼，檢查對方的 `if / else if` 條件順序有沒有排錯，互相唸出每個條件的「門檻」聽聽看順序合不合理。
 
 ---
-layout: fact
----
-
-# 動手做
-
-oj.itousouta.me → 課程 → Day2
-
-4 題：奇偶、三數最大、計算機、BMI
-
----
 layout: section
 ---
 
@@ -1496,6 +1504,27 @@ layout: section
 - 輸出的**大小寫與拼字要跟題目一模一樣**
 
 </v-clicks>
+
+---
+
+## 回顧⑤：今天的節奏
+
+<div class="text-sm">
+
+| 教了什麼                       | 馬上練   |
+| ------------------------------ | -------- |
+| 運算子基礎 + if 基礎           | 第 12 題 |
+| if 重複使用的技巧              | 第 13 題 |
+| 運算子進階 + if/else if 完整鏈 | 第 14 題 |
+| 常數與型別轉換                 | 第 15 題 |
+
+</div>
+
+<div class="mt-4 text-sm opacity-70">
+
+這種「教一段、練一題」的方式，明天開始也會延續下去。
+
+</div>
 
 ---
 
