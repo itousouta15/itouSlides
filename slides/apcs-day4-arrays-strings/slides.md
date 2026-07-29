@@ -19,23 +19,24 @@ layout: default
 
 <div class="text-sm">
 
-| 時段          | 內容                 |
-| ------------- | -------------------- |
-| 00:00 – 00:15 | 開場、回顧昨天、暖身 |
-| 00:15 – 01:00 | 一維陣列             |
-| 01:00 – 01:45 | 二維陣列             |
-| 01:45 – 02:00 | ☕ 中場休息          |
-| 02:00 – 02:45 | 字串                 |
-| 02:45 – 03:00 | 隨堂小考             |
-| 03:00 – 03:10 | 🍱 短暫休息          |
-| 03:10 – 03:55 | 今日題目實作         |
-| 03:55 – 04:00 | 回顧、預告明天       |
+| 時段          | 內容                              |
+| ------------- | --------------------------------- |
+| 00:00 – 00:15 | 開場、回顧昨天、暖身              |
+| 00:15 – 00:50 | 一維陣列 → 練習 #22               |
+| 00:50 – 01:15 | 二維陣列基礎 → 練習 #23           |
+| 01:15 – 01:40 | 二維陣列進階（九宮格） → 練習 #24 |
+| 01:40 – 01:55 | ☕ 中場休息                       |
+| 01:55 – 02:25 | 字串基礎 → 練習 #25               |
+| 02:25 – 02:45 | 雙指標技巧 → 練習 #26             |
+| 02:45 – 02:55 | 🍱 短暫休息                       |
+| 02:55 – 03:45 | 隨堂小考、分組討論                |
+| 03:45 – 04:00 | 回顧、預告明天                    |
 
 </div>
 
 <br>
 
-> 一個變數只能存一個值；陣列讓你用一個名字存「一整排」值。
+> 一個變數只能存一個值；陣列讓你用一個名字存「一整排」值。教一段、練一題，跟前兩天一樣。
 
 ---
 
@@ -45,7 +46,7 @@ layout: default
 - 用陣列找**最大值 / 最小值**、計算**平均**
 - 認識**二維陣列**：矩陣加總、九宮格
 - 處理**字串**：長度、字元走訪、子字串與迴文
-- 完成 itouOJ Day4 的 5 題
+- 每教完一段，馬上到 itouOJ 練一題，完成 Day4 的 5 題
 
 ---
 layout: section
@@ -404,7 +405,133 @@ for (int i = 1; i < 4; i++) {
 layout: section
 ---
 
-# 二維陣列
+# 練習時間
+
+---
+
+## 第 22 題　最大最小平均
+
+輸入 n 個整數，輸出最大值、最小值、平均值（**四捨五入至小數點後 2 位**）。
+
+<div class="grid grid-cols-2 gap-4 my-4 font-mono text-sm">
+  <div class="border border-gray-400 border-opacity-40 p-3">
+    <div class="opacity-60 text-xs mb-1">輸入</div>5<br/>3 7 2 9 4
+  </div>
+  <div class="border border-gray-400 border-opacity-40 p-3">
+    <div class="opacity-60 text-xs mb-1">輸出</div>9<br/>2<br/>5.00
+  </div>
+</div>
+
+---
+
+## 第 22 題　讀題
+
+<v-clicks>
+
+- 輸入是 n，再來一整排 n 個整數
+- 輸出**三行**：最大值、最小值、平均值
+- 平均值要**固定兩位小數**，就算剛好整除也要印 `.00`
+
+</v-clicks>
+
+---
+
+## 第 22 題　規劃骨架
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int a[1005];
+    for (int i = 0; i < n; i++) cin >> a[i];
+    // 這裡找最大最小、算平均
+    return 0;
+}
+```
+
+---
+
+## 第 22 題　邊走訪邊記錄
+
+```cpp
+int mx = a[0], mn = a[0];
+long long sum = 0;
+for (int i = 0; i < n; i++) {
+    if (a[i] > mx) mx = a[i];
+    if (a[i] < mn) mn = a[i];
+    sum += a[i];
+}
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+一個迴圈裡同時做三件事：比大小找最大、比大小找最小、順便累加。不需要為每件事各寫一個迴圈。
+
+</div>
+
+---
+
+## 第 22 題　輸出固定兩位小數
+
+```cpp
+#include <cstdio>   // ← printf 需要這個
+// ...
+cout << mx << endl << mn << endl;
+printf("%.2f\n", (double)sum / n);
+```
+
+<div class="mt-4 border-l-4 border-red-500 pl-4 text-sm">
+
+⚠️ 平均要**固定兩位小數**：5 要輸出 `5.00`，不是 `5`。 `printf("%.2f")` 是最簡單的做法，記得先 `#include <cstdio>`。
+
+</div>
+
+---
+
+## 第 22 題　完整程式
+
+```cpp
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int a[1005];
+    for (int i = 0; i < n; i++) cin >> a[i];
+
+    int mx = a[0], mn = a[0];
+    long long sum = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] > mx) mx = a[i];
+        if (a[i] < mn) mn = a[i];
+        sum += a[i];
+    }
+    cout << mx << endl << mn << endl;
+    printf("%.2f\n", (double)sum / n);
+    return 0;
+}
+```
+
+---
+layout: fact
+---
+
+# 動手做
+
+打開 oj.itousouta.me → 課程 Day4 → 第 22 題
+
+寫到 AC 為止，再往下聽
+
+---
+layout: section
+---
+
+# 二維陣列基礎
 
 ---
 
@@ -522,26 +649,6 @@ for (int i = 0; i < 2; i++) {
 
 ---
 
-## 應用：矩陣全部加總
-
-```cpp
-int sum = 0;
-for (int i = 0; i < n; i++) {
-    for (int j = 0; j < m; j++) {
-        sum += a[i][j];
-    }
-}
-cout << sum << endl;
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-累加的招式又出現了一次——不管資料是一維還是二維，「開一個累加變數、用迴圈一格一格加上去」這個模式完全不變。
-
-</div>
-
----
-
 ## 小測驗：這是第幾列第幾行？
 
 ```cpp
@@ -559,6 +666,270 @@ cout << m[2][0];
 </v-click>
 
 ---
+layout: section
+---
+
+# 練習時間
+
+---
+
+## 第 23 題　矩陣加總
+
+輸入 n × m 的矩陣，輸出所有元素總和。
+
+<div class="grid grid-cols-2 gap-4 mb-3 font-mono text-sm">
+  <div class="border border-gray-400 border-opacity-40 p-3">
+    <div class="opacity-60 text-xs mb-1">輸入</div>2 3<br/>1 2 3<br/>4 5 6
+  </div>
+  <div class="border border-gray-400 border-opacity-40 p-3">
+    <div class="opacity-60 text-xs mb-1">輸出</div>21
+  </div>
+</div>
+
+---
+
+## 第 23 題　想清楚：需要真的開陣列嗎？
+
+<v-clicks>
+
+- 題目只要「總和」，不需要之後再用到矩陣裡個別的值
+- 既然如此，**邊讀邊加**就好，不必開一個二維陣列存起來
+- 這是很重要的判斷力：**先想清楚題目要什麼，再決定要不要開資料結構**
+
+</v-clicks>
+
+---
+
+## 第 23 題　程式
+
+```cpp
+int n, m;
+cin >> n >> m;
+
+long long sum = 0;
+for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+        int x;
+        cin >> x;
+        sum += x;        // ← 讀進來馬上加，不用存
+    }
+}
+cout << sum << endl;
+```
+
+<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
+
+會用二維陣列不代表每次都要用；先想清楚題目要什麼。
+
+</div>
+
+---
+
+## 第 23 題　如果真的開了陣列也不算錯
+
+```cpp
+int a[105][105];
+for (int i = 0; i < n; i++)
+    for (int j = 0; j < m; j++) cin >> a[i][j];
+
+long long sum = 0;
+for (int i = 0; i < n; i++)
+    for (int j = 0; j < m; j++) sum += a[i][j];
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+這樣寫**也會 AC**，只是多寫了一個用不到的陣列，多跑一次迴圈。兩種寫法都對，差別只在效率和簡潔度——先求對，再求好。
+
+</div>
+
+---
+layout: fact
+---
+
+# 動手做
+
+打開 oj.itousouta.me → 課程 Day4 → 第 23 題
+
+寫到 AC 為止，再往下聽
+
+---
+layout: section
+---
+
+# 二維陣列進階
+
+---
+
+## 同一個迴圈，同時走列與行
+
+```cpp
+for (int i = 0; i < 3; i++) {
+    int row = 0, col = 0;
+    for (int j = 0; j < 3; j++) {
+        row += a[i][j];    // 第 i 列
+        col += a[j][i];    // 第 i 行
+    }
+}
+```
+
+<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
+
+`a[i][j]` 和 `a[j][i]` 只差在索引順序 —— 一個走列、一個走行，可以用**同一個迴圈**同時處理，不用寫成兩段。之後檢查九宮格會直接用到這個技巧。
+
+</div>
+
+---
+layout: section
+---
+
+# 練習時間
+
+---
+
+## 第 24 題　九宮格驗證（幻方）
+
+輸入 3×3 方格，判斷每列、每行、兩條對角線的總和是否**全部相等**。
+
+<div class="grid grid-cols-2 gap-6">
+<div class="font-mono text-center text-sm">
+  <table class="mx-auto">
+    <tr><td class="border border-gray-400 px-4 py-2">4</td><td class="border border-gray-400 px-4 py-2">9</td><td class="border border-gray-400 px-4 py-2">2</td></tr>
+    <tr><td class="border border-gray-400 px-4 py-2">3</td><td class="border border-gray-400 px-4 py-2">5</td><td class="border border-gray-400 px-4 py-2">7</td></tr>
+    <tr><td class="border border-gray-400 px-4 py-2">8</td><td class="border border-gray-400 px-4 py-2">1</td><td class="border border-gray-400 px-4 py-2">6</td></tr>
+  </table>
+  <div class="mt-2 opacity-70">每列、每行、對角線都 = 15</div>
+</div>
+<div class="text-sm">
+
+要檢查 **8 條線**：
+
+- 3 條列
+- 3 條行
+- 2 條對角線
+
+</div>
+</div>
+
+---
+
+## 第 24 題　讀題：這題要檢查什麼
+
+<v-clicks>
+
+- 3 條**列**：每一列三個數字加起來
+- 3 條**行**：每一行三個數字加起來
+- 1 條**主對角線**：左上到右下
+- 1 條**反對角線**：右上到左下
+- 全部 8 條線的總和都要**等於同一個數**，才輸出 `Magic`
+
+</v-clicks>
+
+---
+
+## 第 24 題　為什麼不能只檢查列？
+
+<div class="text-sm">
+
+如果只檢查 3 條列的總和相等，會不會誤判？
+
+</div>
+
+<v-click>
+
+<div class="mt-6 border-l-4 border-red-500 pl-4">
+
+**會**。每列總和相等，不代表行和對角線也相等——例如把某一列的數字順序打亂，列總和不變，但行的總和就會跟著錯。 **8 條線都要檢查，缺一不可。**
+
+</div>
+
+</v-click>
+
+---
+
+## 第 24 題　定基準：以第一列為標準
+
+```cpp
+int a[3][3];
+for (int i = 0; i < 3; i++)
+    for (int j = 0; j < 3; j++) cin >> a[i][j];
+
+int target = a[0][0] + a[0][1] + a[0][2];   // 以第一列為基準
+bool ok = true;
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+先算出第一列的總和當作「標準答案」，之後每一條線都跟它比對，只要有一條不一樣，就代表不是幻方。
+
+</div>
+
+---
+
+## 第 24 題　同時檢查列與行
+
+```cpp
+for (int i = 0; i < 3; i++) {
+    int row = 0, col = 0;
+    for (int j = 0; j < 3; j++) {
+        row += a[i][j];    // 第 i 列
+        col += a[j][i];    // 第 i 行
+    }
+    if (row != target || col != target) ok = false;
+}
+```
+
+---
+
+## 第 24 題　檢查兩條對角線
+
+```cpp
+if (a[0][0] + a[1][1] + a[2][2] != target) ok = false;   // 主對角線
+if (a[0][2] + a[1][1] + a[2][0] != target) ok = false;   // 反對角線
+
+cout << (ok ? "Magic" : "Not Magic") << endl;
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+對角線只有兩條，數量固定，直接手動列出來比迴圈更簡單清楚。
+
+</div>
+
+---
+
+## 第 24 題　完整程式
+
+```cpp
+int a[3][3];
+for (int i = 0; i < 3; i++)
+    for (int j = 0; j < 3; j++) cin >> a[i][j];
+
+int target = a[0][0] + a[0][1] + a[0][2];
+bool ok = true;
+
+for (int i = 0; i < 3; i++) {
+    int row = 0, col = 0;
+    for (int j = 0; j < 3; j++) { row += a[i][j]; col += a[j][i]; }
+    if (row != target || col != target) ok = false;
+}
+if (a[0][0] + a[1][1] + a[2][2] != target) ok = false;
+if (a[0][2] + a[1][1] + a[2][0] != target) ok = false;
+
+cout << (ok ? "Magic" : "Not Magic") << endl;
+```
+
+---
+layout: fact
+---
+
+# 動手做
+
+打開 oj.itousouta.me → 課程 Day4 → 第 24 題
+
+寫到 AC 為止，再往下聽
+
+---
 layout: fact
 ---
 
@@ -570,7 +941,7 @@ layout: fact
 layout: section
 ---
 
-# 字串
+# 字串基礎
 
 ---
 
@@ -722,29 +1093,6 @@ cout << (c >= 'a' && c <= 'z');   // 1，判斷是不是小寫字母
 
 ---
 
-## 雙指標：從頭尾往中間夾
-
-<div class="my-4 text-center font-mono text-lg">
-l&nbsp;&nbsp;e&nbsp;&nbsp;v&nbsp;&nbsp;e&nbsp;&nbsp;l<br/>
-<span class="text-sm opacity-70">↑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑<br/>頭尾往中間夾</span>
-</div>
-
-```cpp
-int i = 0, j = s.size() - 1;
-while (i < j) {
-    // 比較 s[i] 跟 s[j]
-    i++; j--;
-}
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-這個技巧叫**雙指標**：兩個位置同時往中間移動，只要走到一半（`i < j` 不成立）就能檢查完整個字串。等一下迴文判斷會用到。
-
-</div>
-
----
-
 ## 小測驗：這樣走訪對嗎？
 
 ```cpp
@@ -778,6 +1126,260 @@ cout << s.substr(4, 4);
 <div class="mt-6 border-l-4 border-green-500 pl-4">**`sout`**——從索引 4（第 5 個字元 `s`）開始，取 4 個字元。</div>
 
 </v-click>
+
+---
+layout: section
+---
+
+# 練習時間
+
+---
+
+## 第 25 題　子字串搜尋
+
+輸入字串 s 與 t，判斷 t 是否為 s 的連續一段。
+
+<div class="my-3 font-mono text-sm text-center">
+p r o <span class="border-2 border-green-500 px-1">g r a m</span> m i n g　　找 <span class="border-2 border-green-500 px-1">gram</span> → Yes
+</div>
+
+---
+
+## 第 25 題　想法：每個起點都試一次
+
+<v-clicks>
+
+- 從 s 的每一個位置開始，切出跟 t 一樣長的一段
+- 拿這一段跟 t 比對，一樣就是找到了
+- 起點不能太後面——剩下的長度要**至少跟 t 一樣長**才夠切
+
+</v-clicks>
+
+---
+
+## 第 25 題　用範例走一次
+
+<div class="text-sm">
+
+`s = "programming"`，`t = "gram"`（長度 4）
+
+</div>
+
+| 起點 i | s.substr(i, 4) | 等於 t？ |
+| ------ | -------------- | -------- |
+| 0      | `prog`         | 否       |
+| 1      | `rogr`         | 否       |
+| 2      | `ogra`         | 否       |
+| 3      | `gram`         | ✅ 是！  |
+
+<div class="mt-4 text-sm opacity-70">
+
+找到後立刻 `break`，不用把剩下的起點都試完。
+
+</div>
+
+---
+
+## 第 25 題　程式
+
+```cpp
+string s, t;
+cin >> s >> t;
+
+bool found = false;
+for (int i = 0; i + t.size() <= s.size(); i++) {
+    if (s.substr(i, t.size()) == t) { found = true; break; }
+}
+cout << (found ? "Yes" : "No") << endl;
+```
+
+<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
+
+迴圈條件是 `i + t.size() <= s.size()`——起點不能太後面，否則剩下的長度不夠比。找到就用 `break` 提早結束，不用試完所有起點。
+
+</div>
+
+---
+
+## 第 25 題　也可以這樣寫
+
+```cpp
+cout << (s.find(t) != string::npos ? "Yes" : "No") << endl;
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+`s.find(t)` 是 `string` 內建的搜尋功能，找不到會回傳特殊值 `string::npos`。兩種寫法效果一樣，今天先知道自己動手寫的版本在做什麼，之後熟悉了可以改用這個更精簡的寫法。
+
+</div>
+
+---
+
+## 第 25 題　常見錯誤：迴圈條件寫錯
+
+```cpp
+for (int i = 0; i < s.size(); i++) {         // ❌ 少考慮 t 的長度
+    if (s.substr(i, t.size()) == t) { ... }
+}
+```
+
+<div class="mt-4 border-l-4 border-red-500 pl-4 text-sm">
+
+如果 `i` 太靠近 s 的尾端，`s.substr(i, t.size())` 會**取不滿** t 的長度（字串長度不夠時 `substr` 只會回傳剩下的部分），導致比對永遠不相等，或在某些情況下引發例外。條件一定要包含 `i + t.size() <= s.size()` 的檢查。
+
+</div>
+
+---
+layout: fact
+---
+
+# 動手做
+
+打開 oj.itousouta.me → 課程 Day4 → 第 25 題
+
+寫到 AC 為止，再往下聽
+
+---
+layout: section
+---
+
+# 雙指標技巧
+
+---
+
+## 雙指標：從頭尾往中間夾
+
+<div class="my-4 text-center font-mono text-lg">
+l&nbsp;&nbsp;e&nbsp;&nbsp;v&nbsp;&nbsp;e&nbsp;&nbsp;l<br/>
+<span class="text-sm opacity-70">↑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑<br/>頭尾往中間夾</span>
+</div>
+
+```cpp
+int i = 0, j = s.size() - 1;
+while (i < j) {
+    // 比較 s[i] 跟 s[j]
+    i++; j--;
+}
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+這個技巧叫**雙指標**：兩個位置同時往中間移動，只要走到一半（`i < j` 不成立）就能檢查完整個字串。等一下迴文判斷就是雙指標最經典的應用。
+
+</div>
+
+---
+layout: section
+---
+
+# 練習時間
+
+---
+
+## 第 26 題　迴文判斷
+
+輸入字串，判斷正著讀和反著讀是否相同。
+
+<div class="my-4 text-center font-mono text-lg">
+l&nbsp;&nbsp;e&nbsp;&nbsp;v&nbsp;&nbsp;e&nbsp;&nbsp;l
+</div>
+
+<div class="grid grid-cols-2 gap-4 my-4 font-mono text-sm">
+  <div class="border border-gray-400 border-opacity-40 p-3">
+    <div class="opacity-60 text-xs mb-1">輸入</div>level
+  </div>
+  <div class="border border-gray-400 border-opacity-40 p-3">
+    <div class="opacity-60 text-xs mb-1">輸出</div>Yes
+  </div>
+</div>
+
+---
+
+## 第 26 題　想法：套用雙指標
+
+<v-clicks>
+
+- 一個指標 `i` 從最前面開始，一個指標 `j` 從最後面開始
+- 比較 `s[i]` 跟 `s[j]`，不一樣就不是迴文
+- 一樣的話，`i` 往後移、`j` 往前移，繼續比對
+- 直到 `i` 跟 `j` 在中間相遇（或錯過）為止
+
+</v-clicks>
+
+---
+
+## 第 26 題　程式
+
+```cpp
+string s;
+cin >> s;
+
+bool ok = true;
+int i = 0, j = s.size() - 1;
+while (i < j) {
+    if (s[i] != s[j]) { ok = false; break; }
+    i++; j--;                          // 兩邊一起往中間走
+}
+cout << (ok ? "Yes" : "No") << endl;
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+只要走一半就能得到答案，比「反轉整個字串再比對」更快，而且不需要額外開一個字串來存反轉的結果。
+
+</div>
+
+---
+
+## 第 26 題　逐步追蹤 "level"
+
+| 步驟 | i   | j   | s[i] | s[j] | 相等？    |
+| ---- | --- | --- | ---- | ---- | --------- |
+| 1    | 0   | 4   | l    | l    | ✅        |
+| 2    | 1   | 3   | e    | e    | ✅        |
+| 3    | 2   | 2   | —    | —    | i=j，停止 |
+
+<div class="mt-4 text-sm opacity-70">
+
+`i` 跟 `j` 相遇時（`i < j` 不再成立），代表已經檢查完整個字串，中間那個字元不需要跟自己比。
+
+</div>
+
+---
+
+## 第 26 題　偶數長度也適用嗎？
+
+`s = "abba"` 追蹤一次：
+
+| 步驟 | i   | j   | s[i] | s[j] | 相等？       |
+| ---- | --- | --- | ---- | ---- | ------------ |
+| 1    | 0   | 3   | a    | a    | ✅           |
+| 2    | 1   | 2   | b    | b    | ✅           |
+| —    | 2   | 1   | —    | —    | i&gt;j，停止 |
+
+<div class="mt-4 text-sm opacity-70">
+
+偶數長度時 `i` 會直接**跳過** `j`（`i > j`），不會有兩個指標相等的情況，但迴圈條件 `i < j` 一樣正確處理了這種情況，不需要特別分兩種寫法。
+
+</div>
+
+---
+layout: fact
+---
+
+# 動手做
+
+打開 oj.itousouta.me → 課程 Day4 → 第 26 題
+
+寫到 AC 為止——今天 5 題全部完成！
+
+---
+layout: fact
+---
+
+# 🍱 短暫休息
+
+10 分鐘後回來，做綜合小考
 
 ---
 layout: section
@@ -939,552 +1541,6 @@ layout: section
 如果要用陣列存「全班期中考跟期末考」兩次成績，你會怎麼設計資料結構？需要幾維的陣列？跟旁邊同學討論看看。
 
 ---
-layout: fact
----
-
-# 🍱 短暫休息
-
-10 分鐘後回來，我們開始今天的題目
-
----
-layout: section
----
-
-# 今日題目
-
----
-
-## 今天的題目都長這樣
-
-```mermaid
-flowchart LR
-  A["讀入資料到<br/>陣列 / 字串"] --> B["用迴圈走訪"] --> C["過程中判斷 / 累加"] --> D["輸出答案"]
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-5 題全部都是同一個模式，差別只在「走訪的時候要做什麼判斷」。
-
-</div>
-
----
-
-## 第 22 題　最大最小平均
-
-輸入 n 個整數，輸出最大值、最小值、平均值（**四捨五入至小數點後 2 位**）。
-
-<div class="grid grid-cols-2 gap-4 my-4 font-mono text-sm">
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸入</div>5<br/>3 7 2 9 4
-  </div>
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸出</div>9<br/>2<br/>5.00
-  </div>
-</div>
-
----
-
-## 第 22 題　讀題
-
-<v-clicks>
-
-- 輸入是 n，再來一整排 n 個整數
-- 輸出**三行**：最大值、最小值、平均值
-- 平均值要**固定兩位小數**，就算剛好整除也要印 `.00`
-
-</v-clicks>
-
----
-
-## 第 22 題　規劃骨架
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    int a[1005];
-    for (int i = 0; i < n; i++) cin >> a[i];
-    // 這裡找最大最小、算平均
-    return 0;
-}
-```
-
----
-
-## 第 22 題　邊走訪邊記錄
-
-```cpp
-int mx = a[0], mn = a[0];
-long long sum = 0;
-for (int i = 0; i < n; i++) {
-    if (a[i] > mx) mx = a[i];
-    if (a[i] < mn) mn = a[i];
-    sum += a[i];
-}
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-一個迴圈裡同時做三件事：比大小找最大、比大小找最小、順便累加。不需要為每件事各寫一個迴圈。
-
-</div>
-
----
-
-## 第 22 題　輸出固定兩位小數
-
-```cpp
-#include <cstdio>   // ← printf 需要這個
-// ...
-cout << mx << endl << mn << endl;
-printf("%.2f\n", (double)sum / n);
-```
-
-<div class="mt-4 border-l-4 border-red-500 pl-4 text-sm">
-
-⚠️ 平均要**固定兩位小數**：5 要輸出 `5.00`，不是 `5`。 `printf("%.2f")` 是最簡單的做法，記得先 `#include <cstdio>`。
-
-</div>
-
----
-
-## 第 22 題　完整程式
-
-```cpp
-#include <iostream>
-#include <cstdio>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    int a[1005];
-    for (int i = 0; i < n; i++) cin >> a[i];
-
-    int mx = a[0], mn = a[0];
-    long long sum = 0;
-    for (int i = 0; i < n; i++) {
-        if (a[i] > mx) mx = a[i];
-        if (a[i] < mn) mn = a[i];
-        sum += a[i];
-    }
-    cout << mx << endl << mn << endl;
-    printf("%.2f\n", (double)sum / n);
-    return 0;
-}
-```
-
----
-
-## 第 23 題　矩陣加總
-
-輸入 n × m 的矩陣，輸出所有元素總和。
-
-<div class="grid grid-cols-2 gap-4 mb-3 font-mono text-sm">
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸入</div>2 3<br/>1 2 3<br/>4 5 6
-  </div>
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸出</div>21
-  </div>
-</div>
-
----
-
-## 第 23 題　想清楚：需要真的開陣列嗎？
-
-<v-clicks>
-
-- 題目只要「總和」，不需要之後再用到矩陣裡個別的值
-- 既然如此，**邊讀邊加**就好，不必開一個二維陣列存起來
-- 這是很重要的判斷力：**先想清楚題目要什麼，再決定要不要開資料結構**
-
-</v-clicks>
-
----
-
-## 第 23 題　程式
-
-```cpp
-int n, m;
-cin >> n >> m;
-
-long long sum = 0;
-for (int i = 0; i < n; i++) {
-    for (int j = 0; j < m; j++) {
-        int x;
-        cin >> x;
-        sum += x;        // ← 讀進來馬上加，不用存
-    }
-}
-cout << sum << endl;
-```
-
-<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
-
-會用二維陣列不代表每次都要用；先想清楚題目要什麼。
-
-</div>
-
----
-
-## 第 23 題　如果真的開了陣列也不算錯
-
-```cpp
-int a[105][105];
-for (int i = 0; i < n; i++)
-    for (int j = 0; j < m; j++) cin >> a[i][j];
-
-long long sum = 0;
-for (int i = 0; i < n; i++)
-    for (int j = 0; j < m; j++) sum += a[i][j];
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-這樣寫**也會 AC**，只是多寫了一個用不到的陣列，多跑一次迴圈。兩種寫法都對，差別只在效率和簡潔度——先求對，再求好。
-
-</div>
-
----
-
-## 第 24 題　九宮格驗證（幻方）
-
-輸入 3×3 方格，判斷每列、每行、兩條對角線的總和是否**全部相等**。
-
-<div class="grid grid-cols-2 gap-6">
-<div class="font-mono text-center text-sm">
-  <table class="mx-auto">
-    <tr><td class="border border-gray-400 px-4 py-2">4</td><td class="border border-gray-400 px-4 py-2">9</td><td class="border border-gray-400 px-4 py-2">2</td></tr>
-    <tr><td class="border border-gray-400 px-4 py-2">3</td><td class="border border-gray-400 px-4 py-2">5</td><td class="border border-gray-400 px-4 py-2">7</td></tr>
-    <tr><td class="border border-gray-400 px-4 py-2">8</td><td class="border border-gray-400 px-4 py-2">1</td><td class="border border-gray-400 px-4 py-2">6</td></tr>
-  </table>
-  <div class="mt-2 opacity-70">每列、每行、對角線都 = 15</div>
-</div>
-<div class="text-sm">
-
-要檢查 **8 條線**：
-
-- 3 條列
-- 3 條行
-- 2 條對角線
-
-</div>
-</div>
-
----
-
-## 第 24 題　讀題：這題要檢查什麼
-
-<v-clicks>
-
-- 3 條**列**：每一列三個數字加起來
-- 3 條**行**：每一行三個數字加起來
-- 1 條**主對角線**：左上到右下
-- 1 條**反對角線**：右上到左下
-- 全部 8 條線的總和都要**等於同一個數**，才輸出 `Magic`
-
-</v-clicks>
-
----
-
-## 第 24 題　為什麼不能只檢查列？
-
-<div class="text-sm">
-
-如果只檢查 3 條列的總和相等，會不會誤判？
-
-</div>
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-red-500 pl-4">
-
-**會**。每列總和相等，不代表行和對角線也相等——例如把某一列的數字順序打亂，列總和不變，但行的總和就會跟著錯。 **8 條線都要檢查，缺一不可。**
-
-</div>
-
-</v-click>
-
----
-
-## 第 24 題　定基準：以第一列為標準
-
-```cpp
-int a[3][3];
-for (int i = 0; i < 3; i++)
-    for (int j = 0; j < 3; j++) cin >> a[i][j];
-
-int target = a[0][0] + a[0][1] + a[0][2];   // 以第一列為基準
-bool ok = true;
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-先算出第一列的總和當作「標準答案」，之後每一條線都跟它比對，只要有一條不一樣，就代表不是幻方。
-
-</div>
-
----
-
-## 第 24 題　同時檢查列與行
-
-```cpp
-for (int i = 0; i < 3; i++) {
-    int row = 0, col = 0;
-    for (int j = 0; j < 3; j++) {
-        row += a[i][j];    // 第 i 列
-        col += a[j][i];    // 第 i 行
-    }
-    if (row != target || col != target) ok = false;
-}
-```
-
-<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
-
-`a[i][j]` 和 `a[j][i]` 只差在索引順序 —— 一個走列、一個走行，可以用**同一個迴圈**同時處理，不用寫成兩段。
-
-</div>
-
----
-
-## 第 24 題　檢查兩條對角線
-
-```cpp
-if (a[0][0] + a[1][1] + a[2][2] != target) ok = false;   // 主對角線
-if (a[0][2] + a[1][1] + a[2][0] != target) ok = false;   // 反對角線
-
-cout << (ok ? "Magic" : "Not Magic") << endl;
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-對角線只有兩條，數量固定，直接手動列出來比迴圈更簡單清楚。
-
-</div>
-
----
-
-## 第 24 題　完整程式
-
-```cpp
-int a[3][3];
-for (int i = 0; i < 3; i++)
-    for (int j = 0; j < 3; j++) cin >> a[i][j];
-
-int target = a[0][0] + a[0][1] + a[0][2];
-bool ok = true;
-
-for (int i = 0; i < 3; i++) {
-    int row = 0, col = 0;
-    for (int j = 0; j < 3; j++) { row += a[i][j]; col += a[j][i]; }
-    if (row != target || col != target) ok = false;
-}
-if (a[0][0] + a[1][1] + a[2][2] != target) ok = false;
-if (a[0][2] + a[1][1] + a[2][0] != target) ok = false;
-
-cout << (ok ? "Magic" : "Not Magic") << endl;
-```
-
----
-
-## 第 25 題　子字串搜尋
-
-輸入字串 s 與 t，判斷 t 是否為 s 的連續一段。
-
-<div class="my-3 font-mono text-sm text-center">
-p r o <span class="border-2 border-green-500 px-1">g r a m</span> m i n g　　找 <span class="border-2 border-green-500 px-1">gram</span> → Yes
-</div>
-
----
-
-## 第 25 題　想法：每個起點都試一次
-
-<v-clicks>
-
-- 從 s 的每一個位置開始，切出跟 t 一樣長的一段
-- 拿這一段跟 t 比對，一樣就是找到了
-- 起點不能太後面——剩下的長度要**至少跟 t 一樣長**才夠切
-
-</v-clicks>
-
----
-
-## 第 25 題　用範例走一次
-
-<div class="text-sm">
-
-`s = "programming"`，`t = "gram"`（長度 4）
-
-</div>
-
-| 起點 i | s.substr(i, 4) | 等於 t？ |
-| ------ | -------------- | -------- |
-| 0      | `prog`         | 否       |
-| 1      | `rogr`         | 否       |
-| 2      | `ogra`         | 否       |
-| 3      | `gram`         | ✅ 是！  |
-
-<div class="mt-4 text-sm opacity-70">
-
-找到後立刻 `break`，不用把剩下的起點都試完。
-
-</div>
-
----
-
-## 第 25 題　程式
-
-```cpp
-string s, t;
-cin >> s >> t;
-
-bool found = false;
-for (int i = 0; i + t.size() <= s.size(); i++) {
-    if (s.substr(i, t.size()) == t) { found = true; break; }
-}
-cout << (found ? "Yes" : "No") << endl;
-```
-
-<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
-
-迴圈條件是 `i + t.size() <= s.size()`——起點不能太後面，否則剩下的長度不夠比。找到就用 `break` 提早結束，不用試完所有起點。
-
-</div>
-
----
-
-## 第 25 題　也可以這樣寫
-
-```cpp
-cout << (s.find(t) != string::npos ? "Yes" : "No") << endl;
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-`s.find(t)` 是 `string` 內建的搜尋功能，找不到會回傳特殊值 `string::npos`。兩種寫法效果一樣，今天先知道自己動手寫的版本在做什麼，之後熟悉了可以改用這個更精簡的寫法。
-
-</div>
-
----
-
-## 第 25 題　常見錯誤：迴圈條件寫錯
-
-```cpp
-for (int i = 0; i < s.size(); i++) {         // ❌ 少考慮 t 的長度
-    if (s.substr(i, t.size()) == t) { ... }
-}
-```
-
-<div class="mt-4 border-l-4 border-red-500 pl-4 text-sm">
-
-如果 `i` 太靠近 s 的尾端，`s.substr(i, t.size())` 會**取不滿** t 的長度（字串長度不夠時 `substr` 只會回傳剩下的部分），導致比對永遠不相等，或在某些情況下引發例外。條件一定要包含 `i + t.size() <= s.size()` 的檢查。
-
-</div>
-
----
-
-## 第 26 題　迴文判斷
-
-輸入字串，判斷正著讀和反著讀是否相同。
-
-<div class="my-4 text-center font-mono text-lg">
-l&nbsp;&nbsp;e&nbsp;&nbsp;v&nbsp;&nbsp;e&nbsp;&nbsp;l
-</div>
-
-<div class="grid grid-cols-2 gap-4 my-4 font-mono text-sm">
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸入</div>level
-  </div>
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸出</div>Yes
-  </div>
-</div>
-
----
-
-## 第 26 題　想法：雙指標從頭尾夾向中間
-
-<v-clicks>
-
-- 一個指標 `i` 從最前面開始，一個指標 `j` 從最後面開始
-- 比較 `s[i]` 跟 `s[j]`，不一樣就不是迴文
-- 一樣的話，`i` 往後移、`j` 往前移，繼續比對
-- 直到 `i` 跟 `j` 在中間相遇（或錯過）為止
-
-</v-clicks>
-
----
-
-## 第 26 題　程式
-
-```cpp
-string s;
-cin >> s;
-
-bool ok = true;
-int i = 0, j = s.size() - 1;
-while (i < j) {
-    if (s[i] != s[j]) { ok = false; break; }
-    i++; j--;                          // 兩邊一起往中間走
-}
-cout << (ok ? "Yes" : "No") << endl;
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-只要走一半就能得到答案，比「反轉整個字串再比對」更快，而且不需要額外開一個字串來存反轉的結果。
-
-</div>
-
----
-
-## 第 26 題　逐步追蹤 "level"
-
-| 步驟 | i   | j   | s[i] | s[j] | 相等？    |
-| ---- | --- | --- | ---- | ---- | --------- |
-| 1    | 0   | 4   | l    | l    | ✅        |
-| 2    | 1   | 3   | e    | e    | ✅        |
-| 3    | 2   | 2   | —    | —    | i=j，停止 |
-
-<div class="mt-4 text-sm opacity-70">
-
-`i` 跟 `j` 相遇時（`i < j` 不再成立），代表已經檢查完整個字串，中間那個字元不需要跟自己比。
-
-</div>
-
----
-
-## 第 26 題　偶數長度也適用嗎？
-
-`s = "abba"` 追蹤一次：
-
-| 步驟 | i   | j   | s[i] | s[j] | 相等？       |
-| ---- | --- | --- | ---- | ---- | ------------ |
-| 1    | 0   | 3   | a    | a    | ✅           |
-| 2    | 1   | 2   | b    | b    | ✅           |
-| —    | 2   | 1   | —    | —    | i&gt;j，停止 |
-
-<div class="mt-4 text-sm opacity-70">
-
-偶數長度時 `i` 會直接**跳過** `j`（`i > j`），不會有兩個指標相等的情況，但迴圈條件 `i < j` 一樣正確處理了這種情況，不需要特別分兩種寫法。
-
-</div>
-
----
-layout: fact
----
-
-# 動手做
-
-oj.itousouta.me → 課程 → Day4
-
-5 題：最大最小平均、矩陣加總、<br/>九宮格、子字串搜尋、迴文
-
----
 layout: section
 ---
 
@@ -1528,17 +1584,23 @@ layout: section
 
 ---
 
-## 回顧④：今天寫的五題
+## 回顧④：今天的節奏
 
 <div class="text-sm">
 
-| 題目         | 用到的技巧                          |
-| ------------ | ----------------------------------- |
-| 最大最小平均 | 一個迴圈同時找最大、最小、累加      |
-| 矩陣加總     | 邊讀邊加，不必真的開陣列            |
-| 九宮格驗證   | `a[i][j]` 與 `a[j][i]` 同一迴圈處理 |
-| 子字串搜尋   | `substr` 逐一比對，注意迴圈邊界     |
-| 迴文判斷     | 雙指標從頭尾往中間夾                |
+| 教了什麼     | 馬上練   |
+| ------------ | -------- |
+| 一維陣列     | 第 22 題 |
+| 二維陣列基礎 | 第 23 題 |
+| 二維陣列進階 | 第 24 題 |
+| 字串基礎     | 第 25 題 |
+| 雙指標技巧   | 第 26 題 |
+
+</div>
+
+<div class="mt-4 text-sm opacity-70">
+
+教一段、練一題，跟前兩天一樣。
 
 </div>
 
