@@ -498,7 +498,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day4 → 第 12 題
+打開 [oj.itousouta.me → 課程 Day4 → 第 12 題](https://oj.itousouta.me/problems/22)
 
 寫到 AC 為止，再往下聽
 
@@ -724,7 +724,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day4 → 第 13 題
+打開 [oj.itousouta.me → 課程 Day4 → 第 13 題](https://oj.itousouta.me/problems/23)
 
 寫到 AC 為止，再往下聽
 
@@ -900,7 +900,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day4 → 第 14 題
+打開 [oj.itousouta.me → 課程 Day4 → 第 14 題](https://oj.itousouta.me/problems/24)
 
 寫到 AC 為止，再往下聽
 
@@ -1210,7 +1210,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day4 → 第 15 題
+打開 [oj.itousouta.me → 課程 Day4 → 第 15 題](https://oj.itousouta.me/problems/25)
 
 寫到 AC 為止，再往下聽
 
@@ -1344,7 +1344,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day4 → 第 16 題
+打開 [oj.itousouta.me → 課程 Day4 → 第 16 題](https://oj.itousouta.me/problems/26)
 
 寫到 AC 為止——今天 5 題全部完成！
 
@@ -1620,4 +1620,4 @@ layout: statement
 
 # 謝謝大家
 
-明天見 👋
+明天見

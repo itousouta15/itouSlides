@@ -533,7 +533,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day2 → 第 2 題
+打開 [oj.itousouta.me → 課程 Day2 → 第 2 題](https://oj.itousouta.me/problems/12)
 
 寫到 AC 為止，再往下聽
 
@@ -622,7 +622,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day2 → 第 3 題
+打開 [oj.itousouta.me → 課程 Day2 → 第 3 題](https://oj.itousouta.me/problems/13)
 
 寫到 AC 為止，再往下聽
 
@@ -1091,7 +1091,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day2 → 第 4 題
+打開 [oj.itousouta.me → 課程 Day2 → 第 4 題](https://oj.itousouta.me/problems/14)
 
 寫到 AC 為止，再往下聽
 
@@ -1329,7 +1329,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day2 → 第 5 題
+打開 [oj.itousouta.me → 課程 Day2 → 第 5 題](https://oj.itousouta.me/problems/15)
 
 寫到 AC 為止——今天 4 題全部完成！
 
@@ -1492,12 +1492,6 @@ layout: section
 | if 重複使用的技巧              | 第 3 題 |
 | 運算子進階 + if/else if 完整鏈 | 第 4 題 |
 | 常數與型別轉換                 | 第 5 題 |
-
-</div>
-
-<div class="mt-4 text-sm opacity-70">
-
-這種「教一段、練一題」的方式，明天開始也會延續下去。
 
 </div>
 

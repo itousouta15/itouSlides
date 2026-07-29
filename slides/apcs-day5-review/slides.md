@@ -1310,7 +1310,7 @@ layout: fact
 
 # 動手做
 
-oj.itousouta.me → 課程 → Day5
+[oj.itousouta.me → 課程 → Day5](https://oj.itousouta.me/courses/7)
 
 3 題：成績等第、峰值偵測、最常見字元
 
