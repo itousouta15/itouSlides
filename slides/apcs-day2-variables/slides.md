@@ -15,31 +15,6 @@ author: 郭家睿 itouSouta
 layout: default
 ---
 
-## 今天的節奏（共 4 小時）
-
-<div class="text-sm">
-
-| 時段          | 內容                                         |
-| ------------- | -------------------------------------------- |
-| 00:00 – 00:15 | 開場、回顧昨天、暖身                         |
-| 00:15 – 00:45 | 資料型態、變數                               |
-| 00:45 – 01:05 | 運算子基礎、if 基礎 → **練習 #12**           |
-| 01:05 – 01:20 | if 重複使用的技巧 → **練習 #13**             |
-| 01:20 – 01:35 | ☕ 中場休息                                  |
-| 01:35 – 02:15 | 運算子進階、if/else if 完整鏈 → **練習 #14** |
-| 02:15 – 02:50 | 常數與型別轉換 → **練習 #15**                |
-| 02:50 – 03:00 | 🍱 短暫休息                                  |
-| 03:00 – 03:45 | 綜合小考、分組討論                           |
-| 03:45 – 04:00 | 回顧、預告明天                               |
-
-</div>
-
-<br>
-
-> 今天每教完一段，馬上去 itouOJ 練一題——學完立刻用，比全部聽完再一次寫更容易記住。
-
----
-
 ## 今天的目標
 
 - 認識基本**資料型態**：`int` / `double` / `char` / `bool` / `string`
@@ -85,7 +60,7 @@ layout: section
 
 ---
 
-## 暖身問題：參考答案
+## 參考答案
 
 <v-clicks>
 
@@ -258,7 +233,7 @@ cout << b << endl;  // 0.12345678901234560  ← 比較準
 
 <div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
 
-`float` 只有約 7 位有效數字，`double` 約 15 位。**記不住就用 `double`**，今天以後你寫的每一個小數都建議用 `double`。
+`float` 只有約 7 位有效數字，`double` 約 15 位。\*\*記不住就用 `double`，今天以後你寫的每一個小數都建議用 `double`。
 
 </div>
 
@@ -270,7 +245,7 @@ cout << b << endl;  // 0.12345678901234560  ← 比較準
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`double`**——身高有小數點。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">`double`——身高有小數點。</div>
 
 </v-click>
 
@@ -282,7 +257,7 @@ cout << b << endl;  // 0.12345678901234560  ← 比較準
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`bool`**——只有「是」或「不是」兩種可能。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">`bool`——只有「是」或「不是」兩種可能。</div>
 
 </v-click>
 
@@ -386,7 +361,7 @@ cout << a % b;   // 2   （餘數 modulo）
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`3`**——`23 = 5 × 4 + 3`，餘數是 3。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">`3`——`23 = 5 × 4 + 3`，餘數是 3。</div>
 
 </v-click>
 
@@ -463,7 +438,7 @@ layout: section
 
 ---
 
-## 第 12 題　判斷奇偶數
+## 第 2 題　判斷奇偶數
 
 輸入一個整數，判斷奇數還是偶數。
 
@@ -488,7 +463,7 @@ layout: section
 
 ---
 
-## 第 12 題　讀題
+## 第 2 題　讀題
 
 <v-clicks>
 
@@ -500,7 +475,7 @@ layout: section
 
 ---
 
-## 第 12 題　規劃程式骨架
+## 第 2 題　規劃程式骨架
 
 ```cpp
 #include <iostream>
@@ -516,7 +491,7 @@ int main() {
 
 ---
 
-## 第 12 題　完成判斷
+## 第 2 題　完成判斷
 
 ```cpp
 if (n % 2 == 0) cout << "Even" << endl;
@@ -531,7 +506,7 @@ else            cout << "Odd" << endl;
 
 ---
 
-## 第 12 題　完整程式
+## 第 2 題　完整程式
 
 ```cpp
 #include <iostream>
@@ -558,7 +533,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day2 → 第 12 題
+打開 oj.itousouta.me → 課程 Day2 → 第 2 題
 
 寫到 AC 為止，再往下聽
 
@@ -589,7 +564,7 @@ layout: section
 
 ---
 
-## 第 13 題　三數取最大值
+## 第 3 題　三數取最大值
 
 輸入三個整數，輸出最大的一個。
 
@@ -604,7 +579,7 @@ layout: section
 
 ---
 
-## 第 13 題　逐步追蹤
+## 第 3 題　逐步追蹤
 
 輸入 `3 7 5` 時：
 
@@ -622,7 +597,7 @@ layout: section
 
 ---
 
-## 第 13 題　程式
+## 第 3 題　程式
 
 ```cpp
 int a, b, c;
@@ -647,7 +622,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day2 → 第 13 題
+打開 oj.itousouta.me → 課程 Day2 → 第 3 題
 
 寫到 AC 為止，再往下聽
 
@@ -655,7 +630,7 @@ layout: fact
 layout: fact
 ---
 
-# ☕ 中場休息
+# 中場休息
 
 15 分鐘後回來，我們進入運算子與流程控制的進階內容
 
@@ -845,7 +820,7 @@ cout << 10 - 2 * 3;
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`4`**——先算 `2 * 3 = 6`，再算 `10 - 6 = 4`。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">`4`——先算 `2 * 3 = 6`，再算 `10 - 6 = 4`。</div>
 
 </v-click>
 
@@ -862,7 +837,7 @@ cout << (a % 2 == 0 && a > 5);
 
 <div class="mt-6 border-l-4 border-green-500 pl-4">
 
-**`1`（true）**——`a % 2 == 0` 是 true（6 是偶數），`a > 5` 也是 true，兩個都成立，`&&` 結果是 true。
+`1`（true）\*\*——`a % 2 == 0` 是 true（6 是偶數），`a > 5` 也是 true，兩個都成立，`&&` 結果是 true。
 
 </div>
 
@@ -980,7 +955,7 @@ else cout << "小";
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`中`**——`x > 10` 不成立，`x > 5` 成立（7 > 5），印出「中」後停止。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">`中`——`x > 10` 不成立，`x > 5` 成立（7 > 5），印出「中」後停止。</div>
 
 </v-click>
 
@@ -992,7 +967,7 @@ layout: section
 
 ---
 
-## 第 14 題　簡易計算機
+## 第 4 題　簡易計算機
 
 輸入兩個整數與一個運算子，輸出結果。
 
@@ -1017,7 +992,7 @@ layout: section
 
 ---
 
-## 第 14 題　讀題：兩個要注意的地方
+## 第 4 題　讀題：兩個要注意的地方
 
 <v-clicks>
 
@@ -1028,7 +1003,7 @@ layout: section
 
 ---
 
-## 第 14 題　規劃骨架
+## 第 4 題　規劃骨架
 
 ```cpp
 #include <iostream>
@@ -1045,7 +1020,7 @@ int main() {
 
 ---
 
-## 第 14 題　處理加減乘
+## 第 4 題　處理加減乘
 
 ```cpp
 if      (op == '+') cout << a + b << endl;
@@ -1061,7 +1036,7 @@ else if (op == '*') cout << a * b << endl;
 
 ---
 
-## 第 14 題　處理除法（含除以 0）
+## 第 4 題　處理除法（含除以 0）
 
 ```cpp
 else if (op == '/') {
@@ -1078,7 +1053,7 @@ else if (op == '/') {
 
 ---
 
-## 第 14 題　除法是整數除法
+## 第 4 題　除法是整數除法
 
 <div class="text-sm">
 
@@ -1094,7 +1069,7 @@ else if (op == '/') {
 
 ---
 
-## 第 14 題　完整程式
+## 第 4 題　完整程式
 
 ```cpp
 int a, b;
@@ -1116,7 +1091,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day2 → 第 14 題
+打開 oj.itousouta.me → 課程 Day2 → 第 4 題
 
 寫到 AC 為止，再往下聽
 
@@ -1207,7 +1182,7 @@ cout << (double)a / b;      // 2.5  ← 先轉型再除
 
 - C++ 看到 `int / int`，會認定「你要的也是 int」
 - 於是先算出真正的商 `2.5`，再把小數部分整個丟掉，只留 `2`
-- 只要算式裡**有一邊是 `double`**，結果就會是 `double`，才會有小數
+- 只要算式裡\*\*有一邊是 `double`，結果就會是 `double`，才會有小數
 - 這也是為什麼 `(double)a / b` 要轉的是**其中一個**，不用兩個都轉
 
 </v-clicks>
@@ -1223,7 +1198,7 @@ cout << a / b << endl;
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`3`**——`7 / 2` 數學上是 3.5，兩邊都是 int，捨去小數變成 3。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">`3`——`7 / 2` 數學上是 3.5，兩邊都是 int，捨去小數變成 3。</div>
 
 </v-click>
 
@@ -1238,7 +1213,7 @@ cout << (double)a / b << endl;
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`3.5`**——轉型成 double 之後再除，小數就保留下來了。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">`3.5`——轉型成 double 之後再除，小數就保留下來了。</div>
 
 </v-click>
 
@@ -1250,7 +1225,7 @@ layout: section
 
 ---
 
-## 第 15 題　BMI 分級
+## 第 5 題　BMI 分級
 
 輸入體重（公斤）與身高（**公分**），計算 BMI 並分級。
 
@@ -1275,7 +1250,7 @@ BMI = 體重 ÷ 身高(公尺)²
 
 ---
 
-## 第 15 題　讀題：單位陷阱
+## 第 5 題　讀題：單位陷阱
 
 <div class="border-l-4 border-red-500 pl-4 text-sm">
 
@@ -1285,7 +1260,7 @@ BMI = 體重 ÷ 身高(公尺)²
 
 ---
 
-## 第 15 題　規劃骨架
+## 第 5 題　規劃骨架
 
 ```cpp
 #include <iostream>
@@ -1301,7 +1276,7 @@ int main() {
 
 ---
 
-## 第 15 題　算出 BMI
+## 第 5 題　算出 BMI
 
 ```cpp
 double m = h / 100.0;          // ← 100.0 不是 100
@@ -1316,7 +1291,7 @@ double bmi = w / (m * m);      // w 是 int，但除以 double 會自動轉
 
 ---
 
-## 第 15 題　分級輸出
+## 第 5 題　分級輸出
 
 ```cpp
 if      (bmi < 18.5) cout << "過輕" << endl;
@@ -1333,7 +1308,7 @@ else                 cout << "肥胖" << endl;
 
 ---
 
-## 第 15 題　完整程式
+## 第 5 題　完整程式
 
 ```cpp
 int w, h;
@@ -1354,7 +1329,7 @@ layout: fact
 
 # 動手做
 
-打開 oj.itousouta.me → 課程 Day2 → 第 15 題
+打開 oj.itousouta.me → 課程 Day2 → 第 5 題
 
 寫到 AC 為止——今天 4 題全部完成！
 
@@ -1364,7 +1339,7 @@ layout: fact
 
 # 🍱 短暫休息
 
-10 分鐘後回來，做綜合小考
+10 分鐘後回來
 
 ---
 layout: section
@@ -1380,7 +1355,7 @@ layout: section
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`2`**——兩邊都是 int，整數除法捨去小數。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">`2`——兩邊都是 int，整數除法捨去小數。</div>
 
 </v-click>
 
@@ -1392,7 +1367,7 @@ layout: section
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**把比較 `==` 寫成賦值 `=`**，這行會把 90 塞進 score，而且條件永遠成立。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">**把比較 `==` 寫成賦值 `=`，這行會把 90 塞進 score，而且條件永遠成立。</div>
 
 </v-click>
 
@@ -1404,7 +1379,7 @@ layout: section
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`-1`**，不是 `1`。判斷偶數要用 `n % 2 == 0`，不要用 `n % 2 == 1` 判斷奇數。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">`-1`，不是 `1`。判斷偶數要用 `n % 2 == 0`，不要用 `n % 2 == 1` 判斷奇數。</div>
 
 </v-click>
 
@@ -1429,7 +1404,7 @@ layout: section
 
 <v-click>
 
-<div class="mt-6 border-l-4 border-green-500 pl-4">**`&&`（AND）**兩個條件都要成立；**`||`（OR）**只要一個成立就夠了。</div>
+<div class="mt-6 border-l-4 border-green-500 pl-4">`&&`（AND）**兩個條件都要成立；`||`（OR）**只要一個成立就夠了。</div>
 
 </v-click>
 
@@ -1511,12 +1486,12 @@ layout: section
 
 <div class="text-sm">
 
-| 教了什麼                       | 馬上練   |
-| ------------------------------ | -------- |
-| 運算子基礎 + if 基礎           | 第 12 題 |
-| if 重複使用的技巧              | 第 13 題 |
-| 運算子進階 + if/else if 完整鏈 | 第 14 題 |
-| 常數與型別轉換                 | 第 15 題 |
+| 教了什麼                       | 馬上練  |
+| ------------------------------ | ------- |
+| 運算子基礎 + if 基礎           | 第 2 題 |
+| if 重複使用的技巧              | 第 3 題 |
+| 運算子進階 + if/else if 完整鏈 | 第 4 題 |
+| 常數與型別轉換                 | 第 5 題 |
 
 </div>
 
@@ -1548,4 +1523,4 @@ layout: statement
 
 # 謝謝大家
 
-明天見 👋
+明天見
