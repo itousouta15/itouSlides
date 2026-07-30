@@ -1,0 +1,214 @@
+---
+import Base from "../layouts/Base.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title="404 — itouSlides" description="這個頁面不知道飛去哪裡了 (´；ω；`)">
+	<div class="page-wrap">
+		<header class="mini-header">
+			<a class="brand mono" href={base}>ITOUSLIDES</a>
+			<button class="theme-toggle" id="theme-toggle" aria-label="切換深淺色模式" title="切換深淺色模式">
+				<span id="theme-icon">☀</span>
+			</button>
+		</header>
+
+		<section class="notfound">
+			<h1 class="notfound-code" id="notfound-code">4<span class="notfound-code-accent">0</span>4</h1>
+			<p class="notfound-msg">這個頁面不知道飛去哪裡了 (´；ω；`)</p>
+			<p class="notfound-sub">你要找的頁面不存在，或是已經搬家了</p>
+			<div class="notfound-actions">
+				<a class="btn-primary" href={base}>
+					回首頁 <span class="btn-arrow">→</span>
+				</a>
+			</div>
+		</section>
+	</div>
+</Base>
+
+<script>
+	// 跟 itouSouta.me 同款「稍微」跟著滑鼠瞄過去的手感：位移量夾在極小範圍內，
+	// 用 requestAnimationFrame 節流，避免 mousemove 高頻率觸發把畫面重排灌爆。
+	const MAX_OFFSET = 10;
+	const FOLLOW_STRENGTH = 0.03;
+	const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
+
+	const heading = document.getElementById("notfound-code");
+	if (heading) {
+		let raf = 0;
+		let pending: { x: number; y: number } | null = null;
+
+		const apply = () => {
+			if (pending) heading.style.transform = `translate(${pending.x}px, ${pending.y}px)`;
+			raf = 0;
+		};
+
+		window.addEventListener("mousemove", e => {
+			const rect = heading.getBoundingClientRect();
+			const cx = rect.left + rect.width / 2;
+			const cy = rect.top + rect.height / 2;
+			pending = {
+				x: clamp((e.clientX - cx) * FOLLOW_STRENGTH, -MAX_OFFSET, MAX_OFFSET),
+				y: clamp((e.clientY - cy) * FOLLOW_STRENGTH, -MAX_OFFSET, MAX_OFFSET)
+			};
+			if (!raf) raf = requestAnimationFrame(apply);
+		});
+	}
+
+	// 跟首頁共用同一套邏輯：Base.astro 的 blocking script 已經在畫面畫出來前
+	// 決定好 data-theme，這裡只需要處理「點按鈕之後」的切換與圖示同步。
+	const toggle = document.getElementById("theme-toggle")!;
+	const icon = document.getElementById("theme-icon")!;
+
+	function updateIcon() {
+		const isLight = document.documentElement.getAttribute("data-theme") === "light";
+		icon.textContent = isLight ? "☾" : "☀";
+	}
+
+	toggle.addEventListener("click", () => {
+		const isLight = document.documentElement.getAttribute("data-theme") === "light";
+		if (isLight) {
+			document.documentElement.removeAttribute("data-theme");
+			localStorage.setItem("theme", "dark");
+		} else {
+			document.documentElement.setAttribute("data-theme", "light");
+			localStorage.setItem("theme", "light");
+		}
+		updateIcon();
+	});
+
+	updateIcon();
+</script>
+
+<style>
+	.page-wrap {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 0 20px;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.mini-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 24px 0;
+	}
+
+	.brand {
+		font-size: 13px;
+		letter-spacing: 0.15em;
+		color: var(--dim);
+		transition: color 0.2s ease;
+	}
+	.brand:hover {
+		color: var(--blue);
+	}
+
+	.theme-toggle {
+		width: 34px;
+		height: 34px;
+		border-radius: 999px;
+		border: 1px solid var(--bd2);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 15px;
+		color: var(--tx);
+		transition:
+			background 0.2s ease,
+			border-color 0.2s ease;
+	}
+	.theme-toggle:hover {
+		background: var(--inset);
+	}
+
+	.notfound {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 40px 20px 90px;
+	}
+
+	.notfound-code {
+		font-family: var(--font-serif);
+		font-size: 128px;
+		font-weight: 700;
+		color: var(--tx);
+		line-height: 1;
+		margin: 0;
+		/* 位移用補間，不然每個 mousemove 影格都硬切 transform 會頓頓的 */
+		transition: transform 0.15s ease-out;
+	}
+	.notfound-code-accent {
+		color: var(--blue);
+	}
+
+	.notfound-msg {
+		font-size: 18px;
+		color: var(--tx);
+		margin: 22px 0 0;
+	}
+	.notfound-sub {
+		font-size: 15px;
+		color: var(--dim);
+		margin: 6px 0 0;
+	}
+
+	.notfound-actions {
+		margin-top: 30px;
+	}
+
+	.btn-primary {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		border-radius: 999px;
+		padding: 10px 10px 10px 22px;
+		font-family: var(--font-sans);
+		font-size: 16px;
+		font-weight: 700;
+		background: var(--btn);
+		color: var(--btntx);
+		transition:
+			box-shadow 0.2s ease,
+			background 0.2s ease,
+			transform 0.15s ease;
+	}
+	.btn-primary:active {
+		transform: scale(0.96);
+	}
+
+	.btn-arrow {
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 16px;
+		background: rgba(0, 0, 0, 0.12);
+		transition:
+			transform 0.2s ease,
+			background 0.2s ease,
+			color 0.2s ease;
+	}
+	.btn-primary:hover .btn-arrow {
+		transform: rotate(-45deg);
+		background: #21252b;
+		color: #8f9dc9;
+	}
+
+	@media (max-width: 640px) {
+		.notfound {
+			padding: 20px 20px 60px;
+		}
+		.notfound-code {
+			font-size: 84px;
+		}
+	}
+</style>
