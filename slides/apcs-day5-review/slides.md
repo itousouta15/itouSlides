@@ -20,7 +20,7 @@ layout: default
 - 把四天學的東西**串成一套解題流程**
 - 認識 APCS 實作題的**固定套路**
 - 學會**先想清楚再動手**：讀題 → 想法 → 手算 → 寫程式
-- 完成 itouOJ Day5 的 3 題綜合應用
+- **90 分鐘**挑戰 itouOJ 上的 3 題綜合應用，賽後一起檢討、頒獎
 
 <br>
 
@@ -477,408 +477,6 @@ for (int i = 0; i <= n; i++) {
 </v-click>
 
 ---
-layout: fact
----
-
-# ☕ 中場休息
-
-15 分鐘後回來，我們開始今天的題目
-
----
-layout: section
----
-
-# 今日題目
-
----
-
-## 第 27 題　成績等第統計
-
-輸入 n 位學生成績，統計 A / B / C / D / F 各有幾人。
-
-<div class="grid grid-cols-5 gap-2 my-4 text-center text-sm">
-  <div class="border-t-4 border-green-500 pt-2"><div class="font-bold">A</div><div class="opacity-70">90 以上</div></div>
-  <div class="border-t-4 border-blue-500 pt-2"><div class="font-bold">B</div><div class="opacity-70">80–89</div></div>
-  <div class="border-t-4 border-yellow-500 pt-2"><div class="font-bold">C</div><div class="opacity-70">70–79</div></div>
-  <div class="border-t-4 border-orange-500 pt-2"><div class="font-bold">D</div><div class="opacity-70">60–69</div></div>
-  <div class="border-t-4 border-red-500 pt-2"><div class="font-bold">F</div><div class="opacity-70">60 以下</div></div>
-</div>
-
----
-
-## 第 27 題　套進固定套路
-
-<v-clicks>
-
-- 讀入 n → **讀入 n 個資料到陣列**（或邊讀邊處理）
-- 用一個 for 走一遍 → 每讀一個成績就判斷一次
-- 過程中計數 → 這裡要記的是「**每個等第各幾人**」
-- 輸出答案 → 印出 5 行
-
-</v-clicks>
-
----
-
-## 第 27 題　用今天教的方法手算一次
-
-<div class="text-sm">
-
-輸入 `95 82 76 60 45 100`，照著讀，逐一分類：
-
-</div>
-
-| 成績 | 屬於哪個等第 | 目前計數 |
-| ---- | ------------ | -------- |
-| 95   | A            | A=1      |
-| 82   | B            | B=1      |
-| 76   | C            | C=1      |
-| 60   | D            | D=1      |
-| 45   | F            | F=1      |
-| 100  | A            | A=2      |
-
-<div class="mt-2 text-sm opacity-70">
-
-跟範例輸出 `A: 2, B: 1, C: 1, D: 1, F: 1` 一致，代表想法正確。
-
-</div>
-
----
-
-## 第 27 題　想法：計數陣列
-
-<div class="text-sm">
-
-5 種等第，開一個大小為 5 的陣列，每一格代表一個等第的人數：
-
-</div>
-
-```cpp
-int cnt[5] = {};   // cnt[0]=A, cnt[1]=B, cnt[2]=C, cnt[3]=D, cnt[4]=F
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-每讀進一個成績，判斷它屬於哪個等第，就把對應那一格加一。
-
-</div>
-
----
-
-## 第 27 題　程式：讀入與分類
-
-```cpp
-int cnt[5] = {};                      // A B C D F 各一格，全部歸零
-int n; cin >> n;
-for (int i = 0; i < n; i++) {
-    int s; cin >> s;
-    if      (s >= 90) cnt[0]++;
-    else if (s >= 80) cnt[1]++;
-    else if (s >= 70) cnt[2]++;
-    else if (s >= 60) cnt[3]++;
-    else              cnt[4]++;
-}
-```
-
-<div class="mt-4 text-sm opacity-70">
-
-這裡不需要把每個成績都存起來——分類完馬上更新計數，成績本身用完就丟。
-
-</div>
-
----
-
-## 第 27 題　輸出
-
-```cpp
-string name[5] = {"A", "B", "C", "D", "F"};
-for (int i = 0; i < 5; i++) {
-    cout << name[i] << ": " << cnt[i] << endl;
-}
-```
-
-<div class="grid grid-cols-2 gap-4 my-3 font-mono text-sm">
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸入</div>6<br/>95 82 76 60 45 100
-  </div>
-  <div class="border border-gray-400 border-opacity-40 p-3">
-    <div class="opacity-60 text-xs mb-1">輸出</div>A: 2<br/>B: 1<br/>C: 1<br/>D: 1<br/>F: 1
-  </div>
-</div>
-
----
-
-## 第 27 題　兩個容易失分的地方
-
-<div class="border-l-4 border-red-500 pl-4 text-sm">
-
-⚠️ **即使人數是 0 也要輸出那一行。** 用陣列 `cnt[5]` 而不是五個變數，就能用一個 for 全部印出來，自然不會漏掉。
-
-⚠️ 格式是 `A: 2`——冒號後面**有一個空白**，不是 `A:2`。
-
-</div>
-
-<div class="mt-4 text-sm opacity-70">
-
-這兩個都不是演算法問題，是**格式**問題——回想今天開場說的：輸出格式要逐字比對。
-
-</div>
-
----
-
-## 第 28 題　峰值偵測
-
-某個位置的值**嚴格大於**左右鄰居，就是一個峰值。頭尾只跟唯一的鄰居比。
-
-<div class="my-4 flex items-end justify-center gap-1 text-center font-mono text-sm">
-  <div><div class="bg-blue-500 bg-opacity-40 w-12" style="height:20px"></div><div class="mt-1">1</div></div>
-  <div><div class="bg-green-500 w-12" style="height:60px"></div><div class="mt-1 font-bold">3</div><div class="text-xs">峰值</div></div>
-  <div><div class="bg-blue-500 bg-opacity-40 w-12" style="height:40px"></div><div class="mt-1">2</div></div>
-  <div><div class="bg-green-500 w-12" style="height:80px"></div><div class="mt-1 font-bold">4</div><div class="text-xs">峰值</div></div>
-  <div><div class="bg-blue-500 bg-opacity-40 w-12" style="height:20px"></div><div class="mt-1">1</div></div>
-</div>
-
-<div class="text-center text-sm mb-3">答案：<b>2</b></div>
-
----
-
-## 第 28 題　套進固定套路
-
-<v-clicks>
-
-- 讀入 n 個資料到陣列 → 需要**同時看到左右鄰居**，一定要先存起來
-- 用一個 for 走一遍 → 走訪每一個位置
-- 過程中比較 → 跟左邊、右邊都比一次
-- 過程中計數 → 是峰值就加一
-
-</v-clicks>
-
----
-
-## 第 28 題　為什麼一定要先存成陣列
-
-<div class="border-l-4 border-blue-500 pl-4 text-sm">
-
-跟第 27 題不一樣：這裡**沒辦法邊讀邊處理**，因為判斷 `a[i]` 是不是峰值，需要同時知道 `a[i-1]` 和 `a[i+1]`——也就是「還沒讀到的下一個值」。這種需要**前後對照**的題目，一定要先把資料存進陣列。
-
-</div>
-
----
-
-## 第 28 題　最容易出錯的地方：頭尾
-
-<div class="border-l-4 border-yellow-500 pl-4 text-sm">
-
-**頭尾是最容易出錯的地方。** `a[0]` 沒有左鄰居，只要比 `a[1]` 大就算； `a[n-1]` 同理沒有右鄰居。而 n = 1 時，那唯一一個元素**也算**一個峰值（因為它沒有任何鄰居，兩邊條件都自動成立）。
-
-</div>
-
----
-
-## 第 28 題　把邊界一次處理掉
-
-```cpp
-int n; cin >> n;
-int a[1005];
-for (int i = 0; i < n; i++) cin >> a[i];
-
-int cnt = 0;
-for (int i = 0; i < n; i++) {
-    bool leftOk  = (i == 0)     || (a[i] > a[i - 1]);   // 沒有左鄰居就算過
-    bool rightOk = (i == n - 1) || (a[i] > a[i + 1]);   // 沒有右鄰居就算過
-    if (leftOk && rightOk) cnt++;
-}
-cout << cnt << endl;
-```
-
----
-
-## 第 28 題　為什麼這樣寫不會越界
-
-<div class="border-l-4 border-green-500 pl-4 text-sm">
-
-用 `(i == 0) ||` 這種寫法，**邊界和中間可以用同一個迴圈處理**，不必分成三段寫。 `||` 具有「短路」特性：左邊成立時，右邊根本不會被計算，所以當 `i == 0` 成立時，`a[i - 1]` 不會真的被存取，不會越界。
-
-</div>
-
----
-
-## 第 28 題　逐步追蹤 [1,3,2,4,1]
-
-| i   | a[i] | leftOk         | rightOk    | 是峰值？ |
-| --- | ---- | -------------- | ---------- | -------- |
-| 0   | 1    | true（無左鄰） | 1&gt;3？否 | 否       |
-| 1   | 3    | 3&gt;1？是     | 3&gt;2？是 | ✅       |
-| 2   | 2    | 2&gt;3？否     | —          | 否       |
-| 3   | 4    | 4&gt;2？是     | 4&gt;1？是 | ✅       |
-| 4   | 1    | 1&gt;4？否     | —          | 否       |
-
-<div class="mt-2 text-sm opacity-70">
-
-共 2 個峰值，跟前面的答案一致。
-
-</div>
-
----
-
-## 第 29 題　最常見字元
-
-輸入小寫字串，找出出現最多次的字元。並列時輸出**字母順序最小**的。
-
-<div class="text-center text-sm mt-4">`banana` → 輸出 `a 3`</div>
-
----
-
-## 第 29 題　套進固定套路
-
-<v-clicks>
-
-- 讀入資料 → 一個字串
-- 用一個 for 走一遍 → 走訪字串的每個字元
-- 過程中計數 → 這裡要記的是「**每個字母各出現幾次**」
-- 輸出答案 → 找出次數最多的那個字母
-
-</v-clicks>
-
-<div class="mt-4 border-l-4 border-blue-500 pl-4 text-sm" v-click>
-
-跟第 27 題「算等第人數」是**同一個技巧**，只是種類從 5 種變成 26 種。
-
-</div>
-
----
-
-## 第 29 題　用 "banana" 手算一次
-
-| 字元 | 走到這裡時的 cnt |
-| ---- | ---------------- |
-| b    | b=1              |
-| a    | a=1              |
-| n    | n=1              |
-| a    | a=2              |
-| n    | n=2              |
-| a    | a=3              |
-
-<div class="mt-2 text-sm opacity-70">
-
-走完後 `cnt['a']=3`、`cnt['b']=1`、`cnt['n']=2`，最大值是 a 的 3 次，跟範例輸出 `a 3` 一致。
-
-</div>
-
----
-
-## 第 29 題　程式：建立計數陣列
-
-```cpp
-string s;
-cin >> s;
-
-int cnt[26] = {};                    // 26 個字母各一格
-for (char c : s) cnt[c - 'a']++;     // ← 關鍵：字元轉索引
-```
-
-<div class="my-4 flex items-end justify-center gap-1 text-center font-mono text-sm">
-  <div><div class="bg-green-500 w-10" style="height:60px"></div><div class="mt-1 font-bold">a</div><div class="text-xs">3</div></div>
-  <div><div class="bg-blue-500 bg-opacity-40 w-10" style="height:20px"></div><div class="mt-1">b</div><div class="text-xs">1</div></div>
-  <div><div class="bg-blue-500 bg-opacity-40 w-10" style="height:40px"></div><div class="mt-1">n</div><div class="text-xs">2</div></div>
-</div>
-
----
-
-## 第 29 題　`c - 'a'` 是什麼意思
-
-字元在電腦裡就是數字。`'a'` = 97、`'b'` = 98、……、`'z'` = 122。
-
-<div class="grid grid-cols-4 gap-2 my-4 text-center font-mono text-sm">
-  <div class="border border-gray-400 border-opacity-40 p-2">'a' − 'a'<br/><b>0</b></div>
-  <div class="border border-gray-400 border-opacity-40 p-2">'b' − 'a'<br/><b>1</b></div>
-  <div class="border border-gray-400 border-opacity-40 p-2">'c' − 'a'<br/><b>2</b></div>
-  <div class="border border-gray-400 border-opacity-40 p-2">'z' − 'a'<br/><b>25</b></div>
-</div>
-
-所以 `cnt[c - 'a']++` 就是「把這個字母對應的格子加一」。
-
----
-
-## 第 29 題　找出次數最多的字母
-
-```cpp
-int best = 0;                        // 從 a 開始找
-for (int i = 1; i < 26; i++) {
-    if (cnt[i] > cnt[best]) best = i;    // ← 嚴格大於才換
-}
-cout << (char)('a' + best) << " " << cnt[best] << endl;
-```
-
-<div class="mt-2 border-l-4 border-green-500 pl-4 text-sm">
-
-用**嚴格大於** `>` 而不是 `>=`，並且**從 0 往上找**——並列時自然會留在字母順序較小的那一個，不必額外處理。
-
-</div>
-
----
-
-## 第 29 題　為什麼「嚴格大於」能處理並列
-
-<div class="text-sm">
-
-假設 `cnt['a']` 和 `cnt['c']` 都是最大值 3：
-
-</div>
-
-| i      | cnt[i] | cnt[i] &gt; cnt[best]？ | best      |
-| ------ | ------ | ----------------------- | --------- |
-| 0（a） | 3      | —                       | 0         |
-| 1（b） | 1      | 否                      | 0         |
-| 2（c） | 3      | 3 &gt; 3？**否**        | 0（不變） |
-
-<div class="mt-2 text-sm opacity-70">
-
-走到 `c` 時雖然次數一樣多，但因為不是「嚴格大於」，`best` 不會被換掉，自然留在先找到的 `a`——也就是字母順序較小的那個。
-
-</div>
-
----
-
-## 這招叫「計數陣列」
-
-<div class="text-sm">
-
-第 27 題數等第、第 29 題數字母，用的是**同一個技巧**：
-
-</div>
-
-```cpp
-int cnt[種類數] = {};     // 每種一格，全部歸零
-for (每一筆資料) cnt[這筆屬於第幾種]++;
-```
-
-<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
-
-只要題目在問「**各有幾個**」「**哪個最多**」，先想想能不能開一個計數陣列。種類不多的時候（等第 5 種、字母 26 種），這是最直接的解法。
-
-</div>
-
----
-
-## 計數陣列：什麼時候該用
-
-<v-clicks>
-
-- 資料的「種類數」不多、而且**固定**（等第、字母、骰子點數……）
-- 只需要知道「每種各出現幾次」，不需要記住原始資料的順序
-- 索引不一定是數字本身——**字元要先轉成索引**（`c - 'a'`）
-
-</v-clicks>
-
----
-layout: fact
----
-
-# 🍱 短暫休息
-
-10 分鐘後回來，我們談談怎麼避免失分
-
----
 layout: section
 ---
 
@@ -1116,193 +714,39 @@ layout: section
 </v-clicks>
 
 ---
-layout: section
+layout: fact
 ---
 
-# 綜合小考
+# ☕ 中場休息
 
----
-
-## Q1
-
-APCS 實作題的固定套路是「讀入 → 走一遍 → **？** → 輸出」，中間那格通常是什麼？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">**累加 / 比較 / 計數**——依題目要求，走訪過程中記錄需要的資訊。</div>
-
-</v-click>
-
----
-
-## Q2
-
-解題四步驟中，「用範例手算一遍」的目的是什麼？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">確認自己真的**讀懂題目**。如果連自己都算不出正確答案，寫出來的程式一定也是錯的。</div>
-
-</v-click>
-
----
-
-## Q3
-
-計數陣列適合用在什麼情境？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">資料的**種類數固定且不多**，只需要知道每種各出現幾次的時候（例如等第、字母）。</div>
-
-</v-click>
-
----
-
-## Q4
-
-峰值偵測那題，為什麼 `(i == 0) || (a[i] > a[i-1])` 這樣寫不會讓 `a[-1]` 越界？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">`||` 有短路特性：`i == 0` 成立時，右邊的 `a[i-1] `根本不會被計算。</div>
-
-</v-click>
-
----
-
-## Q5
-
-初學階段的 WA，大約有多少比例其實是格式問題，不是演算法錯誤？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">**超過一半**。所以 WA 時應該先重看輸出格式，不要急著改演算法。</div>
-
-</v-click>
-
----
-
-## Q6
-
-`cnt[c - 'a']++` 這種寫法，如果字串裡出現大寫字母會怎樣？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">會出錯——大寫字母的 ASCII 值跟小寫不同，`c - 'a'` 算出來的索引
-可能是負數或超出 `cnt[26]` 的範圍，變成未定義行為。題目說「僅含小寫」就是在保證這件事不會發生。</div>
-
-</v-click>
-
----
-
-## Q7
-
-考試中一題卡住很久，最建議的做法是什麼？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">**先跳過，寫其他有把握的題目**，等時間允許再回來想。不要讓一題拖垮全場。</div>
-
-</v-click>
-
----
-
-## Q8
-
-交卷前的檢查清單裡，「用範例輸入再手算一次」的用意是什麼？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">確認程式的**實際輸出**跟範例輸出**逐字相同**，這是最後一道防線，
-能抓到很多光看程式碼看不出來的格式問題。</div>
-
-</v-click>
-
----
-
-## Q9
-
-程式碼健檢那四段程式碼的錯誤，有什麼共同點？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">都跟「**起始值**」或「**先後順序**」有關，不是複雜的邏輯錯誤。</div>
-
-</v-click>
-
----
-
-## Q10
-
-第 28 題峰值偵測為什麼不能像第 27 題一樣「邊讀邊處理」，一定要先存成陣列？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">因為判斷一個位置是不是峰值，需要同時比較**左右兩邊的鄰居**，
-其中右邊的值在讀到它之前根本還不知道，所以必須先把全部資料存起來才能比較。</div>
-
-</v-click>
-
----
-
-## Q11
-
-考試中發現某一題已經花了很多時間還是卡住，最好的策略是什麼？
-
-<v-click>
-
-<div class="mt-6 border-l-4 border-green-500 pl-4">**先寫下目前的想法，跳去做其他有把握的題目**，等時間允許再回來。</div>
-
-</v-click>
+15 分鐘後回來，開始今天的 90 分鐘實戰演練
 
 ---
 layout: section
 ---
 
-# 分組討論
+# 90 分鐘實戰演練
 
 ---
 
-## 常見迷思：一定要一次寫對嗎？
+## 比賽規則
 
 <v-clicks>
 
-- 不用。**itouOJ 可以重複提交**，交錯不會扣分，改完再交就好
-- 比起追求「一次就 AC」，更重要的是**看懂錯在哪裡**再修正
-- WA、CE 都是過程的一部分，不是失敗
+- 綜合應用題：P1 畢業紀念冊之外的用途？、P2 校長的口號到底多有梗？（現場視情況再加一題）
+- 每題都有子題配分，就算寫不完整支程式，先讓第一小題的輸出正確也拿得到分數
+- 時間：**90 分鐘**，時間到系統就會關閉提交
+- 可以重複提交，交錯不扣分，改完再交就好
+- 卡住的話用今天教的方法：重新讀題、手算範例、想「這題屬於哪一種套路」
+- 真的想不出來，先交出目前寫到的部分，**有交比空白好**
 
 </v-clicks>
 
-<div class="mt-4 border-l-4 border-blue-500 pl-4 text-sm" v-click>
+<div class="mt-6 border-l-4 border-yellow-500 pl-4 text-sm" v-click>
 
-這五天你們交的每一筆 WA、CE，都是學習過程留下的紀錄，不是扣分項目。
+自己讀、自己想、自己寫。比賽結束後會逐題檢討，現在**先不要**上網查解法。
 
 </div>
-
----
-
-## 討論①
-
-三個題目（成績等第、峰值偵測、最常見字元）都可以套進「讀入→走一遍→記錄→輸出」這個固定套路。跟旁邊同學討論：三題的「記錄」那一步分別在記錄什麼？
-
----
-
-## 討論②
-
-回想這五天寫過的所有題目，哪一題你覺得最難？跟旁邊同學互相解釋一次那一題的解法，教別人是確認自己真的懂了的最好方法。
-
----
-
-## 討論③
-
-「程式碼健檢」的四段程式碼，你自己過去有沒有寫過類似的錯誤？跟旁邊同學分享一次自己踩過的雷，互相提醒之後怎麼避免。
-
----
-
-## 討論④
-
-如果要幫明年的學弟妹寫一張「這五天最重要的一件事」小卡片，你會寫什麼？跟旁邊同學比比看，各自的答案一樣嗎？
 
 ---
 layout: fact
@@ -1310,9 +754,372 @@ layout: fact
 
 # 動手做
 
-[oj.itousouta.me → 課程 → Day5](https://oj.itousouta.me/courses/7)
+[oj.itousouta.me → 比賽](https://oj.itousouta.me/contests/3)
 
-3 題：成績等第、峰值偵測、最常見字元
+90 分鐘：P1 畢業紀念冊之外的用途？、P2 校長的口號到底多有梗？
+
+---
+layout: section
+---
+
+# 賽後檢討
+
+---
+
+## P1　畢業紀念冊之外的用途？
+
+讀入 N 件投稿作品的紀錄 (owner, purpose)，purpose 為 2 或 3 視為「違規使用」。
+
+<div class="text-sm mt-4">
+
+輸出：① 違規總件數　② 每位「至少一件違規」的學生座號與違規件數，依座號由小到大。
+
+</div>
+
+<div class="mt-4 text-xs opacity-60">
+
+子題一 40 分：只要第一行總件數對；子題二 60 分：後面每位學生的明細也要全對。
+
+</div>
+
+---
+
+## P1　套進固定套路
+
+<v-clicks>
+
+- 讀入 n → 讀入 N 件作品紀錄
+- 用一個 for 走一遍 → 每讀一筆就判斷 purpose 是不是 2 或 3
+- 過程中計數 → 違規總數 +1；同時把**這位學生**的違規次數也 +1
+- 輸出答案 → 先印總數，再依座號由小到大印出有違規的學生
+
+</v-clicks>
+
+---
+
+## P1　用今天教的方法手算一次
+
+<div class="text-sm">
+
+輸入 `1 2` `2 1` `1 3` `3 2` `2 2`，照著讀，逐一判斷：
+
+</div>
+
+| 這筆 | owner | purpose | 違規？ | cnt[owner] |
+| ---- | ----- | ------- | ------ | ---------- |
+| 1    | 1     | 2       | 是     | cnt[1]=1   |
+| 2    | 2     | 1       | 否     | —          |
+| 3    | 1     | 3       | 是     | cnt[1]=2   |
+| 4    | 3     | 2       | 是     | cnt[3]=1   |
+| 5    | 2     | 2       | 是     | cnt[2]=1   |
+
+<div class="mt-2 text-sm opacity-70">
+
+共 4 件違規，依座號輸出 `1 2`、`2 1`、`3 1`，跟範例輸出一致。
+
+</div>
+
+---
+
+## P1　想法：座號本身就是索引
+
+<div class="text-sm">
+
+座號 owner 的範圍是 1～100，**數字本身就能直接當計數陣列的索引**，不需要像字母那樣先轉換：
+
+</div>
+
+```cpp
+int cnt[101] = {};   // cnt[owner] = 這位學生的違規件數
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+每讀進一筆違規紀錄，直接把 `cnt[owner]` 加一即可。
+
+</div>
+
+---
+
+## P1　程式：讀入與計數
+
+```cpp
+int cnt[101] = {};      // 座號 1~100，直接當索引
+int n; cin >> n;
+int total = 0;
+for (int i = 0; i < n; i++) {
+    int owner, purpose;
+    cin >> owner >> purpose;
+    if (purpose == 2 || purpose == 3) {
+        total++;
+        cnt[owner]++;
+    }
+}
+```
+
+<div class="mt-4 text-sm opacity-70">
+
+這裡不需要把每一筆原始紀錄都存起來——分類完馬上更新計數，紀錄本身用完就丟。
+
+</div>
+
+---
+
+## P1　輸出
+
+```cpp
+cout << total << endl;
+for (int owner = 1; owner <= 100; owner++) {
+    if (cnt[owner] > 0) cout << owner << " " << cnt[owner] << endl;
+}
+```
+
+<div class="mt-4 border-l-4 border-green-500 pl-4 text-sm">
+
+依座號由小到大輸出，剛好就是照著陣列索引 1 到 100 掃過去的順序——完全不用額外排序，這也是計數陣列的一個附加好處。
+
+</div>
+
+---
+
+## P1　容易失分的地方
+
+<div class="border-l-4 border-red-500 pl-4 text-sm">
+
+⚠️ 只統計 `purpose == 2 || purpose == 3`，`purpose == 1` 不算違規，別寫反條件。
+
+⚠️ 子題一、子題二是**分開配分**的：程式碼要先確保第一行的總件數穩穩拿到 40 分，再去顧後面的明細——這正是「先求有再求好」。
+
+</div>
+
+---
+
+## P2　校長的口號到底多有梗？
+
+讀入 N 屆的紀錄 (year, slogan，僅大寫字母)。slogan 中**任一字母出現 ≥2 次**，該屆就是「重複用字口號」。
+
+<div class="text-sm mt-4">
+
+輸出：① 重複用字口號總屆數　② 每個重複用字屆的屆別、出現最多次的字母（並列取字母順序最小）與次數，**依屆別由小到大**。
+
+</div>
+
+<div class="mt-4 text-xs opacity-60">
+
+子題一 40 分：只要第一行總屆數對；子題二 60 分：後面每屆的明細也要全對。
+
+</div>
+
+---
+
+## P2　套進固定套路
+
+<v-clicks>
+
+- 讀入 n → 讀入 N 屆紀錄
+- 用一個 for 走一遍 → **每一屆都重新算一次**這句口號的字母次數（用計數陣列統計 26 個字母，只是要重算 N 次）
+- 過程中計數/比較 → 這屆有沒有字母出現 ≥2 次？有的話順便記下次數最高、字母順序最小的那個
+- 輸出答案 → 先印總屆數，再依屆別由小到大印出明細
+
+</v-clicks>
+
+<div class="mt-4 border-l-4 border-blue-500 pl-4 text-sm" v-click>
+
+題目要求「依屆別由小到大」，但輸入不保證照屆別排序——這件事要先想清楚，不能邊讀邊印。
+
+</div>
+
+---
+
+## P2　用範例一手算一次
+
+<div class="text-sm">
+
+`PASSION` `BELIEVE` `DREAM` `TOGETHER` `SUCCESS`，逐屆算字母次數：
+
+</div>
+
+| 屆  | 口號     | 出現最多次的字母(次數) | 重複用字？ |
+| --- | -------- | ---------------------- | ---------- |
+| 1   | PASSION  | S(2)                   | 是         |
+| 2   | BELIEVE  | E(3)                   | 是         |
+| 3   | DREAM    | 全部各 1 次            | 否         |
+| 4   | TOGETHER | T(2) / E(2) 並列，取 E | 是         |
+| 5   | SUCCESS  | S(3)                   | 是         |
+
+<div class="mt-2 text-sm opacity-70">
+
+共 4 屆重複用字，依序是 1、2、4、5，跟範例輸出一致。
+
+</div>
+
+---
+
+## P2　程式：每屆重算一次計數陣列
+
+```cpp
+int n; cin >> n;
+int year[1005]; string slogan[1005];
+for (int i = 0; i < n; i++) cin >> year[i] >> slogan[i];
+
+int total = 0;
+bool isDup[1005] = {};
+char bestLetter[1005]; int bestCount[1005];
+
+for (int i = 0; i < n; i++) {
+    int cnt[26] = {};                       // 這屆專用，每屆都要歸零重來
+    for (char c : slogan[i]) cnt[c - 'A']++;
+
+    int best = 0;
+    for (int j = 1; j < 26; j++)
+        if (cnt[j] > cnt[best]) best = j;   // 嚴格大於才換，並列取字母順序最小
+
+    if (cnt[best] >= 2) {
+        isDup[i] = true;
+        total++;
+        bestLetter[i] = (char)('A' + best);
+        bestCount[i] = cnt[best];
+    }
+}
+```
+
+<div class="mt-2 text-sm opacity-70">
+
+跟 P1 用計數陣列統計是同一套技巧——只是這裡有 N 屆，`cnt[26]` 每一屆都要**重新歸零**，不能沿用上一屆算到一半的數字。
+
+</div>
+
+---
+
+## P2　輸出：用屆別當索引，取代排序
+
+<div class="text-sm">
+
+year 最大只到 10000，可以開一個「以 year 當索引」的陣列，直接取代排序：
+
+</div>
+
+```cpp
+int slot[10005];
+for (int y = 0; y <= 10000; y++) slot[y] = -1;   // -1 = 沒有這屆
+for (int i = 0; i < n; i++) slot[year[i]] = i;
+
+cout << total << endl;
+for (int y = 1; y <= 10000; y++) {
+    int i = slot[y];
+    if (i != -1 && isDup[i])
+        cout << y << " " << bestLetter[i] << " " << bestCount[i] << endl;
+}
+```
+
+<div class="mt-4 border-l-4 border-green-500 pl-4 text-sm">
+
+照 `y` 由小到大掃過去，順序自然就是屆別由小到大——這五天沒教排序演算法，但用「索引本身就是資訊」的計數陣列技巧，一樣能做到同樣的效果。
+
+</div>
+
+---
+
+## P2　容易失分的地方
+
+<div class="border-l-4 border-red-500 pl-4 text-sm">
+
+⚠️ 字母是**大寫**，要用 `c - 'A'`，不是 `c - 'a'`。
+
+⚠️ `cnt[26]` 一定要放在**每屆的迴圈裡面**宣告（或每屆手動歸零），放在外面只會歸零一次，後面每屆的計數會疊加到前面去。
+
+⚠️ 並列時要用**嚴格大於** `>` 找 `best`，才會停在字母順序最小的那個。
+
+</div>
+
+---
+
+## 這招叫「計數陣列」
+
+<div class="text-sm">
+
+P1 用座號當索引、P2 用字母（和屆別）當索引，用的是**同一個技巧**：
+
+</div>
+
+```cpp
+int cnt[種類數] = {};     // 每種一格，全部歸零
+for (每一筆資料) cnt[這筆屬於第幾種]++;
+```
+
+<div class="mt-4 border-l-4 border-yellow-500 pl-4 text-sm">
+
+只要題目在問「**各有幾個**」「**哪個最多**」，先想想能不能開一個計數陣列。索引範圍不大的時候（座號 100 種、字母 26 種、屆別到 10000），這是最直接的解法。
+
+</div>
+
+---
+
+## 計數陣列：什麼時候該用
+
+<v-clicks>
+
+- 資料的「種類數」不多、而且**固定**（座號、字母、屆別……）
+- 只需要知道「每種各出現幾次」或「依索引順序輸出」，不需要記住原始資料的順序
+- 索引不一定是數字本身——**字元要先轉成索引**（`c - 'A'`），但如果本身就是數字（座號、屆別）可以直接當索引
+
+</v-clicks>
+
+---
+layout: fact
+---
+
+# 🍱 短暫休息
+
+10 分鐘後回來
+
+---
+layout: section
+---
+
+# 頒獎
+
+---
+
+## 恭喜完成 90 分鐘的挑戰
+
+<div class="text-sm opacity-70 mt-4">
+
+不管這場拿到幾分，你都已經在時間壓力下，把五天學到的東西整套用了一次——這比分數本身更值得恭喜。
+
+</div>
+
+---
+
+## 公佈排行榜
+
+[oj.itousouta.me → Day5 比賽 → 排行榜](https://oj.itousouta.me/contests/3/scoreboard)
+
+<div class="mt-4 text-sm opacity-70">
+
+一起看看誰在 90 分鐘內拿下最多分、最快全對。
+
+</div>
+
+---
+
+## 頒獎
+
+<div class="text-sm opacity-70 mb-4">
+
+（以下依現場實際名次調整）
+
+</div>
+
+<v-clicks>
+
+- 🥇 第一名
+- 🥈 第二名
+- 🥉 第三名
+- 🌟 最佳進步獎
+- 💡 最佳嘗試獎（沒拿到滿分，但過程最值得鼓勵）
+
+</v-clicks>
 
 ---
 layout: section
@@ -1375,7 +1182,7 @@ layout: section
 | 2   | 變數與運算子 | 讓程式做決定           |
 | 3   | 迴圈         | 讓程式重複做事         |
 | 4   | 陣列、字串   | 一次處理一整排資料     |
-| 5   | 總複習       | 把工具組合起來解決問題 |
+| 5   | 總複習與實戰 | 把工具組合起來解決問題 |
 
 </div>
 
@@ -1436,14 +1243,6 @@ layout: section
 
 <div class="text-sm opacity-70 mt-6">
 
-有問題隨時回來找老師，或是在 itouOJ 上留言討論。寫程式這條路很長，這五天只是一個開始。
+有問題隨時在 Discord 上 Call 我，或是在 itouOJ 上留言討論。寫程式這條路很長，這五天只是一個開始。
 
 </div>
-
----
-layout: statement
----
-
-# 謝謝大家五天的參與
-
-祝大家在 APCS 有好成績 🎉
