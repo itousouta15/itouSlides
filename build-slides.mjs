@@ -25,8 +25,11 @@ for (const dir of dirs) {
 	console.log(`building ${slug}...`);
 	console.log(`entry: ${entry}`);
 	console.log(`out:   ${outDir}`);
-	console.log(`command: pnpm exec slidev build ${entry} --out ${outDir} --base ${base} --download true\n`);
-	const result = spawnSync("pnpm", ["exec", "slidev", "build", entry, "--out", outDir, "--base", base, "--download", "true"], {
+	const enableDownload = process.env.SLIDEV_DOWNLOAD === "true";
+	console.log(`command: pnpm exec slidev build ${entry} --out ${outDir} --base ${base}` + (enableDownload ? " --download true" : "") + "\n");
+	const args = ["exec", "slidev", "build", entry, "--out", outDir, "--base", base];
+	if (enableDownload) args.push("--download", "true");
+	const result = spawnSync("pnpm", args, {
 		stdio: "inherit",
 		cwd: repoRoot
 	});
