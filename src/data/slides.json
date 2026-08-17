@@ -55,25 +55,9 @@
 			"tags": ["software"],
 			"year": 2026,
 			"url": "/talks/apcs-day4-arrays-strings/"
-		},
-		{
-			"title": "第五天 總複習與實戰演練",
-			"subtitle": "大里 APCS 營隊",
-			"description": "把四天的工具串成解題流程：APCS 實作題的固定套路、計數陣列技巧、邊界與輸出格式的常見失分點。對應 itouOJ Day5 的成績等第統計、峰值偵測、最常見字元。",
-			"tags": ["software"],
-			"year": 2026,
-			"url": "/talks/apcs-day5-review/"
 		}
 	],
-	"homework": [
-		{
-			"title": "陰蝨（Pubic Lice）健康報告",
-			"subject": "健康教育",
-			"description": "介紹陰蝨，涵蓋病原體、寄生部位、傳播途徑、症狀、診斷、治療與預防，並說明近年感染率下降的原因。",
-			"year": 2026,
-			"url": "/talks/pubic-lice/"
-		}
-	],
+	"homework": [],
 	"author": {
 		"name": "伊藤蒼太",
 		"fullName": "郭家睿",
