@@ -1,27 +1,97 @@
-@import "https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@400;700&display=swap";
-@import "https://font.emtech.cc/css/JetBrainsMono";
-
 :root {
-	--background: #21252b;
-	--current-line: #2e353f;
-	--foreground: #cccccc;
-	--comment: #999999;
-	--blue: #98cbff;
-	--blue-dim: #add6ff;
-	--green: #99cc99;
-	--orange: #f69d50;
-	--purple: #dcbdfb;
-	--red: #ff7b7b;
-	--yellow: #ffcc66;
-	--aqua: #66cccc;
-	--font-sans: "Mulish", "Noto Serif TC", sans-serif;
-	--font-mono: "JetBrainsMono", "JetBrains Mono", monospace;
+	--background: #000000;
+	--current-line: #1c1c1e;
+	--foreground: #f5f5f7;
+	--comment: #98989d;
+	--blue: #8ca9c1;
+	--blue-dim: #9abedc;
+	--green: #69a87b;
+	--orange: #c99b68;
+	--purple: #a993bd;
+	--red: #c88480;
+	--yellow: #c4b36d;
+	--aqua: #9fc2c9;
+	--accent: #91acc5;
+	--accent-glow: rgb(122 152 178 / 35%);
+	--surface: rgb(28 28 30 / 78%);
+	--surface-raised: rgb(44 44 46 / 88%);
+	--surface-soft: rgb(255 255 255 / 7%);
+	--border: rgb(255 255 255 / 12%);
+	--border-strong: rgb(255 255 255 / 20%);
+	--secondary-label: #aeaeb2;
+	--tertiary-label: #636366;
+	--progress-track: rgb(255 255 255 / 18%);
+	--shadow: rgb(0 0 0 / 35%);
+	--font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang TC", "Noto Sans TC", sans-serif;
+	--font-mono: "SFMono-Regular", "SF Mono", "Cascadia Code", "Roboto Mono", monospace;
+}
+
+html.light {
+	--background: #f5f5f7;
+	--current-line: #ffffff;
+	--foreground: #1d1d1f;
+	--comment: #6e6e73;
+	--blue: #607f9a;
+	--blue-dim: #537a9e;
+	--green: #4d865b;
+	--orange: #a86748;
+	--purple: #80688f;
+	--red: #a65e5c;
+	--yellow: #806f3d;
+	--aqua: #4c7e86;
+	--accent: #607e9b;
+	--accent-glow: rgb(96 126 155 / 22%);
+	--surface: rgb(255 255 255 / 84%);
+	--surface-raised: rgb(255 255 255 / 96%);
+	--surface-soft: rgb(0 0 0 / 4%);
+	--border: rgb(60 60 67 / 16%);
+	--border-strong: rgb(60 60 67 / 26%);
+	--secondary-label: #6e6e73;
+	--tertiary-label: #86868b;
+	--progress-track: rgb(60 60 67 / 18%);
+	--shadow: rgb(0 0 0 / 12%);
+}
+
+/* Follow the system until Slidev explicitly selects a color scheme. */
+@media (prefers-color-scheme: light) {
+	:root:not(.dark) {
+		--background: #f5f5f7;
+		--current-line: #ffffff;
+		--foreground: #1d1d1f;
+		--comment: #6e6e73;
+		--blue: #607f9a;
+		--blue-dim: #537a9e;
+		--green: #4d865b;
+		--orange: #a86748;
+		--purple: #80688f;
+		--red: #a65e5c;
+		--yellow: #806f3d;
+		--aqua: #4c7e86;
+		--accent: #607e9b;
+		--accent-glow: rgb(96 126 155 / 22%);
+		--surface: rgb(255 255 255 / 84%);
+		--surface-raised: rgb(255 255 255 / 96%);
+		--surface-soft: rgb(0 0 0 / 4%);
+		--border: rgb(60 60 67 / 16%);
+		--border-strong: rgb(60 60 67 / 26%);
+		--secondary-label: #6e6e73;
+		--tertiary-label: #86868b;
+		--progress-track: rgb(60 60 67 / 18%);
+		--shadow: rgb(0 0 0 / 12%);
+	}
 }
 
 #app {
 	#slide-content {
 		--at-apply: text-$foreground bg-$background !important;
 		font-family: var(--font-sans);
+		font-optical-sizing: auto;
+		letter-spacing: -0.012em;
+		text-rendering: optimizeLegibility;
+
+		* {
+			box-sizing: border-box;
+		}
 
 		h1,
 		h2,
@@ -29,232 +99,425 @@
 		h4,
 		h5,
 		h6 {
-			--at-apply: text-$blue;
+			color: var(--foreground);
 			font-family: var(--font-sans);
 			font-weight: 700;
+			letter-spacing: -0.045em;
+			line-height: 1.08;
 		}
 
 		h1 {
-			--at-apply: mb-4;
+			font-size: 2.8em;
+			margin-bottom: 0.34em;
 		}
 
 		h2 {
-			--at-apply: mb-4;
+			font-size: 1.45em;
+			margin-bottom: 0.58em;
+		}
+
+		h3 {
+			font-size: 1.1em;
+			margin-bottom: 0.45em;
 		}
 
 		p {
-			line-height: 160%;
+			line-height: 1.58;
 		}
 
 		strong {
-			--at-apply: text-$orange;
+			color: var(--blue-dim);
+			font-weight: 700;
 		}
 
 		em {
-			--at-apply: text-$yellow;
+			color: var(--orange);
 		}
 
 		a {
-			--at-apply: text-$blue;
+			color: var(--blue);
+			font-weight: 600;
+			text-decoration: none;
+			text-underline-offset: 0.18em;
+			transition:
+				color 180ms ease,
+				text-decoration-color 180ms ease;
+		}
+
+		a:hover {
+			color: var(--blue-dim);
 			text-decoration: underline;
-			text-underline-offset: 3px;
 		}
 
 		ul,
 		ol {
-			li::marker {
-				--at-apply: text-$blue;
-			}
+			padding-left: 1.25em;
+		}
+
+		li {
+			margin: 0.34em 0;
+			padding-left: 0.12em;
+		}
+
+		ul li::marker,
+		ol li::marker {
+			color: var(--accent);
 		}
 
 		blockquote {
-			--at-apply: bg-transparent text-$yellow border-none;
-			font-style: italic;
-			font-size: 1em;
 			position: relative;
-			margin-top: 1em;
-			padding-left: 1em;
+			margin: 1.15em 0;
+			padding: 0.8em 1em 0.8em 1.15em;
+			border: 1px solid var(--border);
+			border-radius: 0.78em;
+			background: var(--surface-soft);
+			color: var(--secondary-label);
+			font-style: normal;
+			box-shadow: 0 8px 24px var(--shadow);
+			backdrop-filter: blur(18px) saturate(140%);
 		}
 
 		blockquote::before {
 			content: "";
-			width: 0.2rem;
-			height: 100%;
-			background-color: #454d59;
 			position: absolute;
-			left: 0;
-			top: 0;
-		}
-
-		kbd {
-			--at-apply: text-$green;
+			inset: 0.7em auto 0.7em 0;
+			width: 3px;
+			border-radius: 99px;
+			background: var(--accent);
 		}
 
 		table {
-			font-size: 0.85em;
-			border-collapse: collapse;
 			width: 100%;
-
-			th,
-			td {
-				padding: 0.3em 0.75em;
-				border: 1px solid #454d59;
-				line-height: 1.4;
-			}
-
-			th {
-				--at-apply: text-$blue bg-$current-line;
-				font-weight: 600;
-			}
-
-			tr:nth-child(even) td {
-				background: rgba(255, 255, 255, 0.03);
-			}
+			border: 1px solid var(--border);
+			border-spacing: 0;
+			border-collapse: separate;
+			border-radius: 0.8em;
+			overflow: hidden;
+			font-size: 0.82em;
+			box-shadow: 0 10px 28px var(--shadow);
+			backdrop-filter: blur(18px) saturate(140%);
 		}
 
-		.slidev-code.shiki {
-			background: #1a1d22 !important;
-			padding: 3rem;
+		th,
+		td {
+			padding: 0.5em 0.75em;
+			border-right: 1px solid var(--border);
+			border-bottom: 1px solid var(--border);
+			line-height: 1.42;
+		}
+
+		th:last-child,
+		td:last-child {
+			border-right: 0;
+		}
+
+		tr:last-child td {
+			border-bottom: 0;
+		}
+
+		th {
+			background: var(--surface-raised);
+			color: var(--foreground);
+			font-weight: 650;
+			text-align: left;
+		}
+
+		tr:nth-child(even) td {
+			background: var(--surface-soft);
 		}
 
 		:not(pre) > code {
-			--at-apply: bg-transparent text-$green;
-		}
-	}
-
-	/* Layout: Cover, Intro */
-	.slidev-layout.cover,
-	.slidev-layout.intro {
-		--at-apply: h-full grid;
-
-		h1 {
-			--at-apply: text-6xl leading-20 text-$blue;
-		}
-
-		h1 + p {
-			--at-apply: -mt-2 text-$comment mb-4;
-		}
-
-		p + h2,
-		ul + h2,
-		table + h2 {
-			--at-apply: mt-10;
-		}
-	}
-
-	/* Layout: Fact */
-	.slidev-layout.fact {
-		--at-apply: text-center grid h-full;
-
-		h1 {
-			--at-apply: text-8xl font-700 text-$blue;
-		}
-
-		h1 + p {
-			--at-apply: font-700 text-2xl text-$comment;
-		}
-	}
-
-	/* Layout: Statement */
-	.slidev-layout.statement {
-		--at-apply: text-center grid h-full;
-
-		h1 {
-			--at-apply: text-6xl font-700 text-$blue;
-		}
-	}
-
-	/* Layout: Section */
-	.slidev-layout.section {
-		h1 {
-			--at-apply: text-6xl font-500 leading-20 text-$blue;
-		}
-	}
-
-	/* Layout: Quote */
-	.slidev-layout.quote {
-		--at-apply: grid h-full;
-
-		h1 + p {
-			--at-apply: mt-2;
-		}
-	}
-
-	/* Layout: Author */
-	.slidev-layout.author {
-		img {
-			--at-apply: rounded-full mx-auto;
-		}
-
-		h1 {
-			--at-apply: text-3xl font-600 mb-0 next-[p]-mt-2;
-		}
-
-		h1 + p {
-			--at-apply: max-w-40ch mx-auto;
-		}
-
-		footer {
-			--at-apply: pt-16 text-sm flex justify-center items-center;
-
-			a {
-				--at-apply: ms-2 me-6;
-			}
-
-			a:not(:hover) {
-				color: inherit !important;
-			}
-		}
-	}
-}
-
-/* Light Mode */
-html.light {
-	--background: #ffffff;
-	--current-line: #f0f0f0;
-	--foreground: #555555;
-	--comment: #888888;
-	--blue: #00629d;
-	--blue-dim: #5aaeff;
-	--green: #2ea52e;
-	--orange: #b66014;
-	--purple: #7135ac;
-	--red: #cc0000;
-	--yellow: #cb911d;
-	--aqua: #479d9d;
-}
-
-html.light #app {
-	#slide-content {
-		--at-apply: text-$foreground bg-$background !important;
-
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			--at-apply: text-$blue;
+			color: var(--aqua);
 		}
 
 		.slidev-code.shiki {
-			background: #f8f8f8 !important;
-			padding: 3rem;
+			padding: 1.2em 1.35em;
+			border: 1px solid var(--border);
+			border-radius: 0.9em;
+			box-shadow: 0 14px 32px var(--shadow);
+			background: var(--current-line) !important;
 		}
+	}
+}
 
-		table {
-			th,
-			td {
-				border-color: #cccccc;
-			}
+#slide-content .slidev-layout {
+	position: relative;
+	border: 1px solid transparent;
+	border-radius: 1.2rem;
+	overflow: hidden;
+	contain: paint;
+}
 
-			th {
-				background: #f0f0f0;
-			}
+.apple-forward-enter-active,
+.apple-forward-leave-active,
+.apple-back-enter-active,
+.apple-back-leave-active {
+	transition:
+		opacity 360ms cubic-bezier(0.22, 1, 0.36, 1),
+		transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-			tr:nth-child(even) td {
-				background: rgba(0, 0, 0, 0.02);
-			}
-		}
+.apple-forward-enter-from,
+.apple-back-leave-to {
+	opacity: 0;
+	transform: translate3d(1.25rem, 0, 0) scale(0.992);
+}
+
+.apple-forward-leave-to,
+.apple-back-enter-from {
+	opacity: 0;
+	transform: translate3d(-1.25rem, 0, 0) scale(0.992);
+}
+
+#slide-content .apple-intro,
+#slide-content .apple-cover,
+#slide-content .apple-section,
+#slide-content .apple-fact,
+#slide-content .apple-statement {
+	background: var(--surface-soft);
+	box-shadow: inset 0 1px rgb(255 255 255 / 9%);
+}
+
+#slide-content .apple-intro > *,
+#slide-content .apple-cover > *,
+#slide-content .apple-section > *,
+#slide-content .apple-fact > *,
+#slide-content .apple-statement > *,
+#slide-content .apple-quote > *,
+#slide-content .apple-author > *,
+#slide-content .apple-image-copy > * {
+	position: relative;
+	z-index: 1;
+	animation: apple-slide-enter 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#slide-content .slidev-layout h1 {
+	animation: apple-title-enter 660ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+#slide-content .apple-intro h1,
+#slide-content .apple-cover h1 {
+	font-size: 3.65em;
+	max-width: 10ch;
+}
+
+#slide-content .apple-intro h1 + p,
+#slide-content .apple-cover h1 + p {
+	max-width: 34em;
+	margin-top: 0.55em;
+	color: var(--secondary-label);
+	font-size: 1.16em;
+}
+
+#slide-content .apple-section h1 {
+	max-width: 12ch;
+	margin: 0 auto;
+	font-size: 3.35em;
+	text-align: center;
+}
+
+#slide-content .apple-fact,
+#slide-content .apple-statement {
+	text-align: center;
+}
+
+#slide-content .apple-fact h1 {
+	max-width: 12ch;
+	margin: 0 auto 0.28em;
+	font-size: 4.1em;
+}
+
+#slide-content .apple-statement h1 {
+	max-width: 14ch;
+	margin: 0 auto;
+	font-size: 3.7em;
+}
+
+#slide-content .apple-fact h1 + p,
+#slide-content .apple-statement h1 + p {
+	max-width: 30em;
+	margin-right: auto;
+	margin-left: auto;
+	color: var(--secondary-label);
+	font-size: 1.18em;
+}
+
+#slide-content .apple-quote {
+	padding-right: 10%;
+}
+
+#slide-content .apple-quote blockquote {
+	margin: 0;
+	padding: 1.2em 1.4em 1.2em 1.55em;
+	font-size: 1.42em;
+	line-height: 1.45;
+}
+
+#slide-content .apple-author img {
+	border: 4px solid var(--surface-raised);
+	box-shadow: 0 16px 40px var(--shadow);
+}
+
+#slide-content .image-layout {
+	gap: 1.2rem;
+	padding: 1.2rem;
+}
+
+#slide-content .image-panel {
+	position: relative;
+	border: 1px solid var(--border);
+	border-radius: 1rem;
+	box-shadow: 0 18px 40px var(--shadow);
+	overflow: hidden;
+	animation: apple-image-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#slide-content .apple-image-copy {
+	padding: 0.7rem 1rem;
+}
+
+#slide-content .slidev-vclick-target {
+	transition:
+		opacity 340ms ease,
+		transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+	will-change: opacity, transform;
+}
+
+#slide-content .slidev-vclick-hidden {
+	transform: translateY(0.5em) scale(0.985);
+}
+
+#slide-content pre:has(.highlighted) .line {
+	opacity: 0.42;
+	filter: saturate(0.65);
+	transition:
+		opacity 260ms ease,
+		filter 260ms ease,
+		background-color 260ms ease,
+		transform 260ms ease;
+}
+
+#slide-content pre:has(.highlighted) .line.highlighted {
+	opacity: 1;
+	filter: none;
+	transform: translateX(0.18em);
+	background: color-mix(in srgb, var(--accent) 18%, transparent);
+	box-shadow: inset 3px 0 var(--accent);
+}
+
+#slide-content .slidev-code-magic-move,
+#slide-content .shiki-magic-move-container,
+#slide-content .shiki-magic-move {
+	border: 1px solid var(--border);
+	border-radius: 0.9em;
+	background: var(--current-line);
+	box-shadow: 0 14px 32px var(--shadow);
+	overflow: hidden;
+}
+
+#slide-content .slidev-code-magic-move pre {
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+#slide-content .mermaid {
+	padding: 0.45em;
+	border: 1px solid var(--border);
+	border-radius: 0.9em;
+	background: var(--surface-soft);
+	box-shadow: 0 10px 28px var(--shadow);
+}
+
+@keyframes apple-slide-enter {
+	from {
+		opacity: 0;
+		transform: translateY(16px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes apple-title-enter {
+	from {
+		opacity: 0;
+		transform: translateY(20px) scale(0.985);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes apple-image-enter {
+	from {
+		opacity: 0;
+		transform: scale(0.975);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.apple-forward-enter-active,
+	.apple-forward-leave-active,
+	.apple-back-enter-active,
+	.apple-back-leave-active {
+		transition: opacity 120ms ease;
+	}
+
+	.apple-forward-enter-from,
+	.apple-forward-leave-to,
+	.apple-back-enter-from,
+	.apple-back-leave-to {
+		transform: none;
+	}
+
+	#slide-content .apple-intro > *,
+	#slide-content .apple-cover > *,
+	#slide-content .apple-section > *,
+	#slide-content .apple-fact > *,
+	#slide-content .apple-statement > *,
+	#slide-content .apple-quote > *,
+	#slide-content .apple-author > *,
+	#slide-content .apple-image-copy > *,
+	#slide-content .slidev-layout h1,
+	#slide-content .image-panel {
+		animation-duration: 1ms;
+	}
+
+	#slide-content .slidev-vclick-target {
+		transition-duration: 1ms;
+	}
+
+	#slide-content pre:has(.highlighted) .line {
+		transition-duration: 1ms;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-transparency: reduce) {
+	#slide-content blockquote,
+	#slide-content table,
+	#slide-content .slidev-code.shiki {
+		background: var(--current-line) !important;
+		backdrop-filter: none;
+	}
+}
+
+@media (prefers-contrast: more) {
+	#slide-content blockquote,
+	#slide-content table,
+	#slide-content .slidev-code.shiki,
+	#slide-content .image-panel {
+		border-color: var(--border-strong);
 	}
 }

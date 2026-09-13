@@ -1,5 +1,5 @@
 <template>
-	<div class="slidev-layout fact">
+	<div class="slidev-layout fact apple-fact">
 		<div class="my-auto">
 			<slot />
 		</div>

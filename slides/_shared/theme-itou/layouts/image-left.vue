@@ -19,9 +19,9 @@ const style = computed(() => handleBackground(props.image));
 </script>
 
 <template>
-	<div class="grid grid-cols-2 w-full h-full">
-		<div :class="props.imageColClass" :style="style"></div>
-		<div class="slidev-layout default image-right" :class="props.class">
+	<div class="image-layout image-layout-left grid grid-cols-2 w-full h-full">
+		<div class="image-panel" :class="props.imageColClass" :style="style"></div>
+		<div class="slidev-layout default apple-image-copy image-left" :class="props.class">
 			<slot />
 		</div>
 	</div>
