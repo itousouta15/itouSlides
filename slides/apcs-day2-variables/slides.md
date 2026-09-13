@@ -9,8 +9,6 @@ author: 郭家睿 itouSouta
 
 大里 APCS 營隊 · 資料型態、運算子與流程控制
 
-郭家睿
-
 ---
 layout: default
 ---
