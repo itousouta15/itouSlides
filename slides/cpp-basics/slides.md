@@ -37,6 +37,13 @@ layout: section
 
 ## Hello World
 
+````md magic-move [main.cpp]
+```cpp
+int main() {
+    return 0;
+}
+```
+
 ```cpp
 #include <iostream>
 using namespace std;
@@ -46,6 +53,7 @@ int main() {
     return 0;
 }
 ```
+````
 
 - `#include <iostream>` — 引入標準輸入輸出函式庫
 - `using namespace std` — 使用標準命名空間

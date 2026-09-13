@@ -7,7 +7,7 @@ author: 邱皇愷
 
 # 第三天 迴圈
 
-大里 APCS 營隊 · 讓電腦重複幫你做事
+大里 APCS 營隊
 
 邱皇愷
 
@@ -226,11 +226,19 @@ layout: section
 
 ## for 迴圈三元素
 
+````md magic-move [main.cpp]
+```cpp
+for (int i = 1; i <= 5; i++) {
+    // 重複執行的內容
+}
+```
+
 ```cpp
 for (int i = 1; i <= 5; i++) {
     cout << i << " ";   // 1 2 3 4 5
 }
 ```
+````
 
 <div class="grid grid-cols-3 gap-3 my-6 text-center text-sm">
   <div class="border-2 border-blue-500 p-4">

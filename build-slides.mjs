@@ -31,7 +31,8 @@ for (const dir of dirs) {
 	if (enableDownload) args.push("--download", "true");
 	const result = spawnSync("pnpm", args, {
 		stdio: "inherit",
-		cwd: repoRoot
+		cwd: repoRoot,
+		shell: process.platform === "win32"
 	});
 
 	if (result.status !== 0) failed.push(slug);

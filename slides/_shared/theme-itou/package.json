@@ -1,18 +1,21 @@
 {
-	"name": "slidev-theme-em",
+	"name": "slidev-theme-itou",
 	"private": true,
-	"description": "EM shared Slidev theme, based on Dracula",
+	"description": "itouSlides shared Apple-inspired Slidev theme",
 	"slidev": {
 		"colorSchema": "both",
 		"highlighter": "shiki",
 		"defaults": {
-			"transition": "fade",
+			"transition": "apple-forward | apple-back",
+			"clickAnimation": "up",
+			"magicMoveDuration": 480,
+			"magicMoveCopy": "final",
 			"mdc": true,
 			"fonts": {
 				"provider": "none",
-				"sans": "Mulish",
-				"serif": "Noto Serif TC",
-				"mono": "JetBrainsMono"
+				"sans": "system-ui",
+				"serif": "system-ui",
+				"mono": "SFMono-Regular"
 			},
 			"htmlAttrs": {
 				"lang": "zh-Hant-TW"
