@@ -9,8 +9,6 @@ author: 郭家睿 itouSouta
 
 大里 APCS 營隊 · 從第一支程式開始
 
-郭家睿
-
 ---
 layout: default
 ---
